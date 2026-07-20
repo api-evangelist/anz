@@ -1,0 +1,82 @@
+aid: anz
+name: Australia and New Zealand Banking Group (ANZ)
+review:
+  question: Does ANZ expose a confirmed live, public Consumer Data Right (CDR) Product Reference Data API, and is the published contract bank-proprietary or the shared DSB standard?
+  answer: true
+  date: '2026-07-20'
+  reviewer: API Evangelist
+  cdrPrdConfirmed: true
+  specProvenance: >
+    The harvested OpenAPI is the OFFICIAL Data Standards Body (DSB) Consumer Data
+    Standards "CDR Banking API" (OpenAPI 3.0.3, version 1.36.0), captured verbatim
+    from the ConsumerDataStandardsAustralia/standards repository and converted
+    JSON->YAML with content preserved. It is the SHARED CDS standard that every
+    Australian ADI's PRD conforms to, NOT an ANZ-proprietary contract. ANZ does not
+    publish its own downloadable OpenAPI; its public /support/legal/anz-apis/ page
+    documents the base URIs in prose and points developers to the Consumer Data
+    Standards for the technical contract.
+findings:
+  summary: |
+    ANZ is a designated CDR data holder and exposes a live, public, unauthenticated
+    Product Reference Data (PRD) API. Two brand endpoints were confirmed returning
+    HTTP 200 with a data.products payload:
+      - Primary ANZ brand:  https://api.anz/cds-au/v1/banking/products
+      - ANZ Plus brand:     https://cdr.apix.anz/cds-au/v1/banking/products
+    Both require the CDS version header (x-v). Versions 4 and 5 return HTTP 200
+    with echoed x-v; versions 1-3 return HTTP 406 (unsupported version). The main
+    ANZ brand PRD reports meta.totalRecords = 37 products across 37 pages at
+    page-size 1. ANZ runs a broader developer portal at
+    https://developer.online.anz.com/ (HTTP 200), but the only genuinely public,
+    unauthenticated, machine-readable API surface is the CDR PRD; all consumer
+    (account/transaction) data sharing sits behind the CDR accredited-data-recipient
+    model. No bank-proprietary OpenAPI is publicly downloadable, so the shared DSB
+    CDS Banking API spec was harvested as the authoritative contract.
+  authModel: |
+    Product Reference Data (PRD) is public and requires NO authentication (only the
+    x-v version header). All other CDR banking data (accounts, balances,
+    transactions, customer data) is protected under the CDR security profile:
+    OAuth2 / OpenID Connect using the FAPI (Financial-grade API) profile, accessible
+    only to CDR-accredited Data Recipients (ADRs) with consumer consent via the CDR
+    consent/authorisation flow. This bootstrap captures only the public PRD surface.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.anz/cds-au/v1/banking/products
+      documented: true
+      httpStatus: 200
+      note: Primary ANZ brand PRD. Confirmed HTTP 200 with x-v 4 and x-v 5; JSON body has data.products, links, meta (totalRecords 37).
+    - protocol: REST
+      scheme: https
+      baseURL: https://cdr.apix.anz/cds-au/v1/banking/products
+      documented: true
+      httpStatus: 200
+      note: ANZ Plus brand PRD. Confirmed HTTP 200 with x-v 4 and x-v 5.
+  versionNegotiation:
+    header: x-v
+    supportedConfirmed: [4, 5]
+    unsupportedConfirmed: [1, 2, 3]
+    unsupportedHttpStatus: 406
+sources:
+  - url: https://www.anz.com.au/support/legal/anz-apis/
+    type: Documentation
+    note: ANZ Product APIs page. Documents base URIs https://api.anz/cds-au/v1/banking/products and /products/{productId}; states APIs are public (no auth) and follow the Consumer Data Standards.
+  - url: https://api.anz/cds-au/v1/banking/products
+    type: BaseURL
+    note: Primary ANZ brand PRD endpoint. Probed live 2026-07-20 - HTTP 200 with x-v 4/5, HTTP 406 with x-v 1/2/3.
+  - url: https://cdr.apix.anz/cds-au/v1/banking/products
+    type: BaseURL
+    note: ANZ Plus brand PRD endpoint. Probed live 2026-07-20 - HTTP 200 with x-v 4/5.
+  - url: https://developer.online.anz.com/
+    type: DeveloperPortal
+    note: ANZ developer portal. HTTP 200; broader (partner/authenticated) API programme distinct from the public CDR PRD.
+  - url: https://consumerdatastandardsaustralia.github.io/standards/
+    type: APIReference
+    note: DSB Consumer Data Standards - authoritative CDR Banking API contract the ANZ PRD conforms to.
+  - url: https://github.com/ConsumerDataStandardsAustralia/standards
+    type: OpenAPISource
+    note: Source of the harvested official CDR Banking API OpenAPI 3.0.3 v1.36.0 (swagger/cds_banking.json), saved verbatim as openapi/anz-cds-banking-products-openapi.yml.
+actions:
+  openapiHarvested: true
+  openapiPath: openapi/anz-cds-banking-products-openapi.yml
+  openapiProvenance: DSB Consumer Data Standards (shared CDS standard, not ANZ-proprietary)
+  apisYmlUpdated: true
