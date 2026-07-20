@@ -1,0 +1,7 @@
+generated: '2026-07-20'
+method: generated
+skills:
+- file: anz-product-reference-data.md
+  name: List ANZ banking products (CDR Product Reference Data)
+  api: openapi/anz-cds-banking-products-openapi.yml
+  operations: [listBankingProducts, getBankingProductDetail]

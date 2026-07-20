@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for ANZ CDR Product Reference Data
+  version: 1.0.0
+extends: openapi/anz-cds-banking-products-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: Australia and New Zealand Banking Group (ANZ)
+    x-apievangelist-public-operations: [listBankingProducts, getBankingProductDetail]
+    x-apievangelist-public-hosts:
+    - https://api.anz/cds-au/v1
+    - https://cdr.apix.anz/cds-au/v1
+    x-apievangelist-note: >
+      Of the 19 operations in this shared DSB Consumer Data Standards contract, ANZ
+      exposes only the two Banking Products operations publicly (no auth, x-v header
+      only). The remaining operations require the CDR ADR OAuth2/FAPI + mTLS model and
+      are not callable without accreditation and consumer consent.
+- target: $.servers
+  update:
+  - description: ANZ brand PRD (public, confirmed live)
+    url: https://api.anz/cds-au/v1
+  - description: ANZ Plus brand PRD (public, confirmed live)
+    url: https://cdr.apix.anz/cds-au/v1

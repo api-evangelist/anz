@@ -1,0 +1,227 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/anz-cds-banking-products-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 19
+  by_action_class:
+    connected: 16
+    acting: 3
+  by_consequence:
+    read: 16
+    write: 2
+    physical: 1
+  human_in_the_loop_required: 0
+operations:
+- path: /banking/accounts
+  method: get
+  operationId: listBankingAccounts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/accounts/balances
+  method: get
+  operationId: listBankingBalancesBulk
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/accounts/balances
+  method: post
+  operationId: listBankingBalancesSpecificAccounts
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /banking/accounts/{accountId}/balance
+  method: get
+  operationId: getBankingBalance
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/accounts/{accountId}
+  method: get
+  operationId: getBankingAccountDetail
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/accounts/{accountId}/transactions
+  method: get
+  operationId: listBankingTransactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/accounts/{accountId}/transactions/{transactionId}
+  method: get
+  operationId: getBankingTransactionDetail
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/accounts/{accountId}/direct-debits
+  method: get
+  operationId: listDirectDebits
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/accounts/direct-debits
+  method: get
+  operationId: listDirectDebitsBulk
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/accounts/direct-debits
+  method: post
+  operationId: listDirectDebitsSpecificAccounts
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /banking/accounts/{accountId}/payments/scheduled
+  method: get
+  operationId: listScheduledPayments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/payments/scheduled
+  method: get
+  operationId: listScheduledPaymentsBulk
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/payments/scheduled
+  method: post
+  operationId: listScheduledPaymentsSpecificAccounts
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /banking/accounts/{accountId}/payments/plans
+  method: get
+  operationId: listInstalmentPlans
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/accounts/payments/plans
+  method: get
+  operationId: listInstalmentPlansBulk
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/payees
+  method: get
+  operationId: listBankingPayees
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/payees/{payeeId}
+  method: get
+  operationId: getBankingPayeeDetail
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/products
+  method: get
+  operationId: listBankingProducts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /banking/products/{productId}
+  method: get
+  operationId: getBankingProductDetail
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

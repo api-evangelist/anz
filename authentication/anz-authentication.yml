@@ -1,0 +1,57 @@
+generated: '2026-07-20'
+method: searched
+source: https://consumerdatastandardsaustralia.github.io/standards/#security-profile
+docs: https://www.anz.com.au/support/legal/anz-apis/
+summary:
+  types: [none, oauth2, openIdConnect, mutualTLS]
+  tiers:
+  - name: Product Reference Data (public)
+    auth: none
+    note: >
+      The public PRD endpoints (GET /banking/products and /banking/products/{productId})
+      and the CDR discovery endpoints (/discovery/status, /discovery/outages) require
+      NO authentication. Only the mandatory x-v version header is needed. Confirmed
+      live returning HTTP 200 on both the ANZ (api.anz) and ANZ Plus (cdr.apix.anz) brands.
+  - name: Consumer data sharing (CDR ADR model)
+    auth: [oauth2, openIdConnect, mutualTLS]
+    note: >
+      All non-PRD banking data (accounts, balances, transactions, direct debits,
+      scheduled/regular payments, payees, instalment plans, customer) is gated behind
+      the CDR security profile. Access is restricted to CDR-accredited Data Recipients
+      (ADRs) acting with explicit consumer consent obtained through the CDR
+      consent/authorisation flow.
+notes: >
+  The harvested OpenAPI is the shared DSB Consumer Data Standards contract and expresses
+  per-operation authorization requirements via the x-scopes vendor extension rather than
+  a components.securitySchemes block, so the mechanical derive-authentication.py found no
+  formal schemes. The auth model below is captured from the Consumer Data Standards
+  Security Profile (FAPI) and the ANZ Product APIs page.
+schemes:
+- name: PublicNoAuth
+  type: none
+  applies_to:
+  - openapi/anz-cds-banking-products-openapi.yml#listBankingProducts
+  - openapi/anz-cds-banking-products-openapi.yml#getBankingProductDetail
+  note: Public Product Reference Data; version header x-v only.
+- name: CDR-FAPI-OAuth2
+  type: oauth2
+  profile: FAPI 1.0 Advanced (Financial-grade API)
+  flows:
+  - flow: authorizationCode
+    note: >
+      OIDC Hybrid/authorization-code flow with PAR (Pushed Authorization Requests),
+      PKCE, and request objects per the CDR security profile. Authorization and token
+      endpoints are published per data holder via the CDR Register / OIDC discovery,
+      not in this product spec.
+  scopes_ref: scopes/anz-scopes.yml
+  applies_to:
+  - non-PRD CDR banking operations (accounts, transactions, payees, payments, customer)
+- name: CDR-OIDC
+  type: openIdConnect
+  note: OpenID Connect identity layer on top of the FAPI OAuth2 profile for the ADR consent flow.
+- name: CDR-mTLS
+  type: mutualTLS
+  note: >
+    Holder-of-key mutual TLS (RFC 8705) binds access tokens to the ADR's client
+    certificate for all authenticated CDR resource calls; the CDS defines the MTLS
+    server (mtls.dh.example.com placeholder in the shared spec).

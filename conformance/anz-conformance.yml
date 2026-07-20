@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/anz-cds-banking-products-openapi.yml
+enriched_from: https://consumerdatastandardsaustralia.github.io/standards/
+standards:
+- id: cdr-consumer-data-standards
+  conforms: true
+  evidence: >
+    Spec is the DSB Consumer Data Standards CDR Banking API v1.36.0; ANZ PRD confirmed
+    live conforming to the /cds-au/v1/banking/products contract on two brands.
+- id: oauth2
+  conforms: true
+  scope: gated (non-PRD) endpoints only
+  evidence: CDR security profile requires OAuth2 for consumer data sharing; x-scopes present per operation.
+- id: oidc
+  conforms: true
+  scope: gated endpoints only
+  evidence: CDR authorisation uses OpenID Connect.
+- id: fapi
+  conforms: true
+  scope: gated endpoints only
+  evidence: CDR mandates the FAPI 1.0 Advanced security profile (PAR, PKCE, request objects, holder-of-key mTLS).
+- id: mtls-rfc8705
+  conforms: true
+  scope: gated endpoints only
+  evidence: Holder-of-key mutual TLS binds tokens to the ADR client certificate.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: CDR uses its own ResponseErrorList (urn:au-cds:error:*) format, not application/problem+json.
+- id: pagination
+  conforms: true
+  evidence: LinksPaginated/MetaPaginated with page/page-size params and totalRecords/totalPages.
+- id: idempotency
+  conforms: false
+  evidence: Public banking surface is read-only GET; no idempotency-key contract.
+- id: json-api
+  conforms: false

@@ -1,0 +1,50 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/anz-cds-banking-products-openapi.yml
+note: >
+  Entity-relationship graph for the public ANZ CDR Product Reference Data surface,
+  derived from the CDS BankingProductV6 / BankingProductDetailV7 schemas.
+entities:
+- name: BankingProduct
+  schema: BankingProductV6
+  id: productId (BankingProductId)
+  key_fields: [productCategory, name, description, brand, brandName, isTailored, lastUpdated, effectiveFrom, effectiveTo]
+  enums:
+    productCategory: [BUSINESS_LOANS, BUY_NOW_PAY_LATER, CRED_AND_CHRG_CARDS, LEASES, MARGIN_LOANS, OVERDRAFTS, PERS_LOANS, REGULATED_TRUST_ACCOUNTS, RESIDENTIAL_MORTGAGES, TERM_DEPOSITS, TRADE_FINANCE, TRANS_AND_SAVINGS_ACCOUNTS, TRAVEL_CARDS]
+- name: BankingProductDetail
+  schema: BankingProductDetailV7
+  composition: BankingProductV6 + detail (bundles, features, constraints, eligibility, fees, depositRates, lendingRates, repaymentRates, cardArt)
+relationships:
+- from: BankingProductDetail
+  to: BankingProductBundle
+  type: has_many
+  via: bundles
+- from: BankingProductDetail
+  to: BankingProductFeature
+  type: has_many
+  via: features
+- from: BankingProductDetail
+  to: BankingProductConstraint
+  type: has_many
+  via: constraints
+- from: BankingProductDetail
+  to: BankingProductEligibility
+  type: has_many
+  via: eligibility
+- from: BankingProductDetail
+  to: BankingProductFee
+  type: has_many
+  via: fees
+- from: BankingProductDetail
+  to: BankingProductDepositRate
+  type: has_many
+  via: depositRates
+- from: BankingProductDetail
+  to: BankingProductLendingRate
+  type: has_many
+  via: lendingRates
+- from: BankingProductBundle
+  to: BankingProduct
+  type: has_many
+  via: productIds
+  note: Bundle references other productIds available via the product endpoints.

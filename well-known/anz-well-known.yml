@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+note: >
+  Probed the standard /.well-known/ discovery surface on all ANZ hosts on 2026-07-20.
+  None are published (404/403). ANZ instead exposes the CDR Common Discovery endpoints
+  (/discovery/status, /discovery/outages) which are public and live (see
+  lifecycle/anz-lifecycle.yml) — these are the machine-readable operational-discovery
+  surface rather than /.well-known/ documents.
+hosts:
+- host: https://www.anz.com.au
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://developer.online.anz.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://api.anz
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+- host: https://cdr.apix.anz
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}

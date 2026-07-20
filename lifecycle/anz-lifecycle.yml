@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: searched
+source: https://consumerdatastandardsaustralia.github.io/standards/
+docs: https://www.anz.com.au/support/legal/anz-apis/
+versioning:
+  scheme: header-per-endpoint (x-v / x-min-v)
+  current:
+    listBankingProducts: '5'
+    getBankingProductDetail: '7'
+  negotiation: Client sends x-v; unsupported versions return HTTP 406.
+  docs: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+deprecation:
+  policy: >
+    Endpoint versions are deprecated and retired per the Consumer Data Standards
+    versioning and Future Dated Obligations (FDO) process; obsolete product-detail
+    versions v1-v6 are documented as superseded by v7 in the standard.
+  obsolete_versions_documented: true
+  policy_url: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+  sunset_header: false
+status:
+  # ANZ exposes the CDR public, unauthenticated status + planned-outage endpoints (live, HTTP 200).
+  status_endpoints:
+  - url: https://api.anz/cds-au/v1/discovery/status
+    brand: ANZ
+    confirmed: 'HTTP 200 {"data":{"status":"OK"}}'
+  - url: https://cdr.apix.anz/cds-au/v1/discovery/status
+    brand: ANZ Plus
+    confirmed: 'HTTP 200 {"data":{"status":"OK"}}'
+  outage_endpoints:
+  - url: https://api.anz/cds-au/v1/discovery/outages
+    brand: ANZ
+    confirmed: HTTP 200 with planned-maintenance outage entries
+  - url: https://cdr.apix.anz/cds-au/v1/discovery/outages
+    brand: ANZ Plus
+    confirmed: 'HTTP 200 {"data":{"outages":[]}}'
+sla:
+  note: >
+    CDR data holders are bound by the CDR performance requirements (availability and
+    response-time thresholds) enforced by the ACCC; no per-holder public SLA document.
+deprecated_operations: []

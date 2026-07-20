@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.anz.com.au
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov  6 23:59:59 2026 GMT
+  hsts: null
+- host: api.anz
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 31 23:59:59 2026 GMT
+  hsts: null
+- host: cdr.apix.anz
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jul 26 09:56:47 2026 GMT
+  hsts: null
+domains:
+- domain: anz.com.au
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: api.anz
+  dnssec: true
+  caa: []
+  spf: false
+  dmarc: true
+  dmarc_policy: reject

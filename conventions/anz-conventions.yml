@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/anz-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#high-level-standards
+note: >
+  Cross-cutting request/response semantics for ANZ's CDR banking surface, derived from
+  the shared DSB Consumer Data Standards and confirmed against the live public PRD.
+authentication:
+  style: tiered
+  public: none (x-v header only) for Product Reference Data + discovery status/outages
+  gated: OAuth2/OIDC FAPI + holder-of-key mTLS (see authentication/anz-authentication.yml)
+versioning:
+  style: header-per-endpoint
+  request_headers:
+    x-v: Requested endpoint version (mandatory). Confirmed live values x-v 4 and 5 on products.
+    x-min-v: Optional minimum acceptable version; server serves highest between x-min-v and x-v.
+  response_headers:
+    x-v: Version actually served, echoed back.
+  unsupported: HTTP 406 (Unsupported Version) when the requested version is not served.
+  ref: lifecycle/anz-lifecycle.yml
+pagination:
+  style: page-number
+  params:
+    page: 1-based page number.
+    page-size: records per page (default 25, max 1000 per CDS).
+  response_fields:
+    links: {first, prev, self, next, last}
+    meta: {totalRecords, totalPages}
+  note: Confirmed meta.totalRecords 37 across 37 pages at page-size 1 on the ANZ brand PRD.
+request_tracing:
+  header: x-fapi-interaction-id
+  behavior: >
+    Client-supplied RFC 4122 UUID echoed back on the response for end-to-end tracing;
+    if absent on authenticated calls the server generates one. Part of the FAPI profile.
+  additional_fapi_headers: [x-fapi-auth-date, x-fapi-customer-ip-address, x-cds-client-headers]
+error_envelope:
+  shape: ResponseErrorListV2
+  fields: {errors: [{code, title, detail, meta}]}
+  format: CDR error list (urn:au-cds:error:* codes) — NOT RFC 9457 problem+json
+  ref: errors/anz-problem-types.yml
+idempotency:
+  supported: false
+  note: >
+    The public ANZ CDR banking surface is read-only (GET only); the standard defines no
+    idempotency-key contract for these endpoints. No Idempotency pointer is emitted.
+rate_limiting:
+  note: >
+    CDR data holders apply traffic-management/session limits per the CDR performance
+    requirements; no rate-limit response headers are defined in the shared banking spec.
+metadata:
+  note: All list responses carry a meta object; error responses may carry per-error meta with urn error extensions.

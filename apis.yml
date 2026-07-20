@@ -24,7 +24,7 @@ tags:
 - Product Reference Data
 - ADI
 created: '2026-07-20'
-modified: '2026-07-20'
+modified: '2026-07-21'
 specificationVersion: '0.19'
 apis:
 - aid: anz:anz-cdr-product-reference-data-api
@@ -73,6 +73,44 @@ apis:
     and unauthenticated, conforming to the same DSB Consumer Data Standards banking
     products contract (x-v version 4 and 5 confirmed live returning HTTP 200).
 common:
+- type: AgenticAccess
+  url: agentic-access/anz-agentic-access.yml
+- type: DomainSecurity
+  url: security/anz-domain-security.yml
+- type: Authentication
+  url: authentication/anz-authentication.yml
+- type: OAuthScopes
+  url: scopes/anz-scopes.yml
+- type: Conventions
+  url: conventions/anz-conventions.yml
+- type: ErrorCatalog
+  url: errors/anz-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/anz-lifecycle.yml
+- type: StatusPage
+  url: https://api.anz/cds-au/v1/discovery/status
+- type: Deprecation
+  url: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+- type: Conformance
+  url: conformance/anz-conformance.yml
+- type: DataModel
+  url: data-model/anz-data-model.yml
+- type: MCPServer
+  url: mcp/anz-mcp.yml
+- type: LLMsTxt
+  url: llms/anz-llms.txt
+- type: Overlay
+  url: overlays/anz-cds-banking-products-overlay.yaml
+- type: AgentSkill
+  url: skills/anz-product-reference-data.md
+- type: VulnerabilityDisclosure
+  url: security/anz-vulnerability-disclosure.yml
+- type: Security
+  url: https://bugcrowd.com/anz-vdp
+- type: APIReference
+  url: https://consumerdatastandardsaustralia.github.io/standards/
+- type: Support
+  url: https://www.anz.com.au/security/
 - type: Website
   url: https://www.anz.com.au/
 - type: DeveloperPortal

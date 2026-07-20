@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/anz-cds-banking-products-openapi.yml
+enriched_from: https://consumerdatastandardsaustralia.github.io/standards/#error-codes
+format: cdr-error-list
+envelope:
+  schema: ResponseErrorListV2
+  media_type: application/json
+  shape: '{ "errors": [ { "code", "title", "detail", "meta" } ] }'
+note: >
+  ANZ's CDR banking API uses the Consumer Data Standards error format (a list of
+  ErrorV2 objects with urn:au-cds:error:* codes), NOT RFC 9457 application/problem+json.
+  Status codes below are derived from the OpenAPI 4xx responses on the public product
+  operations; titles/codes are the CDS standard error registry the spec references.
+problems:
+- status: 400
+  urn: urn:au-cds:error:cds:all:Field/Invalid
+  title: Invalid Field
+  detail: A supplied query/path parameter is malformed or out of range.
+  source_operations: [listBankingProducts, getBankingProductDetail]
+- status: 404
+  urn: urn:au-cds:error:cds:banking:Product/NotFound
+  title: Unavailable Banking Product
+  detail: The requested productId does not exist or is no longer offered.
+  source_operations: [getBankingProductDetail]
+- status: 406
+  urn: urn:au-cds:error:cds:all:Header/UnsupportedVersion
+  title: Unsupported Version
+  detail: The requested endpoint version (x-v) is not supported by the data holder.
+  source_operations: [listBankingProducts, getBankingProductDetail]
+- status: 422
+  urn: urn:au-cds:error:cds:all:Field/InvalidPage
+  title: Invalid Page
+  detail: The requested page number is invalid (e.g. out of range for the result set).
+  source_operations: [listBankingProducts]
+- status: 400
+  urn: urn:au-cds:error:cds:all:Header/InvalidVersion
+  title: Invalid Version
+  detail: The x-v (or x-min-v) header value is not a positive integer.
+  source_operations: [listBankingProducts, getBankingProductDetail]

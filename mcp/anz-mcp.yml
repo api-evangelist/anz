@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/anz-cds-banking-products-openapi.yml
+note: >
+  No official ANZ MCP server exists. This is a DERIVED candidate tool list covering the
+  public, unauthenticated ANZ CDR surface only (Product Reference Data + discovery),
+  which needs no credentials to run against api.anz / cdr.apix.anz with the x-v header.
+server:
+  name: anz-cdr-products
+  transport: http
+tools:
+- name: list_banking_products
+  description: List ANZ banking products currently openly offered to the market (paginated; x-v 5).
+  source_operation: openapi/anz-cds-banking-products-openapi.yml#listBankingProducts
+- name: get_banking_product_detail
+  description: Get full detail for one ANZ banking product by productId (x-v 7).
+  source_operation: openapi/anz-cds-banking-products-openapi.yml#getBankingProductDetail
+- name: get_status
+  description: Get the ANZ CDR data-holder operational status.
+  source_operation: GET https://api.anz/cds-au/v1/discovery/status
+- name: get_outages
+  description: Get scheduled/planned outages for the ANZ CDR data-holder.
+  source_operation: GET https://api.anz/cds-au/v1/discovery/outages

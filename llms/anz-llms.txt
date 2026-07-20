@@ -1,0 +1,32 @@
+# Australia and New Zealand Banking Group (ANZ)
+
+> ANZ is one of Australia's "Big Four" banks and a designated Consumer Data Right (CDR) data holder. It exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the DSB Consumer Data Standards, on two brands (ANZ and ANZ Plus). All consumer data sharing beyond product reference data is gated behind the CDR accredited-data-recipient (ADR) OAuth2/FAPI + mTLS model.
+
+## APIs
+
+- [ANZ CDR Product Reference Data API](https://www.anz.com.au/support/legal/anz-apis/): Public products list + detail. Base https://api.anz/cds-au/v1/banking/products
+- [ANZ Plus CDR Product Reference Data API](https://www.anz.com.au/support/legal/anz-apis/): Same contract, ANZ Plus brand. Base https://cdr.apix.anz/cds-au/v1/banking/products
+
+## Specs
+
+- [OpenAPI (CDS Banking API v1.36.0)](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/openapi/anz-cds-banking-products-openapi.yml)
+- [OpenAPI Overlay](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/overlays/anz-cds-banking-products-overlay.yaml)
+
+## Artifacts
+
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/authentication/anz-authentication.yml)
+- [OAuth scopes (CDR)](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/scopes/anz-scopes.yml)
+- [API conventions](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/conventions/anz-conventions.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/errors/anz-problem-types.yml)
+- [Lifecycle + status/outage endpoints](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/lifecycle/anz-lifecycle.yml)
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/conformance/anz-conformance.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/data-model/anz-data-model.yml)
+- [Agent skill: List ANZ products](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/skills/anz-product-reference-data.md)
+- [Vulnerability disclosure (Bugcrowd)](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/security/anz-vulnerability-disclosure.yml)
+
+## Docs
+
+- [ANZ Product APIs](https://www.anz.com.au/support/legal/anz-apis/)
+- [ANZ Developer Portal](https://developer.online.anz.com/)
+- [Consumer Data Standards (contract)](https://consumerdatastandardsaustralia.github.io/standards/)
+- [ANZ Security centre](https://www.anz.com.au/security/)
