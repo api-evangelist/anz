@@ -380,6 +380,8 @@ common:
   url: https://www.linkedin.com/company/anz
 - type: PrivacyPolicy
   url: https://www.anz.com.au/privacy/
+- type: TermsOfService
+  url: https://www.anz.com.au/support/help/website-terms-use/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
