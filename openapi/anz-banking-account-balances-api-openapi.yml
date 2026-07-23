@@ -1,0 +1,650 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: contact@dsb.gov.au
+    name: Data Standards Body
+    url: https://dsb.gov.au/
+  description: Specifications for resource endpoints applicable to data holders in the Banking sector.
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+  title: CDR Banking Banking Account Balances API
+  version: 1.36.0
+servers:
+- description: MTLS
+  url: https://mtls.dh.example.com/cds-au/v1
+tags:
+- description: Banking Account Balance endpoints
+  name: Banking Account Balances
+  x-shortName: Account Balances
+paths:
+  /banking/accounts/balances:
+    get:
+      description: 'Obtain balances for multiple, filtered accounts.
+
+
+        Obsolete versions: [v1](includes/obsolete/get-bulk-balances-v1.html).'
+      operationId: listBankingBalancesBulk
+      parameters:
+      - description: Used to filter results on the _productCategory_ field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned.
+        explode: true
+        in: query
+        name: product-category
+        required: false
+        schema:
+          $ref: '#/components/schemas/BankingProductCategoryV2'
+        style: form
+      - description: Used to filter results according to open/closed status. Values can be `OPEN`, `CLOSED` or `ALL`. If absent then `ALL` is assumed.
+        explode: true
+        in: query
+        name: open-status
+        required: false
+        schema:
+          default: ALL
+          enum:
+          - ALL
+          - CLOSED
+          - OPEN
+          type: string
+        style: form
+      - description: Filters accounts based on whether they are owned by the authorised customer. `true` for owned accounts, `false` for unowned accounts and absent for all accounts.
+        explode: true
+        in: query
+        name: is-owned
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Page of results to request (standard pagination).
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          type: integer
+        style: form
+        x-cds-type: PositiveInteger
+      - description: Page size to request. Default is 25 (standard pagination).
+        explode: true
+        in: query
+        name: page-size
+        required: false
+        schema:
+          default: 25
+          type: integer
+        style: form
+        x-cds-type: PositiveInteger
+      - description: Version of the API endpoint requested by the client. Must be set to a positive integer. The endpoint should respond with the highest supported version between [_x-min-v_](#request-headers) and [_x-v_](#request-headers). If the value of [_x-min-v_](#request-headers) is equal to or higher than the value of [_x-v_](#request-headers) then the [_x-min-v_](#request-headers) header should be treated as absent. If all versions requested are not supported then the endpoint **MUST** respond with a `406 Not Acceptable`. See [HTTP Headers](#request-headers).
+        explode: false
+        in: header
+        name: x-v
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Minimum version of the API endpoint requested by the client. Must be set to a positive integer if provided. The endpoint should respond with the highest supported version between [_x-min-v_](#request-headers) and [_x-v_](#request-headers). If all versions requested are not supported then the endpoint **MUST** respond with a `406 Not Acceptable`.
+        explode: false
+        in: header
+        name: x-min-v
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: An **[[RFC4122]](#nref-RFC4122)** UUID used as a correlation id. If provided, the data holder **MUST** play back this value in the _x-fapi-interaction-id_ response header. If not provided a **[[RFC4122]](#nref-RFC4122)** UUID value is required to be provided in the response header to track the interaction.
+        explode: false
+        in: header
+        name: x-fapi-interaction-id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The time when the customer last logged in to the Data Recipient Software Product as described in **[[FAPI-1.0-Baseline]](#nref-FAPI-1-0-Baseline)**. Required for all resource calls (customer present and unattended). Not required for unauthenticated calls.
+        explode: false
+        in: header
+        name: x-fapi-auth-date
+        required: false
+        schema:
+          type: string
+        style: simple
+        x-conditional: true
+      - description: The customer's original IP address if the customer is currently logged in to the Data Recipient Software Product. The presence of this header indicates that the API is being called in a customer present context. Not to be included for unauthenticated calls.
+        explode: false
+        in: header
+        name: x-fapi-customer-ip-address
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The customer's original standard http headers [Base64](#common-field-types) encoded, including the original User-Agent header, if the customer is currently logged in to the Data Recipient Software Product. Mandatory for customer present calls. Not required for unattended or unauthenticated calls.
+        explode: false
+        in: header
+        name: x-cds-client-headers
+        required: false
+        schema:
+          type: string
+        style: simple
+        x-conditional: true
+        x-cds-type: Base64
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBankingAccountsBalanceList'
+          description: Successful response
+          headers:
+            x-v:
+              $ref: '#/components/headers/XV'
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrorListV2'
+          description: The following error codes **MUST** be supported:<br/><ul class="error-code-list"><li>[400 - Invalid Field](#error-400-field-invalid)</li><li>[400 - Missing Required Field](#error-400-field-missing)</li><li>[400 - Missing Required Header](#error-400-header-missing)</li><li>[400 - Invalid Version](#error-400-header-invalid-version)</li><li>[400 - Invalid Page Size](#error-400-field-invalid-page-size)</li></ul>
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrorListV2'
+          description: The following error codes **MUST** be supported:<br/><ul class="error-code-list"><li>[406 - Unsupported Version](#error-406-header-unsupported-version)</li></ul>
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrorListV2'
+          description: The following error codes **MUST** be supported:<br/><ul class="error-code-list"><li>[422 - Invalid Page](#error-422-field-invalid-page)</li></ul>
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+      summary: Get Bulk Balances
+      tags:
+      - Banking Account Balances
+      x-scopes:
+      - bank:accounts.basic:read
+      x-version: '2'
+    post:
+      description: Obtain balances for a specified list of accounts.
+      operationId: listBankingBalancesSpecificAccounts
+      parameters:
+      - description: Page of results to request (standard pagination).
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          type: integer
+        style: form
+        x-cds-type: PositiveInteger
+      - description: Page size to request. Default is 25 (standard pagination).
+        explode: true
+        in: query
+        name: page-size
+        required: false
+        schema:
+          default: 25
+          type: integer
+        style: form
+        x-cds-type: PositiveInteger
+      - description: Version of the API endpoint requested by the client. Must be set to a positive integer. The endpoint should respond with the highest supported version between [_x-min-v_](#request-headers) and [_x-v_](#request-headers). If the value of [_x-min-v_](#request-headers) is equal to or higher than the value of [_x-v_](#request-headers) then the [_x-min-v_](#request-headers) header should be treated as absent. If all versions requested are not supported then the endpoint **MUST** respond with a `406 Not Acceptable`. See [HTTP Headers](#request-headers).
+        explode: false
+        in: header
+        name: x-v
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Minimum version of the API endpoint requested by the client. Must be set to a positive integer if provided. The endpoint should respond with the highest supported version between [_x-min-v_](#request-headers) and [_x-v_](#request-headers). If all versions requested are not supported then the endpoint **MUST** respond with a `406 Not Acceptable`.
+        explode: false
+        in: header
+        name: x-min-v
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: An **[[RFC4122]](#nref-RFC4122)** UUID used as a correlation id. If provided, the data holder **MUST** play back this value in the _x-fapi-interaction-id_ response header. If not provided a **[[RFC4122]](#nref-RFC4122)** UUID value is required to be provided in the response header to track the interaction.
+        explode: false
+        in: header
+        name: x-fapi-interaction-id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The time when the customer last logged in to the Data Recipient Software Product as described in **[[FAPI-1.0-Baseline]](#nref-FAPI-1-0-Baseline)**. Required for all resource calls (customer present and unattended). Not required for unauthenticated calls.
+        explode: false
+        in: header
+        name: x-fapi-auth-date
+        required: false
+        schema:
+          type: string
+        style: simple
+        x-conditional: true
+      - description: The customer's original IP address if the customer is currently logged in to the Data Recipient Software Product. The presence of this header indicates that the API is being called in a customer present context. Not to be included for unauthenticated calls.
+        explode: false
+        in: header
+        name: x-fapi-customer-ip-address
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The customer's original standard http headers [Base64](#common-field-types) encoded, including the original User-Agent header, if the customer is currently logged in to the Data Recipient Software Product. Mandatory for customer present calls. Not required for unattended or unauthenticated calls.
+        explode: false
+        in: header
+        name: x-cds-client-headers
+        required: false
+        schema:
+          type: string
+        style: simple
+        x-conditional: true
+        x-cds-type: Base64
+      requestBody:
+        $ref: '#/components/requestBodies/RequestAccountIds'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBankingAccountsBalanceList'
+          description: Successful response
+          headers:
+            x-v:
+              $ref: '#/components/headers/XV'
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrorListV2'
+          description: The following error codes **MUST** be supported:<br/><ul class="error-code-list"><li>[400 - Invalid Field](#error-400-field-invalid)</li><li>[400 - Missing Required Field](#error-400-field-missing)</li><li>[400 - Missing Required Header](#error-400-header-missing)</li><li>[400 - Invalid Version](#error-400-header-invalid-version)</li><li>[400 - Invalid Page Size](#error-400-field-invalid-page-size)</li></ul>
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrorListV2'
+          description: The following error codes **MUST** be supported:<br/><ul class="error-code-list"><li>[406 - Unsupported Version](#error-406-header-unsupported-version)</li></ul>
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrorListV2'
+          description: The following error codes **MUST** be supported:<br/><ul class="error-code-list"><li>[422 - Invalid Page](#error-422-field-invalid-page)</li><li>[422 - Unavailable Banking Account](#error-422-authorisation-unavailable-banking-account)</li><li>[422 - Invalid Banking Account](#error-422-authorisation-invalid-banking-account)</li></ul>
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+      summary: Get Balances For Specific Accounts
+      tags:
+      - Banking Account Balances
+      x-scopes:
+      - bank:accounts.basic:read
+      x-version: '1'
+  /banking/accounts/{accountId}/balance:
+    get:
+      description: Obtain the balance for a single specified account.
+      operationId: getBankingBalance
+      parameters:
+      - description: The _accountId_ to obtain data for. _accountId_ values are returned by account list endpoints.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BankingAccountId'
+        style: simple
+      - description: Version of the API endpoint requested by the client. Must be set to a positive integer. The endpoint should respond with the highest supported version between [_x-min-v_](#request-headers) and [_x-v_](#request-headers). If the value of [_x-min-v_](#request-headers) is equal to or higher than the value of [_x-v_](#request-headers) then the [_x-min-v_](#request-headers) header should be treated as absent. If all versions requested are not supported then the endpoint **MUST** respond with a `406 Not Acceptable`. See [HTTP Headers](#request-headers).
+        explode: false
+        in: header
+        name: x-v
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Minimum version of the API endpoint requested by the client. Must be set to a positive integer if provided. The endpoint should respond with the highest supported version between [_x-min-v_](#request-headers) and [_x-v_](#request-headers). If all versions requested are not supported then the endpoint **MUST** respond with a `406 Not Acceptable`.
+        explode: false
+        in: header
+        name: x-min-v
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: An **[[RFC4122]](#nref-RFC4122)** UUID used as a correlation id. If provided, the data holder **MUST** play back this value in the _x-fapi-interaction-id_ response header. If not provided a **[[RFC4122]](#nref-RFC4122)** UUID value is required to be provided in the response header to track the interaction.
+        explode: false
+        in: header
+        name: x-fapi-interaction-id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The time when the customer last logged in to the Data Recipient Software Product as described in **[[FAPI-1.0-Baseline]](#nref-FAPI-1-0-Baseline)**. Required for all resource calls (customer present and unattended). Not required for unauthenticated calls.
+        explode: false
+        in: header
+        name: x-fapi-auth-date
+        required: false
+        schema:
+          type: string
+        style: simple
+        x-conditional: true
+      - description: The customer's original IP address if the customer is currently logged in to the Data Recipient Software Product. The presence of this header indicates that the API is being called in a customer present context. Not to be included for unauthenticated calls.
+        explode: false
+        in: header
+        name: x-fapi-customer-ip-address
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The customer's original standard http headers [Base64](#common-field-types) encoded, including the original User-Agent header, if the customer is currently logged in to the Data Recipient Software Product. Mandatory for customer present calls. Not required for unattended or unauthenticated calls.
+        explode: false
+        in: header
+        name: x-cds-client-headers
+        required: false
+        schema:
+          type: string
+        style: simple
+        x-conditional: true
+        x-cds-type: Base64
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBankingAccountsBalanceById'
+          description: Successful response
+          headers:
+            x-v:
+              $ref: '#/components/headers/XV'
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrorListV2'
+          description: The following error codes **MUST** be supported:<br/><ul class="error-code-list"><li>[400 - Invalid Field](#error-400-field-invalid)</li><li>[400 - Missing Required Field](#error-400-field-missing)</li><li>[400 - Missing Required Header](#error-400-header-missing)</li><li>[400 - Invalid Version](#error-400-header-invalid-version)</li></ul>
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrorListV2'
+          description: The following error codes **MUST** be supported:<br/><ul class="error-code-list"><li>[404 - Unavailable Banking Account](#error-404-authorisation-unavailable-banking-account)</li><li>[404 - Invalid Banking Account](#error-404-authorisation-invalid-banking-account)</li></ul>
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrorListV2'
+          description: The following error codes **MUST** be supported:<br/><ul class="error-code-list"><li>[406 - Unsupported Version](#error-406-header-unsupported-version)</li></ul>
+          headers:
+            x-fapi-interaction-id:
+              $ref: '#/components/headers/XFAPIInteractionId'
+      summary: Get Account Balance
+      tags:
+      - Banking Account Balances
+      x-scopes:
+      - bank:accounts.basic:read
+      x-version: '1'
+components:
+  schemas:
+    BankingBalancePurse:
+      properties:
+        amount:
+          description: The balance available for this additional currency purse.
+          type: string
+          x-cds-type: AmountString
+        currency:
+          description: The currency for the purse.
+          type: string
+          x-cds-type: CurrencyString
+      required:
+      - amount
+      type: object
+    Meta:
+      type: object
+    ResponseBankingAccountsBalanceList_data:
+      properties:
+        balances:
+          description: The list of balances returned.
+          items:
+            $ref: '#/components/schemas/BankingBalance'
+          type: array
+      required:
+      - balances
+      type: object
+    BankingAccountId:
+      description: A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.
+      type: string
+      x-cds-type: ASCIIString
+    ErrorV2:
+      properties:
+        code:
+          description: The code of the error encountered. Where the error is specific to the respondent, an application-specific error code, expressed as a string value. If the error is application-specific, the URN code that the specific error extends must be provided in the _meta_ object. Otherwise, the value is the error code URN.
+          type: string
+        title:
+          description: A short, human-readable summary of the problem that **MUST NOT** change from occurrence to occurrence of the problem represented by the error code.
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          type: string
+        meta:
+          $ref: '#/components/schemas/ErrorV2_meta'
+      required:
+      - code
+      - detail
+      - title
+      type: object
+      x-conditional:
+      - meta
+    LinksPaginated:
+      properties:
+        self:
+          description: Fully qualified link that generated the current response document.
+          type: string
+          x-cds-type: URIString
+        first:
+          description: URI to the first page of this set. Mandatory if this response is not the first page.
+          type: string
+          x-cds-type: URIString
+        prev:
+          description: URI to the previous page of this set. Mandatory if this response is not the first page.
+          type: string
+          x-cds-type: URIString
+        next:
+          description: URI to the next page of this set. Mandatory if this response is not the last page.
+          type: string
+          x-cds-type: URIString
+        last:
+          description: URI to the last page of this set. Mandatory if this response is not the last page.
+          type: string
+          x-cds-type: URIString
+      required:
+      - self
+      type: object
+      x-conditional:
+      - prev
+      - next
+      - first
+      - last
+    ErrorV2_meta:
+      description: Additional data for customised error codes.
+      properties:
+        urn:
+          description: The CDR error code URN which the application-specific error code extends. Mandatory if the error _code_ is an application-specific error rather than a standardised error code.
+          type: string
+      type: object
+      x-conditional:
+      - urn
+    BankingBalance:
+      properties:
+        accountId:
+          allOf:
+          - $ref: '#/components/schemas/BankingAccountId'
+          description: Unique identifier for the account.
+        currentBalance:
+          description: The balance of the account at this time. Should align to the balance available via other channels such as Internet Banking. Assumed to be negative if the customer has money owing.
+          type: string
+          x-cds-type: AmountString
+        availableBalance:
+          description: Balance representing the amount of funds available for transfer. Assumed to be zero or positive.
+          type: string
+          x-cds-type: AmountString
+        creditLimit:
+          default: '0.00'
+          description: Object representing the maximum amount of credit that is available for this account. Assumed to be zero if absent.
+          type: string
+          x-cds-type: AmountString
+        amortisedLimit:
+          default: '0.00'
+          description: Object representing the available limit amortised according to payment schedule. Assumed to be zero if absent.
+          type: string
+          x-cds-type: AmountString
+        currency:
+          default: AUD
+          description: The currency for the balance amounts. If absent assumed to be `AUD`.
+          type: string
+          x-cds-type: CurrencyString
+        purses:
+          description: Optional array of balances for the account in other currencies. Included to support accounts that support multi-currency purses such as Travel Cards.
+          items:
+            $ref: '#/components/schemas/BankingBalancePurse'
+          type: array
+      required:
+      - accountId
+      - availableBalance
+      - currentBalance
+      type: object
+    RequestAccountIdListV1_data:
+      properties:
+        accountIds:
+          description: Array of _accountId_ values to obtain data for.
+          items:
+            $ref: '#/components/schemas/BankingAccountId'
+          type: array
+      required:
+      - accountIds
+      type: object
+    MetaPaginated:
+      properties:
+        totalRecords:
+          description: The total number of records in the full set. See [pagination](#pagination).
+          type: integer
+          x-cds-type: NaturalNumber
+        totalPages:
+          description: The total number of pages in the full set. See [pagination](#pagination).
+          type: integer
+          x-cds-type: NaturalNumber
+      required:
+      - totalPages
+      - totalRecords
+      type: object
+    ResponseBankingAccountsBalanceList:
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseBankingAccountsBalanceList_data'
+        links:
+          $ref: '#/components/schemas/LinksPaginated'
+        meta:
+          $ref: '#/components/schemas/MetaPaginated'
+      required:
+      - data
+      - links
+      - meta
+      type: object
+    Links:
+      properties:
+        self:
+          description: Fully qualified link that generated the current response document.
+          type: string
+          x-cds-type: URIString
+      required:
+      - self
+      type: object
+    ResponseBankingAccountsBalanceById:
+      properties:
+        data:
+          $ref: '#/components/schemas/BankingBalance'
+        links:
+          $ref: '#/components/schemas/Links'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - links
+      type: object
+    RequestAccountIdListV1:
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestAccountIdListV1_data'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      type: object
+    BankingProductCategoryV2:
+      description: The category to which a product or account belongs. See [here](#product-categories) for more details.
+      enum:
+      - BUSINESS_LOANS
+      - BUY_NOW_PAY_LATER
+      - CRED_AND_CHRG_CARDS
+      - LEASES
+      - MARGIN_LOANS
+      - OVERDRAFTS
+      - PERS_LOANS
+      - REGULATED_TRUST_ACCOUNTS
+      - RESIDENTIAL_MORTGAGES
+      - TERM_DEPOSITS
+      - TRADE_FINANCE
+      - TRANS_AND_SAVINGS_ACCOUNTS
+      - TRAVEL_CARDS
+      type: string
+    ResponseErrorListV2:
+      properties:
+        errors:
+          description: List of errors.
+          items:
+            $ref: '#/components/schemas/ErrorV2'
+          type: array
+      required:
+      - errors
+      type: object
+  headers:
+    XFAPIInteractionId:
+      description: An **[[RFC4122]](#nref-RFC4122)** UUID used as a correlation id. If provided, the data holder **MUST** play back this value in the _x-fapi-interaction-id_ response header. If not provided a **[[RFC4122]](#nref-RFC4122)** UUID value is required to be provided in the response header to track the interaction.
+      explode: false
+      required: true
+      schema:
+        type: string
+      style: simple
+    XV:
+      description: The [payload version](#response-headers) that the endpoint has responded with.
+      explode: false
+      required: true
+      schema:
+        type: string
+      style: simple
+  requestBodies:
+    RequestAccountIds:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RequestAccountIdListV1'
+      description: Request payload containing a list of _accountId_ values to obtain data for.
+      required: true
