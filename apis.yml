@@ -13,7 +13,19 @@ description: Australia and New Zealand Banking Group Limited (ANZ) is one of Aus
   a separate CDR brand endpoint for ANZ Plus. Consumer data sharing beyond product
   reference data is gated behind the CDR accredited-data-recipient (ADR) model using
   OAuth2 / OpenID Connect FAPI security profiles.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/anz.png
 tags:
 - Financial
 - Banks
@@ -27,145 +39,6 @@ created: '2026-07-20'
 modified: '2026-07-21'
 specificationVersion: '0.19'
 apis:
-- aid: anz:anz-cdr-product-reference-data-api
-  name: Australia and New Zealand Banking Group (ANZ) CDR Product Reference Data API
-  tags:
-  - CDR
-  - Open Banking
-  - Product Reference Data
-  - Banking
-  - Public
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.anz.com.au/support/legal/anz-apis/
-  baseURL: https://api.anz/cds-au/v1/banking/products
-  properties:
-  - url: https://www.anz.com.au/support/legal/anz-apis/
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
-    type: APIReference
-  - url: openapi/anz-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: ANZ's public, unauthenticated Consumer Data Right Product Reference
-    Data (PRD) API for the primary ANZ brand. It returns the bank's publicly offered
-    banking products (accounts, cards, loans, overdrafts) as defined by the DSB Consumer
-    Data Standards. Requires the CDS version header (x-v; version 4 and 5 confirmed
-    live returning HTTP 200 with a data.products array).
-- aid: anz:anz-plus-cdr-product-reference-data-api
-  name: ANZ Plus CDR Product Reference Data API
-  tags:
-  - CDR
-  - Open Banking
-  - Product Reference Data
-  - ANZ Plus
-  - Public
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.anz.com.au/support/legal/anz-apis/
-  baseURL: https://cdr.apix.anz/cds-au/v1/banking/products
-  properties:
-  - url: https://www.anz.com.au/support/legal/anz-apis/
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
-    type: APIReference
-  - url: openapi/anz-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: The Consumer Data Right Product Reference Data API for ANZ's separate
-    digital brand, ANZ Plus, served under its own CDR data-holder brand host. Public
-    and unauthenticated, conforming to the same DSB Consumer Data Standards banking
-    products contract (x-v version 4 and 5 confirmed live returning HTTP 200).
-- aid: anz:anz-cdr-accounts-balances-api
-  name: Australia and New Zealand Banking Group (ANZ) CDR Accounts & Balances API
-  tags:
-  - CDR
-  - Open Banking
-  - Accounts
-  - Balances
-  - Banking
-  - Consumer Authorized
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.anz.com.au/support/legal/anz-apis/
-  baseURL: https://api.anz/cds-au/v1/banking/accounts
-  properties:
-  - url: https://www.anz.com.au/support/legal/anz-apis/
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
-    type: APIReference
-  - url: openapi/anz-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: ANZ's consumer-authorized CDR account and balance endpoints (Get Accounts,
-    Get Bulk Balances, Get Account Balance, Get Account Detail) defined by the DSB
-    Consumer Data Standards Banking API v1.36.0. Unlike Product Reference Data these
-    are NOT public — a consumer must authorize an accredited data recipient (ADR) via
-    the CDR OAuth2 / OpenID Connect FAPI flow, and calls run over the mutual-TLS data
-    holder host. ANZ implements this surface as a designated CDR data holder.
-- aid: anz:anz-cdr-transactions-api
-  name: Australia and New Zealand Banking Group (ANZ) CDR Transactions API
-  tags:
-  - CDR
-  - Open Banking
-  - Transactions
-  - Banking
-  - Consumer Authorized
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.anz.com.au/support/legal/anz-apis/
-  baseURL: https://api.anz/cds-au/v1/banking/accounts/{accountId}/transactions
-  properties:
-  - url: https://www.anz.com.au/support/legal/anz-apis/
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions-for-account
-    type: APIReference
-  - url: openapi/anz-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: ANZ's consumer-authorized CDR transaction endpoints (Get Transactions
-    For Account, Get Transaction Detail) from the DSB Consumer Data Standards Banking
-    API v1.36.0. Consumer-authorized via the CDR ADR model (OAuth2 / OIDC FAPI) over
-    the mutual-TLS data holder host; supports transaction filtering by date, amount,
-    and text as defined by the shared standard. Not a public endpoint.
-- aid: anz:anz-cdr-direct-debits-scheduled-payments-api
-  name: Australia and New Zealand Banking Group (ANZ) CDR Direct Debits & Scheduled Payments API
-  tags:
-  - CDR
-  - Open Banking
-  - Direct Debits
-  - Scheduled Payments
-  - Banking
-  - Consumer Authorized
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.anz.com.au/support/legal/anz-apis/
-  baseURL: https://api.anz/cds-au/v1/banking/accounts/direct-debits
-  properties:
-  - url: https://www.anz.com.au/support/legal/anz-apis/
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits-for-account
-    type: APIReference
-  - url: openapi/anz-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: ANZ's consumer-authorized CDR direct-debit and scheduled-payment endpoints
-    (Get Direct Debits For Account, Get Bulk Direct Debits, Get Scheduled Payments For
-    Account, Get Scheduled Payments Bulk) from the DSB Consumer Data Standards Banking
-    API v1.36.0. Consumer-authorized via the CDR ADR model (OAuth2 / OIDC FAPI) over
-    the mutual-TLS data holder host; not public.
-- aid: anz:anz-cdr-payees-api
-  name: Australia and New Zealand Banking Group (ANZ) CDR Payees API
-  tags:
-  - CDR
-  - Open Banking
-  - Payees
-  - Banking
-  - Consumer Authorized
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.anz.com.au/support/legal/anz-apis/
-  baseURL: https://api.anz/cds-au/v1/banking/payees
-  properties:
-  - url: https://www.anz.com.au/support/legal/anz-apis/
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
-    type: APIReference
-  - url: openapi/anz-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: ANZ's consumer-authorized CDR payee endpoints (Get Payees, Get Payee
-    Detail) from the DSB Consumer Data Standards Banking API v1.36.0, returning the
-    consumer's saved payees. Consumer-authorized via the CDR ADR model (OAuth2 / OIDC
-    FAPI) over the mutual-TLS data holder host; not a public endpoint.
 - aid: anz:anz-payments-api
   name: Australia and New Zealand Banking Group (ANZ) Payments API
   tags:
@@ -180,11 +53,11 @@ apis:
   properties:
   - url: https://developer.online.anz.com/
     type: DeveloperPortal
-  description: ANZ's first-party Payments API suite on the ANZ Developer Portal, letting
-    business and institutional customers automate and optimise payment workflows across
-    domestic payment rails (NPP / direct entry). Access is partner-gated — customers
-    onboard through the ANZ Developer Portal with OAuth 2.0 and API key management, and
-    no public OpenAPI specification is published (partner-gated onboarding).
+  description: >-
+    ANZ's first-party Payments API suite on the ANZ Developer Portal, letting business and institutional
+    customers automate and optimise payment workflows across domestic payment rails (NPP / direct entry).
+    Access is partner-gated — customers onboard through the ANZ Developer Portal with OAuth 2.0 and API
+    key management, and no public OpenAPI specification is published (partner-gated onboarding).
 - aid: anz:anz-payto-api
   name: Australia and New Zealand Banking Group (ANZ) PayTo API
   tags:
@@ -199,10 +72,10 @@ apis:
   properties:
   - url: https://developer.online.anz.com/
     type: DeveloperPortal
-  description: ANZ's first-party PayTo API (also available as a file channel) for real-time
-    account-to-account payments and PayTo mandate management over the New Payments Platform
-    (NPP). Documented on the ANZ Developer Portal; access is partner-gated for ANZ business
-    customers with no publicly downloadable OpenAPI specification.
+  description: >-
+    ANZ's first-party PayTo API (also available as a file channel) for real-time account-to-account payments
+    and PayTo mandate management over the New Payments Platform (NPP). Documented on the ANZ Developer
+    Portal; access is partner-gated for ANZ business customers with no publicly downloadable OpenAPI specification.
 - aid: anz:anz-payid-check-api
   name: Australia and New Zealand Banking Group (ANZ) PayID Check API
   tags:
@@ -217,10 +90,10 @@ apis:
   properties:
   - url: https://developer.online.anz.com/
     type: DeveloperPortal
-  description: ANZ's first-party PayID Check API to verify that a PayID is registered
-    before initiating a payment or collection, streamlining NPP payment and collection
-    workflows. Documented on the ANZ Developer Portal; access is partner-gated with
-    no public OpenAPI specification published.
+  description: >-
+    ANZ's first-party PayID Check API to verify that a PayID is registered before initiating a payment
+    or collection, streamlining NPP payment and collection workflows. Documented on the ANZ Developer
+    Portal; access is partner-gated with no public OpenAPI specification published.
 - aid: anz:anz-confirmation-of-payee-api
   name: Australia and New Zealand Banking Group (ANZ) Confirmation of Payee API
   tags:
@@ -235,10 +108,11 @@ apis:
   properties:
   - url: https://developer.online.anz.com/
     type: DeveloperPortal
-  description: ANZ's first-party Confirmation of Payee API matches a recipient's account
-    name against their BSB and account number to reduce mistaken and mistakenly-directed
-    payments and help prevent scams before a payment is sent. Documented on the ANZ
-    Developer Portal; access is partner-gated with no public OpenAPI specification.
+  description: >-
+    ANZ's first-party Confirmation of Payee API matches a recipient's account name against their BSB and
+    account number to reduce mistaken and mistakenly-directed payments and help prevent scams before a
+    payment is sent. Documented on the ANZ Developer Portal; access is partner-gated with no public OpenAPI
+    specification.
 - aid: anz:anz-account-statements-api
   name: Australia and New Zealand Banking Group (ANZ) Account Statements API
   tags:
@@ -253,10 +127,10 @@ apis:
   properties:
   - url: https://developer.online.anz.com/
     type: DeveloperPortal
-  description: ANZ's first-party Account Statements API provides real-time and end-of-day
-    account statements so business and institutional customers can monitor transactions
-    and support reconciliation. Documented on the ANZ Developer Portal; access is partner-gated
-    with no public OpenAPI specification published.
+  description: >-
+    ANZ's first-party Account Statements API provides real-time and end-of-day account statements so business
+    and institutional customers can monitor transactions and support reconciliation. Documented on the
+    ANZ Developer Portal; access is partner-gated with no public OpenAPI specification published.
 - aid: anz:anz-real-time-notification-api
   name: Australia and New Zealand Banking Group (ANZ) Real-Time Notification API
   tags:
@@ -271,10 +145,10 @@ apis:
   properties:
   - url: https://developer.online.anz.com/
     type: DeveloperPortal
-  description: ANZ's first-party Real-Time Notification API delivers instant alerts for
-    transaction and account events so business customers can enhance real-time reconciliation.
-    Documented on the ANZ Developer Portal; access is partner-gated with no publicly
-    downloadable OpenAPI specification.
+  description: >-
+    ANZ's first-party Real-Time Notification API delivers instant alerts for transaction and account events
+    so business customers can enhance real-time reconciliation. Documented on the ANZ Developer Portal;
+    access is partner-gated with no publicly downloadable OpenAPI specification.
 - aid: anz:anz-fx-api
   name: Australia and New Zealand Banking Group (ANZ) FX API
   tags:
@@ -289,10 +163,10 @@ apis:
   properties:
   - url: https://developer.online.anz.com/
     type: DeveloperPortal
-  description: ANZ's first-party FX (Foreign Exchange) API to automate currency management
-    and optimise foreign-exchange operations for business and institutional customers.
-    Documented on the ANZ Developer Portal; access is partner-gated with no public OpenAPI
-    specification published.
+  description: >-
+    ANZ's first-party FX (Foreign Exchange) API to automate currency management and optimise foreign-exchange
+    operations for business and institutional customers. Documented on the ANZ Developer Portal; access
+    is partner-gated with no public OpenAPI specification published.
 - aid: anz:anz-acmc-api
   name: Australia and New Zealand Banking Group (ANZ) ACMC (Accounts & Cash Management) API
   tags:
@@ -307,10 +181,10 @@ apis:
   properties:
   - url: https://developer.online.anz.com/
     type: DeveloperPortal
-  description: ANZ's first-party ACMC (Accounts & Cash Management) API suite supports
-    client-monies and cash-management use cases for institutional customers, enhancing
-    financial management across accounts. Documented on the ANZ Developer Portal; access
-    is partner-gated with no public OpenAPI specification published.
+  description: >-
+    ANZ's first-party ACMC (Accounts & Cash Management) API suite supports client-monies and cash-management
+    use cases for institutional customers, enhancing financial management across accounts. Documented
+    on the ANZ Developer Portal; access is partner-gated with no public OpenAPI specification published.
 - aid: anz:anz-npp-agency-api
   name: Australia and New Zealand Banking Group (ANZ) NPP Agency API
   tags:
@@ -325,10 +199,179 @@ apis:
   properties:
   - url: https://developer.online.anz.com/
     type: DeveloperPortal
-  description: ANZ's first-party NPP Agency API set (Agency Core, Agency PayTo Payer,
-    Agency PayTo Biller, and Agency Confirmation of Payee) provides core payment and
-    account-management capabilities for New Payments Platform agency services. Documented
-    on the ANZ Developer Portal; access is partner-gated with no public OpenAPI specification.
+  description: >-
+    ANZ's first-party NPP Agency API set (Agency Core, Agency PayTo Payer, Agency PayTo Biller, and Agency
+    Confirmation of Payee) provides core payment and account-management capabilities for New Payments
+    Platform agency services. Documented on the ANZ Developer Portal; access is partner-gated with no
+    public OpenAPI specification.
+- aid: anz:anz-banking-account-balances-api
+  name: Australia and New Zealand Banking Group (ANZ) Banking Account Balances API
+  description: Banking Account Balance endpoints
+  humanURL: https://www.anz.com.au/support/legal/anz-apis/
+  baseURL: https://api.anz/cds-au/v1/banking/products
+  tags:
+  - Banking Account Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/anz-banking-account-balances-api-openapi.yml
+  - type: Documentation
+    url: https://www.anz.com.au/support/legal/anz-apis/
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: anz:anz-banking-account-direct-debits-api
+  name: Australia and New Zealand Banking Group (ANZ) Banking Account Direct Debits API
+  description: Banking Account Direct Debit endpoints
+  humanURL: https://www.anz.com.au/support/legal/anz-apis/
+  baseURL: https://api.anz/cds-au/v1/banking/products
+  tags:
+  - Banking Account Direct Debits
+  properties:
+  - type: OpenAPI
+    url: openapi/anz-banking-account-direct-debits-api-openapi.yml
+  - type: Documentation
+    url: https://www.anz.com.au/support/legal/anz-apis/
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: anz:anz-banking-account-scheduled-payments-api
+  name: Australia and New Zealand Banking Group (ANZ) Banking Account Scheduled Payments API
+  description: Banking Account Scheduled Payment endpoints
+  humanURL: https://www.anz.com.au/support/legal/anz-apis/
+  baseURL: https://api.anz/cds-au/v1/banking/products
+  tags:
+  - Banking Account Scheduled Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/anz-banking-account-scheduled-payments-api-openapi.yml
+  - type: Documentation
+    url: https://www.anz.com.au/support/legal/anz-apis/
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: anz:anz-banking-account-transactions-api
+  name: Australia and New Zealand Banking Group (ANZ) Banking Account Transactions API
+  description: Banking Account Transaction endpoints
+  humanURL: https://www.anz.com.au/support/legal/anz-apis/
+  baseURL: https://api.anz/cds-au/v1/banking/products
+  tags:
+  - Banking Account Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/anz-banking-account-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://www.anz.com.au/support/legal/anz-apis/
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: anz:anz-banking-accounts-api
+  name: Australia and New Zealand Banking Group (ANZ) Banking Accounts API
+  description: Banking Account endpoints
+  humanURL: https://www.anz.com.au/support/legal/anz-apis/
+  baseURL: https://api.anz/cds-au/v1/banking/products
+  tags:
+  - Banking Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/anz-banking-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://www.anz.com.au/support/legal/anz-apis/
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: anz:anz-banking-payees-api
+  name: Australia and New Zealand Banking Group (ANZ) Banking Payees API
+  description: Banking Payee endpoints
+  humanURL: https://www.anz.com.au/support/legal/anz-apis/
+  baseURL: https://api.anz/cds-au/v1/banking/products
+  tags:
+  - Banking Payees
+  properties:
+  - type: OpenAPI
+    url: openapi/anz-banking-payees-api-openapi.yml
+  - type: Documentation
+    url: https://www.anz.com.au/support/legal/anz-apis/
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: anz:anz-banking-products-api
+  name: Australia and New Zealand Banking Group (ANZ) Banking Products API
+  description: Banking Product endpoints
+  humanURL: https://www.anz.com.au/support/legal/anz-apis/
+  baseURL: https://api.anz/cds-au/v1/banking/products
+  tags:
+  - Banking Products
+  properties:
+  - type: OpenAPI
+    url: openapi/anz-banking-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.anz.com.au/support/legal/anz-apis/
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions-for-account
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits-for-account
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
 common:
 - type: AgenticAccess
   url: agentic-access/anz-agentic-access.yml
