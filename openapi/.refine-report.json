@@ -1,0 +1,26 @@
+{
+  "provider": "anz",
+  "sources": [
+    "anz-banking-account-balances-api-openapi.yml",
+    "anz-banking-account-direct-debits-api-openapi.yml",
+    "anz-banking-account-scheduled-payments-api-openapi.yml",
+    "anz-banking-account-transactions-api-openapi.yml",
+    "anz-banking-accounts-api-openapi.yml",
+    "anz-banking-payees-api-openapi.yml",
+    "anz-banking-products-api-openapi.yml"
+  ],
+  "outputs": [
+    "anz-banking-account-balances-api-openapi.yml",
+    "anz-banking-account-direct-debits-api-openapi.yml",
+    "anz-banking-account-scheduled-payments-api-openapi.yml",
+    "anz-banking-account-transactions-api-openapi.yml",
+    "anz-banking-accounts-api-openapi.yml",
+    "anz-banking-payees-api-openapi.yml",
+    "anz-banking-products-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
