@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CDR Banking Banking Account Balances Banking Account Transactions API",
+    "version": "1.36.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Banking Account Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Transactions For Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/accounts/:accountId/transactions",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-cds-client-headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The _accountId_ to obtain data for. _accountId_ values are returned by account list endpoints."
+              },
+              {
+                "name": "oldest-time",
+                "value": "",
+                "type": "query",
+                "description": "Constrain the transaction history request to transactions with effective time at or after this date/time. If absent defaults to _newest-time_ minus 90 days. Format is aligned to [DateTimeString](#common-field-types) common type."
+              },
+              {
+                "name": "newest-time",
+                "value": "",
+                "type": "query",
+                "description": "Constrain the transaction history request to transactions with effective time at or before this date/time. If absent defaults to today. Format is aligned to [DateTimeString](#common-field-types) common type."
+              },
+              {
+                "name": "min-amount",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions to only transactions with amounts higher than or equal to this amount."
+              },
+              {
+                "name": "max-amount",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions to only transactions with amounts less than or equal to this amount."
+              },
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions to only transactions where this string value is found as a substring of either the _reference_ or _description_ fields. Format is arbitrary ASCII string. This parameter is optionally implemented by data holders. If it is not implemented then a response should be provided as normal without text filtering applied and an additional boolean field named _isQueryParamUnsupported_ should be included in the meta object and set to `true` (whether the text parameter is supplied or not)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to request (standard pagination)."
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query",
+                "description": "Page size to request. Default is 25 (standard pagination)."
+              }
+            ]
+          },
+          "docs": "Obtain transactions for a specific account.\n\nSome general notes that apply to all endpoints that retrieve transactions:<ul><li>Where multiple transactions are returned, transactions should be ordered according to effective date in descending order<li>As the date and time for a transaction can alter depending on status and transaction type two separate date/times are included in the payload. There are still some scenarios where neither of these time stamps is available. For the purpose of filteri"
+        },
+        {
+          "info": {
+            "name": "Get Transaction Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/accounts/:accountId/transactions/:transactionId",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-cds-client-headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The _accountId_ to obtain data for. _accountId_ values are returned by account list endpoints."
+              },
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The _transactionId_ to obtain data for. _transactionId_ values are returned by transaction list endpoints."
+              }
+            ]
+          },
+          "docs": "Obtain detailed information on a transaction for a specific account.\n\nObsolete versions: [v1](includes/obsolete/get-transaction-detail-v1.html), [v2](includes/obsolete/get-transaction-detail-v2.html)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

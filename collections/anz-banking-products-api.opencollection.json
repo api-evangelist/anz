@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CDR Banking Banking Account Balances Banking Products API",
+    "version": "1.36.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Banking Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/products",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "effective",
+                "value": "",
+                "type": "query",
+                "description": "Allows for the filtering of products based on whether the current time is within the period of time defined as effective by the _effectiveFrom_ and _effectiveTo_ fields. Valid values are `CURRENT`, `FUTURE` and `ALL`. If absent defaults to `CURRENT`."
+              },
+              {
+                "name": "updated-since",
+                "value": "",
+                "type": "query",
+                "description": "Only include products that have been updated after the specified date and time. If absent defaults to include all products."
+              },
+              {
+                "name": "brand",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on a specific brand."
+              },
+              {
+                "name": "product-category",
+                "value": "",
+                "type": "query",
+                "description": "Used to filter results on the _productCategory_ field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to request (standard pagination)."
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query",
+                "description": "Page size to request. Default is 25 (standard pagination)."
+              }
+            ]
+          },
+          "docs": "Obtain a list of products that are currently openly offered to the market.\n\nNote that the results returned by this endpoint are expected to be ordered in descending order according to _lastUpdated_.\n\n### Conventions\nIn the product reference payloads there are a number of recurring conventions that are explained below.\n\n#### Arrays Of Features\n\nIn the product detail payload there are a number of arrays articulating generic features, constraints, prices, etc. The intent of these arrays is as follo"
+        },
+        {
+          "info": {
+            "name": "Get Product Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/products/:productId",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "The _productId_ to obtain data for. _productId_ values are returned by product list endpoints."
+              }
+            ]
+          },
+          "docs": "Obtain detailed information on a single product offered openly to the market.\n\nObsolete versions: [v1](includes/obsolete/get-product-detail-v1.html), [v2](includes/obsolete/get-product-detail-v2.html), [v3](includes/obsolete/get-product-detail-v3.html), [v4](includes/obsolete/get-product-detail-v4.html), [v5](includes/obsolete/get-product-detail-v5.html), [v6](includes/obsolete/get-product-detail-v6.html)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

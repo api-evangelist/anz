@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CDR Banking Banking Account Balances Banking Payees API",
+    "version": "1.36.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Banking Payees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Payees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/payees",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-cds-client-headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter on the payee _type_ field. In addition to normal _type_ field values, `ALL` can be specified to retrieve all payees. If absent the assumed value is `ALL`."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to request (standard pagination)."
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query",
+                "description": "Page size to request. Default is 25 (standard pagination)."
+              }
+            ]
+          },
+          "docs": "Obtain a list of pre-registered payees.\n\nObsolete versions: [v1](includes/obsolete/get-payees-v1.html)."
+        },
+        {
+          "info": {
+            "name": "Get Payee Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/payees/:payeeId",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-cds-client-headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "payeeId",
+                "value": "",
+                "type": "path",
+                "description": "The _payeeId_ to obtain data for. _payeeId_ values are returned by payee list endpoints."
+              }
+            ]
+          },
+          "docs": "Obtain detailed information on a single payee.\n\nNote that the payee sub-structure should be selected to represent the payment destination only rather than any known characteristics of the payment recipient.\n\nObsolete versions: [v1](includes/obsolete/get-payee-detail-v1.html)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

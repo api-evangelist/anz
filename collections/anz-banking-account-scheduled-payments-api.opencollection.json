@@ -1,0 +1,319 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CDR Banking Banking Account Balances Banking Account Scheduled Payments API",
+    "version": "1.36.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Banking Account Scheduled Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Scheduled Payments for Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/accounts/:accountId/payments/scheduled",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-cds-client-headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The _accountId_ to obtain data for. _accountId_ values are returned by account list endpoints."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to request (standard pagination)."
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query",
+                "description": "Page size to request. Default is 25 (standard pagination)."
+              }
+            ]
+          },
+          "docs": "Obtain scheduled, outgoing payments for a specific account.\n\nObsolete versions: [v1](includes/obsolete/get-scheduled-payments-for-account-v1.html)."
+        },
+        {
+          "info": {
+            "name": "Get Scheduled Payments Bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/payments/scheduled",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-cds-client-headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "product-category",
+                "value": "",
+                "type": "query",
+                "description": "Used to filter results on the _productCategory_ field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
+              },
+              {
+                "name": "open-status",
+                "value": "",
+                "type": "query",
+                "description": "Used to filter results according to open/closed status. Values can be `OPEN`, `CLOSED` or `ALL`. If absent then `ALL` is assumed."
+              },
+              {
+                "name": "is-owned",
+                "value": "",
+                "type": "query",
+                "description": "Filters accounts based on whether they are owned by the authorised customer. `true` for owned accounts, `false` for unowned accounts and absent for all accounts."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to request (standard pagination)."
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query",
+                "description": "Page size to request. Default is 25 (standard pagination)."
+              }
+            ]
+          },
+          "docs": "Obtain scheduled payments for multiple, filtered accounts that are the source of funds for the payments.\n\nObsolete versions: [v1](includes/obsolete/get-scheduled-payments-bulk-v1.html), [v2](includes/obsolete/get-scheduled-payments-bulk-v2.html)."
+        },
+        {
+          "info": {
+            "name": "Get Scheduled Payments For Specific Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/payments/scheduled",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-cds-client-headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to request (standard pagination)."
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query",
+                "description": "Page size to request. Default is 25 (standard pagination)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Obtain scheduled payments for a specified list of accounts.\n\nObsolete versions: [v1](includes/obsolete/get-scheduled-payments-for-specific-accounts-v1.html)."
+        },
+        {
+          "info": {
+            "name": "Get Instalment Plans for Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/accounts/:accountId/payments/plans",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-cds-client-headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The _accountId_ to obtain data for. _accountId_ values are returned by account list endpoints."
+              },
+              {
+                "name": "plan-status",
+                "value": "",
+                "type": "query",
+                "description": "Allows for the filtering of plans based on their schedule status:<ul><li>`ACTIVE` requests plans where one or more scheduled instalments have _isPaid_ equal to `false`,</li><li>`INACTIVE` requests plans where all scheduled instalments have _isPaid_ equal to `true`,</li><li>`ALL` requests all `ACTIVE` and `INACTIVE` plans.</li></ul>"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to request (standard pagination)."
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query",
+                "description": "Page size to request. Default is 25 (standard pagination)."
+              }
+            ]
+          },
+          "docs": "Obtain instalment plans for a single specified account. The response **MUST** be ordered by plan _creationDate_ in descending order. If _isInstalmentDetailAvailable_ was specified as `true` for the provided _accountId_ but no plans match the provided parameters, an empty array **MUST** be returned. If _isInstalmentDetailAvailable_ was specified as `false` for the provided _accountId_, then the endpoint **MAY** respond with [404 - Resource Not Implemented](#error-404-resource-not-implemented)."
+        },
+        {
+          "info": {
+            "name": "Get Instalment Plans Bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mtls.dh.example.com/cds-au/v1/banking/accounts/payments/plans",
+            "headers": [
+              {
+                "name": "x-v",
+                "value": ""
+              },
+              {
+                "name": "x-min-v",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-interaction-id",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-auth-date",
+                "value": ""
+              },
+              {
+                "name": "x-fapi-customer-ip-address",
+                "value": ""
+              },
+              {
+                "name": "x-cds-client-headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "plan-status",
+                "value": "",
+                "type": "query",
+                "description": "Allows for the filtering of plans based on their schedule status:<ul><li>`ACTIVE` requests plans where one or more scheduled instalments have _isPaid_ equal to `false`,</li><li>`INACTIVE` requests plans where all scheduled instalments have _isPaid_ equal to `true`,</li><li>`ALL` requests all `ACTIVE` and `INACTIVE` plans.</li></ul>"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to request (standard pagination)."
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query",
+                "description": "Page size to request. Default is 25 (standard pagination)."
+              }
+            ]
+          },
+          "docs": "Obtain instalment plans for multiple accounts. The response **MUST** be ordered by plan _creationDate_ in descending order. If instalments are not supported for any account type, the endpoint **MAY** respond with [404 - Resource Not Implemented](#error-404-resource-not-implemented)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
