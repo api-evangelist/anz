@@ -135,6 +135,12 @@ apis:
   name: Australia and New Zealand Banking Group (ANZ) Real-Time Notification API
   tags:
   - Account Information
+  - Notification
+  - Webhook
+  - Reconciliation
+  - Business Banking
+  tags_raw:
+  - Account Information
   - Notifications
   - Webhooks
   - Reconciliation
