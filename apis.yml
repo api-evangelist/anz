@@ -13,6 +13,18 @@ description: Australia and New Zealand Banking Group Limited (ANZ) is one of Aus
   a separate CDR brand endpoint for ANZ Plus. Consumer data sharing beyond product
   reference data is gated behind the CDR accredited-data-recipient (ADR) model using
   OAuth2 / OpenID Connect FAPI security profiles.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
