@@ -391,6 +391,9 @@ apis:
   - type: APIReference
     url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
 common:
+- type: CapabilityMap
+  url: capabilities/anz-capability-edges.yml
+  name: Australia and New Zealand Banking Group (ANZ) Business Capability Map
 - type: AgenticAccess
   url: agentic-access/anz-agentic-access.yml
 - type: DomainSecurity

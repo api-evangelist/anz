@@ -1,0 +1,25 @@
+slug: anz
+provider: Australia and New Zealand Banking Group (ANZ)
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Banking Products
+  spec_file: anz-banking-products-api-openapi.yml
+  capability_id: BC-1310.10
+  capability_id_l1: BC-1310
+  capability_name: Product Catalogue Management
+  confidence: 0.85
+  evidence: '"Get Products", "Get Product Detail", schemas BankingProductV6, BankingProductFeeV2, BankingProductDepositRateV2,
+    BankingProductBundle'
+  reason: A public banking product catalogue with product features, fees, rates, discounts and bundles
+    — the product master exposed for comparison. This is squarely banking product catalogue management.
