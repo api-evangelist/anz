@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     email: contact@dsb.gov.au
@@ -23,7 +23,7 @@ paths:
       description: 'Obtain balances for multiple, filtered accounts.
 
 
-        Obsolete versions: [v1](includes/obsolete/get-bulk-balances-v1.html).'
+        Obsolete versions: v1.'
       operationId: listBankingBalancesBulk
       parameters:
       - description: Used to filter results on the _productCategory_ field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned.
@@ -404,55 +404,38 @@ paths:
       x-version: '1'
 components:
   schemas:
-    BankingBalancePurse:
+    ResponseBankingAccountsBalanceList:
       properties:
-        amount:
-          description: The balance available for this additional currency purse.
-          type: string
-          x-cds-type: AmountString
-        currency:
-          description: The currency for the purse.
-          type: string
-          x-cds-type: CurrencyString
+        data:
+          $ref: '#/components/schemas/ResponseBankingAccountsBalanceList_data'
+        links:
+          $ref: '#/components/schemas/LinksPaginated'
+        meta:
+          $ref: '#/components/schemas/MetaPaginated'
       required:
-      - amount
+      - data
+      - links
+      - meta
       type: object
     Meta:
       type: object
-    ResponseBankingAccountsBalanceList_data:
-      properties:
-        balances:
-          description: The list of balances returned.
-          items:
-            $ref: '#/components/schemas/BankingBalance'
-          type: array
-      required:
-      - balances
-      type: object
-    BankingAccountId:
-      description: A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.
+    BankingProductCategoryV2:
+      description: The category to which a product or account belongs. See [here](#product-categories) for more details.
+      enum:
+      - BUSINESS_LOANS
+      - BUY_NOW_PAY_LATER
+      - CRED_AND_CHRG_CARDS
+      - LEASES
+      - MARGIN_LOANS
+      - OVERDRAFTS
+      - PERS_LOANS
+      - REGULATED_TRUST_ACCOUNTS
+      - RESIDENTIAL_MORTGAGES
+      - TERM_DEPOSITS
+      - TRADE_FINANCE
+      - TRANS_AND_SAVINGS_ACCOUNTS
+      - TRAVEL_CARDS
       type: string
-      x-cds-type: ASCIIString
-    ErrorV2:
-      properties:
-        code:
-          description: The code of the error encountered. Where the error is specific to the respondent, an application-specific error code, expressed as a string value. If the error is application-specific, the URN code that the specific error extends must be provided in the _meta_ object. Otherwise, the value is the error code URN.
-          type: string
-        title:
-          description: A short, human-readable summary of the problem that **MUST NOT** change from occurrence to occurrence of the problem represented by the error code.
-          type: string
-        detail:
-          description: A human-readable explanation specific to this occurrence of the problem.
-          type: string
-        meta:
-          $ref: '#/components/schemas/ErrorV2_meta'
-      required:
-      - code
-      - detail
-      - title
-      type: object
-      x-conditional:
-      - meta
     LinksPaginated:
       properties:
         self:
@@ -483,15 +466,18 @@ components:
       - next
       - first
       - last
-    ErrorV2_meta:
-      description: Additional data for customised error codes.
+    ResponseBankingAccountsBalanceById:
       properties:
-        urn:
-          description: The CDR error code URN which the application-specific error code extends. Mandatory if the error _code_ is an application-specific error rather than a standardised error code.
-          type: string
+        data:
+          $ref: '#/components/schemas/BankingBalance'
+        links:
+          $ref: '#/components/schemas/Links'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - links
       type: object
-      x-conditional:
-      - urn
     BankingBalance:
       properties:
         accountId:
@@ -531,16 +517,6 @@ components:
       - availableBalance
       - currentBalance
       type: object
-    RequestAccountIdListV1_data:
-      properties:
-        accountIds:
-          description: Array of _accountId_ values to obtain data for.
-          items:
-            $ref: '#/components/schemas/BankingAccountId'
-          type: array
-      required:
-      - accountIds
-      type: object
     MetaPaginated:
       properties:
         totalRecords:
@@ -555,66 +531,6 @@ components:
       - totalPages
       - totalRecords
       type: object
-    ResponseBankingAccountsBalanceList:
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseBankingAccountsBalanceList_data'
-        links:
-          $ref: '#/components/schemas/LinksPaginated'
-        meta:
-          $ref: '#/components/schemas/MetaPaginated'
-      required:
-      - data
-      - links
-      - meta
-      type: object
-    Links:
-      properties:
-        self:
-          description: Fully qualified link that generated the current response document.
-          type: string
-          x-cds-type: URIString
-      required:
-      - self
-      type: object
-    ResponseBankingAccountsBalanceById:
-      properties:
-        data:
-          $ref: '#/components/schemas/BankingBalance'
-        links:
-          $ref: '#/components/schemas/Links'
-        meta:
-          $ref: '#/components/schemas/Meta'
-      required:
-      - data
-      - links
-      type: object
-    RequestAccountIdListV1:
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestAccountIdListV1_data'
-        meta:
-          $ref: '#/components/schemas/Meta'
-      required:
-      - data
-      type: object
-    BankingProductCategoryV2:
-      description: The category to which a product or account belongs. See [here](#product-categories) for more details.
-      enum:
-      - BUSINESS_LOANS
-      - BUY_NOW_PAY_LATER
-      - CRED_AND_CHRG_CARDS
-      - LEASES
-      - MARGIN_LOANS
-      - OVERDRAFTS
-      - PERS_LOANS
-      - REGULATED_TRUST_ACCOUNTS
-      - RESIDENTIAL_MORTGAGES
-      - TERM_DEPOSITS
-      - TRADE_FINANCE
-      - TRANS_AND_SAVINGS_ACCOUNTS
-      - TRAVEL_CARDS
-      type: string
     ResponseErrorListV2:
       properties:
         errors:
@@ -624,6 +540,90 @@ components:
           type: array
       required:
       - errors
+      type: object
+    BankingAccountId:
+      description: A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.
+      type: string
+      x-cds-type: ASCIIString
+    ErrorV2_meta:
+      description: Additional data for customised error codes.
+      properties:
+        urn:
+          description: The CDR error code URN which the application-specific error code extends. Mandatory if the error _code_ is an application-specific error rather than a standardised error code.
+          type: string
+      type: object
+      x-conditional:
+      - urn
+    RequestAccountIdListV1:
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestAccountIdListV1_data'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      type: object
+    ResponseBankingAccountsBalanceList_data:
+      properties:
+        balances:
+          description: The list of balances returned.
+          items:
+            $ref: '#/components/schemas/BankingBalance'
+          type: array
+      required:
+      - balances
+      type: object
+    RequestAccountIdListV1_data:
+      properties:
+        accountIds:
+          description: Array of _accountId_ values to obtain data for.
+          items:
+            $ref: '#/components/schemas/BankingAccountId'
+          type: array
+      required:
+      - accountIds
+      type: object
+    ErrorV2:
+      properties:
+        code:
+          description: The code of the error encountered. Where the error is specific to the respondent, an application-specific error code, expressed as a string value. If the error is application-specific, the URN code that the specific error extends must be provided in the _meta_ object. Otherwise, the value is the error code URN.
+          type: string
+        title:
+          description: A short, human-readable summary of the problem that **MUST NOT** change from occurrence to occurrence of the problem represented by the error code.
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          type: string
+        meta:
+          $ref: '#/components/schemas/ErrorV2_meta'
+      required:
+      - code
+      - detail
+      - title
+      type: object
+      x-conditional:
+      - meta
+    Links:
+      properties:
+        self:
+          description: Fully qualified link that generated the current response document.
+          type: string
+          x-cds-type: URIString
+      required:
+      - self
+      type: object
+    BankingBalancePurse:
+      properties:
+        amount:
+          description: The balance available for this additional currency purse.
+          type: string
+          x-cds-type: AmountString
+        currency:
+          description: The currency for the purse.
+          type: string
+          x-cds-type: CurrencyString
+      required:
+      - amount
       type: object
   headers:
     XFAPIInteractionId:

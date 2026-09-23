@@ -1,0 +1,25 @@
+# Front Door AI Index — anz — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: anz
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.anz.com.au
+  final_host: www.anz.com.au
+  ownership: own
+  owner: anz
+  shares_host_with: null
+  inherited_from: null
+  verdict: silent
+  score: 0
+  host_score: 0
+  density: 0.0
+  words: 4176
+  tiers:
+    agentic: 0
+    core: 0
+    model: 0
+  ambiguous: 3
+  top_terms:
+    smart: 3
