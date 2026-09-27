@@ -39,6 +39,15 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/anz.png
 tags:
+- Finance
+- Banks
+- Open Banking
+- CDR
+- Consumer Banking
+- Australia
+- Product Reference Data
+- ADI
+tags_raw:
 - Financial
 - Banks
 - Open Banking
