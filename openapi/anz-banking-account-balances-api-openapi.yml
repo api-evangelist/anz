@@ -403,39 +403,38 @@ paths:
       - bank:accounts.basic:read
       x-version: '1'
 components:
+  requestBodies:
+    RequestAccountIds:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RequestAccountIdListV1'
+      description: Request payload containing a list of _accountId_ values to obtain data for.
+      required: true
   schemas:
-    MetaPaginated:
+    RequestAccountIdListV1:
       properties:
-        totalRecords:
-          description: The total number of records in the full set. See [pagination](#pagination).
-          type: integer
-          x-cds-type: NaturalNumber
-        totalPages:
-          description: The total number of pages in the full set. See [pagination](#pagination).
-          type: integer
-          x-cds-type: NaturalNumber
+        data:
+          $ref: '#/components/schemas/RequestAccountIdListV1_data'
+        meta:
+          $ref: '#/components/schemas/Meta'
       required:
-      - totalPages
-      - totalRecords
+      - data
       type: object
-    ResponseErrorListV2:
-      properties:
-        errors:
-          description: List of errors.
-          items:
-            $ref: '#/components/schemas/ErrorV2'
-          type: array
-      required:
-      - errors
+    Meta:
       type: object
-    Links:
+    ResponseBankingAccountsBalanceList:
       properties:
-        self:
-          description: Fully qualified link that generated the current response document.
-          type: string
-          x-cds-type: URIString
+        data:
+          $ref: '#/components/schemas/ResponseBankingAccountsBalanceList_data'
+        links:
+          $ref: '#/components/schemas/LinksPaginated'
+        meta:
+          $ref: '#/components/schemas/MetaPaginated'
       required:
-      - self
+      - data
+      - links
+      - meta
       type: object
     ErrorV2:
       properties:
@@ -457,15 +456,23 @@ components:
       type: object
       x-conditional:
       - meta
-    ErrorV2_meta:
-      description: Additional data for customised error codes.
-      properties:
-        urn:
-          description: The CDR error code URN which the application-specific error code extends. Mandatory if the error _code_ is an application-specific error rather than a standardised error code.
-          type: string
-      type: object
-      x-conditional:
-      - urn
+    BankingProductCategoryV2:
+      description: The category to which a product or account belongs. See [here](#product-categories) for more details.
+      enum:
+      - BUSINESS_LOANS
+      - BUY_NOW_PAY_LATER
+      - CRED_AND_CHRG_CARDS
+      - LEASES
+      - MARGIN_LOANS
+      - OVERDRAFTS
+      - PERS_LOANS
+      - REGULATED_TRUST_ACCOUNTS
+      - RESIDENTIAL_MORTGAGES
+      - TERM_DEPOSITS
+      - TRADE_FINANCE
+      - TRANS_AND_SAVINGS_ACCOUNTS
+      - TRAVEL_CARDS
+      type: string
     RequestAccountIdListV1_data:
       properties:
         accountIds:
@@ -489,41 +496,24 @@ components:
       required:
       - amount
       type: object
-    ResponseBankingAccountsBalanceById:
+    Links:
       properties:
-        data:
-          $ref: '#/components/schemas/BankingBalance'
-        links:
-          $ref: '#/components/schemas/Links'
-        meta:
-          $ref: '#/components/schemas/Meta'
+        self:
+          description: Fully qualified link that generated the current response document.
+          type: string
+          x-cds-type: URIString
       required:
-      - data
-      - links
+      - self
       type: object
-    ResponseBankingAccountsBalanceList_data:
+    ErrorV2_meta:
+      description: Additional data for customised error codes.
       properties:
-        balances:
-          description: The list of balances returned.
-          items:
-            $ref: '#/components/schemas/BankingBalance'
-          type: array
-      required:
-      - balances
+        urn:
+          description: The CDR error code URN which the application-specific error code extends. Mandatory if the error _code_ is an application-specific error rather than a standardised error code.
+          type: string
       type: object
-    RequestAccountIdListV1:
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestAccountIdListV1_data'
-        meta:
-          $ref: '#/components/schemas/Meta'
-      required:
-      - data
-      type: object
-    BankingAccountId:
-      description: A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.
-      type: string
-      x-cds-type: ASCIIString
+      x-conditional:
+      - urn
     BankingBalance:
       properties:
         accountId:
@@ -563,19 +553,10 @@ components:
       - availableBalance
       - currentBalance
       type: object
-    ResponseBankingAccountsBalanceList:
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseBankingAccountsBalanceList_data'
-        links:
-          $ref: '#/components/schemas/LinksPaginated'
-        meta:
-          $ref: '#/components/schemas/MetaPaginated'
-      required:
-      - data
-      - links
-      - meta
-      type: object
+    BankingAccountId:
+      description: A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.
+      type: string
+      x-cds-type: ASCIIString
     LinksPaginated:
       properties:
         self:
@@ -606,43 +587,62 @@ components:
       - next
       - first
       - last
-    BankingProductCategoryV2:
-      description: The category to which a product or account belongs. See [here](#product-categories) for more details.
-      enum:
-      - BUSINESS_LOANS
-      - BUY_NOW_PAY_LATER
-      - CRED_AND_CHRG_CARDS
-      - LEASES
-      - MARGIN_LOANS
-      - OVERDRAFTS
-      - PERS_LOANS
-      - REGULATED_TRUST_ACCOUNTS
-      - RESIDENTIAL_MORTGAGES
-      - TERM_DEPOSITS
-      - TRADE_FINANCE
-      - TRANS_AND_SAVINGS_ACCOUNTS
-      - TRAVEL_CARDS
-      type: string
-    Meta:
+    ResponseErrorListV2:
+      properties:
+        errors:
+          description: List of errors.
+          items:
+            $ref: '#/components/schemas/ErrorV2'
+          type: array
+      required:
+      - errors
       type: object
-  requestBodies:
-    RequestAccountIds:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RequestAccountIdListV1'
-      description: Request payload containing a list of _accountId_ values to obtain data for.
-      required: true
+    ResponseBankingAccountsBalanceList_data:
+      properties:
+        balances:
+          description: The list of balances returned.
+          items:
+            $ref: '#/components/schemas/BankingBalance'
+          type: array
+      required:
+      - balances
+      type: object
+    ResponseBankingAccountsBalanceById:
+      properties:
+        data:
+          $ref: '#/components/schemas/BankingBalance'
+        links:
+          $ref: '#/components/schemas/Links'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - links
+      type: object
+    MetaPaginated:
+      properties:
+        totalRecords:
+          description: The total number of records in the full set. See [pagination](#pagination).
+          type: integer
+          x-cds-type: NaturalNumber
+        totalPages:
+          description: The total number of pages in the full set. See [pagination](#pagination).
+          type: integer
+          x-cds-type: NaturalNumber
+      required:
+      - totalPages
+      - totalRecords
+      type: object
   headers:
-    XFAPIInteractionId:
-      description: An **[[RFC4122]](#nref-RFC4122)** UUID used as a correlation id. If provided, the data holder **MUST** play back this value in the _x-fapi-interaction-id_ response header. If not provided a **[[RFC4122]](#nref-RFC4122)** UUID value is required to be provided in the response header to track the interaction.
+    XV:
+      description: The [payload version](#response-headers) that the endpoint has responded with.
       explode: false
       required: true
       schema:
         type: string
       style: simple
-    XV:
-      description: The [payload version](#response-headers) that the endpoint has responded with.
+    XFAPIInteractionId:
+      description: An **[[RFC4122]](#nref-RFC4122)** UUID used as a correlation id. If provided, the data holder **MUST** play back this value in the _x-fapi-interaction-id_ response header. If not provided a **[[RFC4122]](#nref-RFC4122)** UUID value is required to be provided in the response header to track the interaction.
       explode: false
       required: true
       schema:
