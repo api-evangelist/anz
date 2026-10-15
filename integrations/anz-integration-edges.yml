@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/anz/integrations
 - https://zapier.com/apps/australia-and-new-zealand-banking-group-anz/integrations
@@ -10,9 +10,50 @@ checked:
 - https://composio.dev/toolkits/anz
 - https://monid.ai/tools/anz
 - https://n8n.io/integrations/anz/
+- https://www.iso20022.org/sites/default/files/ISO10383_MIC/ISO10383_MIC.csv
 - https://zapier.com/apps/anz/integrations
 - https://zapier.com/apps/australia-and-new-zealand-banking-group-anz/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: ISO 10383 (MIC)
+  partner: null
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.iso20022.org/sites/default/files/ISO10383_MIC/ISO10383_MIC.csv
+  source: mic
+  category: registered trading venues and market segments
+  contract_reference:
+    register: ISO 10383 Market Identifier Codes (ISO 20022 registration authority)
+    spec_file: null
+    standard: ISO 10383
+    role: venue operator
+    matched_domain: anz.com.au
+    matched_by: domain+verified:anz.com.au
+    categories:
+    - NSPD
+    - SINT
+    operating_mics:
+    - ANZL
+    mics:
+    - mic: ANLP
+      operating_mic: ANZL
+      segment: SGMT
+      market: AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED
+      category: NSPD
+      legal_name: ''
+      country: GB
+    - mic: ANZL
+      operating_mic: ANZL
+      segment: OPRT
+      market: AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED - SYSTEMATIC INTERNALISER
+      category: SINT
+      legal_name: ''
+      country: GB
+    detected_by: sweep-capital-markets.py
+    detected: '2026-10-15'
+  detected_by: sweep-capital-markets.py
+  first_seen: '2026-10-15'
 templates: []
