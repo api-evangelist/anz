@@ -64,6 +64,12 @@ apis:
   name: Australia and New Zealand Banking Group (ANZ) Payments API
   tags:
   - Payments
+  - New Payments Platform
+  - Direct Entry
+  - Business Banking
+  - Institutional
+  tags_raw:
+  - Payments
   - NPP
   - Direct Entry
   - Business Banking
@@ -84,6 +90,12 @@ apis:
   tags:
   - Payments
   - PayTo
+  - New Payments Platform
+  - Real-Time Payments
+  - Business Banking
+  tags_raw:
+  - Payments
+  - PayTo
   - NPP
   - Real-Time Payments
   - Business Banking
@@ -100,6 +112,12 @@ apis:
 - aid: anz:anz-payid-check-api
   name: Australia and New Zealand Banking Group (ANZ) PayID Check API
   tags:
+  - Payments
+  - PayID
+  - New Payments Platform
+  - Validation
+  - Business Banking
+  tags_raw:
   - Payments
   - PayID
   - NPP
@@ -180,6 +198,11 @@ apis:
   name: Australia and New Zealand Banking Group (ANZ) FX API
   tags:
   - Foreign Exchange
+  - Payments
+  - Business Banking
+  - Institutional
+  tags_raw:
+  - Foreign Exchange
   - FX
   - Payments
   - Business Banking
@@ -215,6 +238,12 @@ apis:
 - aid: anz:anz-npp-agency-api
   name: Australia and New Zealand Banking Group (ANZ) NPP Agency API
   tags:
+  - Payments
+  - New Payments Platform
+  - Agency
+  - PayTo
+  - Confirmation of Payee
+  tags_raw:
   - Payments
   - NPP
   - Agency
