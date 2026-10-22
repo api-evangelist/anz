@@ -1,0 +1,387 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/anz/main/json-schema/anz-response-banking-payee-by-id-v2-schema.json",
+  "title": "ResponseBankingPayeeByIdV2",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/anz-banking-payees-api-openapi.yml#/components/schemas/ResponseBankingPayeeByIdV2",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/BankingPayeeDetailV2"
+    },
+    "links": {
+      "$ref": "#/$defs/Links"
+    },
+    "meta": {
+      "$ref": "#/$defs/Meta"
+    }
+  },
+  "required": [
+    "data",
+    "links"
+  ],
+  "type": "object",
+  "$defs": {
+    "BankingBillerPayee": {
+      "properties": {
+        "billerCode": {
+          "description": "BPAY Biller Code of the Biller.",
+          "type": "string"
+        },
+        "crn": {
+          "description": "BPAY CRN of the Biller (if available).<br/>Where the CRN contains sensitive information, it should be masked in line with how the Data Holder currently displays account identifiers in their existing online banking channels. If the contents of the CRN match the format of a Credit Card PAN they should be masked according to the rules applicable for [MaskedPANString](#common-field-types). If the contents are otherwise sensitive, then it should be masked using the rules applicable for the [MaskedAccountString](#common-field-types) common type.",
+          "type": "string"
+        },
+        "billerName": {
+          "description": "Name of the Biller.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "billerCode",
+        "billerName"
+      ],
+      "type": "object",
+      "x-conditional": [
+        "crn"
+      ]
+    },
+    "BankingDigitalWalletPayee": {
+      "properties": {
+        "name": {
+          "description": "The display name of the wallet as given by the customer, else a default value defined by the data holder.",
+          "type": "string"
+        },
+        "identifier": {
+          "description": "The identifier of the digital wallet (dependent on type).",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the digital wallet identifier.",
+          "enum": [
+            "EMAIL",
+            "CONTACT_NAME",
+            "TELEPHONE"
+          ],
+          "type": "string"
+        },
+        "provider": {
+          "description": "The provider of the digital wallet.",
+          "enum": [
+            "PAYPAL_AU",
+            "OTHER"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "identifier",
+        "name",
+        "provider",
+        "type"
+      ],
+      "type": "object"
+    },
+    "BankingDomesticPayee": {
+      "properties": {
+        "payeeAccountUType": {
+          "description": "Type of account object included. Valid values are: <ul><li>`account` A standard Australian account defined by BSB/Account Number.<li>`card` A credit or charge card to pay to (note that PANs are masked).<li>`payId` A PayID recognised by NPP.</ul>",
+          "enum": [
+            "account",
+            "card",
+            "payId"
+          ],
+          "type": "string"
+        },
+        "account": {
+          "$ref": "#/$defs/BankingDomesticPayeeAccount"
+        },
+        "card": {
+          "$ref": "#/$defs/BankingDomesticPayeeCard"
+        },
+        "payId": {
+          "$ref": "#/$defs/BankingDomesticPayeePayId"
+        }
+      },
+      "required": [
+        "payeeAccountUType"
+      ],
+      "type": "object",
+      "x-conditional": [
+        "account",
+        "card",
+        "payId"
+      ]
+    },
+    "BankingDomesticPayeeAccount": {
+      "properties": {
+        "accountName": {
+          "description": "Name of the account to pay to.",
+          "type": "string"
+        },
+        "bsb": {
+          "description": "BSB of the account to pay to.",
+          "type": "string"
+        },
+        "accountNumber": {
+          "description": "Number of the account to pay to.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "accountNumber",
+        "bsb"
+      ],
+      "type": "object"
+    },
+    "BankingDomesticPayeeCard": {
+      "properties": {
+        "cardNumber": {
+          "description": "Name of the account to pay to.",
+          "type": "string",
+          "x-cds-type": "MaskedPANString"
+        }
+      },
+      "required": [
+        "cardNumber"
+      ],
+      "type": "object"
+    },
+    "BankingDomesticPayeePayId": {
+      "properties": {
+        "name": {
+          "description": "The name assigned to the PayID by the owner of the PayID.",
+          "type": "string"
+        },
+        "identifier": {
+          "description": "The identifier of the PayID (dependent on type).",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the PayID.",
+          "enum": [
+            "ABN",
+            "EMAIL",
+            "ORG_IDENTIFIER",
+            "TELEPHONE"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "identifier",
+        "type"
+      ],
+      "type": "object"
+    },
+    "BankingInternationalPayee": {
+      "properties": {
+        "beneficiaryDetails": {
+          "$ref": "#/$defs/BankingInternationalPayee_beneficiaryDetails"
+        },
+        "bankDetails": {
+          "$ref": "#/$defs/BankingInternationalPayee_bankDetails"
+        }
+      },
+      "required": [
+        "bankDetails",
+        "beneficiaryDetails"
+      ],
+      "type": "object"
+    },
+    "BankingInternationalPayee_bankDetails": {
+      "properties": {
+        "country": {
+          "description": "Country of the recipient institution. A valid [ISO 3166 Alpha-3](https://www.iso.org/iso-3166-country-codes.html) country code.",
+          "type": "string",
+          "x-cds-type": "ExternalRef"
+        },
+        "accountNumber": {
+          "description": "Account Targeted for payment.",
+          "type": "string"
+        },
+        "bankAddress": {
+          "$ref": "#/$defs/BankingInternationalPayee_bankDetails_bankAddress"
+        },
+        "beneficiaryBankBIC": {
+          "description": "Swift bank code. Aligns with standard [ISO 9362](https://www.iso.org/standard/60390.html).",
+          "type": "string",
+          "x-cds-type": "ExternalRef"
+        },
+        "fedWireNumber": {
+          "description": "Number for Fedwire payment (Federal Reserve Wire Network).",
+          "type": "string"
+        },
+        "sortCode": {
+          "description": "Sort code used for account identification in some jurisdictions.",
+          "type": "string"
+        },
+        "chipNumber": {
+          "description": "Number for the Clearing House Interbank Payments System.",
+          "type": "string"
+        },
+        "routingNumber": {
+          "description": "International bank routing number.",
+          "type": "string"
+        },
+        "legalEntityIdentifier": {
+          "description": "The legal entity identifier (LEI) for the beneficiary. Aligns with [ISO 17442](https://www.iso.org/standard/59771.html).",
+          "type": "string",
+          "x-cds-type": "ExternalRef"
+        }
+      },
+      "required": [
+        "accountNumber",
+        "country"
+      ],
+      "type": "object"
+    },
+    "BankingInternationalPayee_bankDetails_bankAddress": {
+      "properties": {
+        "name": {
+          "description": "Name of the recipient Bank.",
+          "type": "string"
+        },
+        "address": {
+          "description": "Address of the recipient Bank.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "address",
+        "name"
+      ],
+      "type": "object"
+    },
+    "BankingInternationalPayee_beneficiaryDetails": {
+      "properties": {
+        "name": {
+          "description": "Name of the beneficiary.",
+          "type": "string"
+        },
+        "country": {
+          "description": "Country where the beneficiary resides. A valid [ISO 3166 Alpha-3](https://www.iso.org/iso-3166-country-codes.html) country code.",
+          "type": "string",
+          "x-cds-type": "ExternalRef"
+        },
+        "message": {
+          "description": "Response message for the payment.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "country"
+      ],
+      "type": "object"
+    },
+    "BankingPayeeDetailV2": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BankingPayeeV2"
+        },
+        {
+          "$ref": "#/$defs/BankingPayeeDetailV2_allOf"
+        }
+      ]
+    },
+    "BankingPayeeDetailV2_allOf": {
+      "properties": {
+        "payeeUType": {
+          "description": "Type of object included that describes the payee in detail.",
+          "enum": [
+            "biller",
+            "digitalWallet",
+            "domestic",
+            "international"
+          ],
+          "type": "string"
+        },
+        "biller": {
+          "$ref": "#/$defs/BankingBillerPayee"
+        },
+        "domestic": {
+          "$ref": "#/$defs/BankingDomesticPayee"
+        },
+        "digitalWallet": {
+          "$ref": "#/$defs/BankingDigitalWalletPayee"
+        },
+        "international": {
+          "$ref": "#/$defs/BankingInternationalPayee"
+        }
+      },
+      "required": [
+        "payeeUType"
+      ],
+      "type": "object",
+      "x-conditional": [
+        "biller",
+        "digitalWallet",
+        "domestic",
+        "international"
+      ]
+    },
+    "BankingPayeeId": {
+      "description": "A unique identifier for a Banking payee, generated according to [CDR ID Permanence](#id-permanence) requirements.",
+      "type": "string",
+      "x-cds-type": "ASCIIString"
+    },
+    "BankingPayeeV2": {
+      "properties": {
+        "payeeId": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/BankingPayeeId"
+            }
+          ],
+          "description": "Unique identifier for the payee."
+        },
+        "nickname": {
+          "description": "The short display name of the payee as provided by the customer. Where a customer has not provided a nickname, a display name derived by the bank for the payee consistent with existing digital banking channels.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the payee provided by the customer.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of payee.<ul><li>`DOMESTIC` means a registered payee for domestic payments including NPP.<li>`INTERNATIONAL` means a registered payee for international payments.<li>`BILLER` means a registered payee for BPAY.<li>`DIGITAL_WALLET` means a registered payee for a bank's digital wallet.</ul>",
+          "enum": [
+            "BILLER",
+            "DIGITAL_WALLET",
+            "DOMESTIC",
+            "INTERNATIONAL"
+          ],
+          "type": "string"
+        },
+        "creationDate": {
+          "description": "The date the payee was created by the customer.",
+          "type": "string",
+          "x-cds-type": "DateString"
+        }
+      },
+      "required": [
+        "nickname",
+        "payeeId",
+        "type"
+      ],
+      "type": "object"
+    },
+    "Links": {
+      "properties": {
+        "self": {
+          "description": "Fully qualified link that generated the current response document.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "Meta": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for ANZ CDR Banking Banking Accounts API
+  version: 1.0.0
+extends: openapi/anz-banking-accounts-api-openapi.yml
+generated: '2026-10-20'
+method: generated
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: Australia and New Zealand Banking Group (ANZ)
+    x-apievangelist-generated: '2026-10-20'
+    x-apievangelist-access: gated-cdr-adr
+    x-apievangelist-note: 'DSB Consumer Data Standards v1.36.0 contract as implemented by ANZ as a CDR data holder. These
+      operations are NOT publicly callable: they require CDR accredited-data-recipient (ADR) status, consumer consent, OAuth2/FAPI
+      tokens and mTLS. The server URL in the original is the standard''s placeholder (mtls.dh.example.com); ANZ''s authenticated
+      data-holder base is discovered through the CDR Register, not published here.'
+- target: $.paths['/banking/accounts'].get
+  update:
+    x-apievangelist-agent-safe: true
+    x-apievangelist-idempotent: true
+    x-apievangelist-required-scopes:
+    - bank:accounts.basic:read
+- target: $.paths['/banking/accounts/{accountId}'].get
+  update:
+    x-apievangelist-agent-safe: true
+    x-apievangelist-idempotent: true
+    x-apievangelist-required-scopes:
+    - bank:accounts.detail:read

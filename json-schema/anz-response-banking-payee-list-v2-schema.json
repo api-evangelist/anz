@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/anz/main/json-schema/anz-response-banking-payee-list-v2-schema.json",
+  "title": "ResponseBankingPayeeListV2",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/anz-banking-payees-api-openapi.yml#/components/schemas/ResponseBankingPayeeListV2",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/ResponseBankingPayeeListV2_data"
+    },
+    "links": {
+      "$ref": "#/$defs/LinksPaginated"
+    },
+    "meta": {
+      "$ref": "#/$defs/MetaPaginated"
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ],
+  "type": "object",
+  "$defs": {
+    "BankingPayeeId": {
+      "description": "A unique identifier for a Banking payee, generated according to [CDR ID Permanence](#id-permanence) requirements.",
+      "type": "string",
+      "x-cds-type": "ASCIIString"
+    },
+    "BankingPayeeV2": {
+      "properties": {
+        "payeeId": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/BankingPayeeId"
+            }
+          ],
+          "description": "Unique identifier for the payee."
+        },
+        "nickname": {
+          "description": "The short display name of the payee as provided by the customer. Where a customer has not provided a nickname, a display name derived by the bank for the payee consistent with existing digital banking channels.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the payee provided by the customer.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of payee.<ul><li>`DOMESTIC` means a registered payee for domestic payments including NPP.<li>`INTERNATIONAL` means a registered payee for international payments.<li>`BILLER` means a registered payee for BPAY.<li>`DIGITAL_WALLET` means a registered payee for a bank's digital wallet.</ul>",
+          "enum": [
+            "BILLER",
+            "DIGITAL_WALLET",
+            "DOMESTIC",
+            "INTERNATIONAL"
+          ],
+          "type": "string"
+        },
+        "creationDate": {
+          "description": "The date the payee was created by the customer.",
+          "type": "string",
+          "x-cds-type": "DateString"
+        }
+      },
+      "required": [
+        "nickname",
+        "payeeId",
+        "type"
+      ],
+      "type": "object"
+    },
+    "LinksPaginated": {
+      "properties": {
+        "self": {
+          "description": "Fully qualified link that generated the current response document.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "first": {
+          "description": "URI to the first page of this set. Mandatory if this response is not the first page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "prev": {
+          "description": "URI to the previous page of this set. Mandatory if this response is not the first page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "next": {
+          "description": "URI to the next page of this set. Mandatory if this response is not the last page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "last": {
+          "description": "URI to the last page of this set. Mandatory if this response is not the last page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object",
+      "x-conditional": [
+        "prev",
+        "next",
+        "first",
+        "last"
+      ]
+    },
+    "MetaPaginated": {
+      "properties": {
+        "totalRecords": {
+          "description": "The total number of records in the full set. See [pagination](#pagination).",
+          "type": "integer",
+          "x-cds-type": "NaturalNumber"
+        },
+        "totalPages": {
+          "description": "The total number of pages in the full set. See [pagination](#pagination).",
+          "type": "integer",
+          "x-cds-type": "NaturalNumber"
+        }
+      },
+      "required": [
+        "totalPages",
+        "totalRecords"
+      ],
+      "type": "object"
+    },
+    "ResponseBankingPayeeListV2_data": {
+      "properties": {
+        "payees": {
+          "description": "The list of payees returned.",
+          "items": {
+            "$ref": "#/$defs/BankingPayeeV2"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "payees"
+      ],
+      "type": "object"
+    }
+  }
+}

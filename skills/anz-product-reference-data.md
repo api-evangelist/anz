@@ -1,46 +1,25 @@
 ---
-name: List ANZ banking products (CDR Product Reference Data)
+name: anz-product-reference-data
 description: Retrieve ANZ's publicly offered banking products and their full detail from the public, unauthenticated CDR Product Reference Data API.
-api: openapi/anz-cds-banking-products-openapi.yml
+api: openapi/anz-banking-products-api-openapi.yml
 method: generated
-generated: '2026-07-20'
+generated: '2026-10-20'
 operations: [listBankingProducts, getBankingProductDetail]
 ---
 
 # List ANZ banking products (CDR Product Reference Data)
 
-ANZ's Product Reference Data (PRD) API is **public and requires no authentication** —
-only the mandatory `x-v` version header. It works on two brand hosts:
-
-- ANZ: `https://api.anz/cds-au/v1`
-- ANZ Plus: `https://cdr.apix.anz/cds-au/v1`
+Public, **no authentication** — only the mandatory `x-v` version header (optionally `x-min-v`).
+Hosts: ANZ `https://api.anz/cds-au/v1`, ANZ Plus `https://cdr.apix.anz/cds-au/v1`.
 
 ## Steps
 
-1. **List products** — `listBankingProducts`
-   `GET /banking/products` with header `x-v: 5`.
-   Optional query params: `effective` (`CURRENT`|`FUTURE`|`ALL`, default `CURRENT`),
-   `product-category`, `brand`, `page`, `page-size` (default 25).
-   Read `data.products[]`; page through using `meta.totalPages` / `links.next`.
-
-2. **Get one product's detail** — `getBankingProductDetail`
-   `GET /banking/products/{productId}` with header `x-v: 7`, where `productId`
-   comes from a `data.products[].productId` in step 1.
-   The detail response adds `bundles`, `features`, `constraints`, `eligibility`,
-   `fees`, `depositRates`, and `lendingRates`.
+1. **List products** — `listBankingProducts` — `GET /banking/products`.
+   Optional query: `effective` (CURRENT|FUTURE|ALL), `updated-since`, `brand`, `product-category`, `page`, `page-size`.
+   Read `data.products[]`; page with `links.next` / `meta.totalPages`.
+2. **Get product detail** — `getBankingProductDetail` — `GET /banking/products/{productId}`
+   using a `productId` from step 1. Detail adds fees, deposit/lending rates, eligibility, constraints and features.
 
 ## Rules
-
-- **Version header is mandatory.** Send `x-v` (the confirmed live values are 5 for the
-  list and 7 for detail). A missing/invalid `x-v` returns `400`; an unsupported version
-  returns `406`.
-- **Errors** use the CDR error list format (`{ "errors": [ { code, title, detail } ] }`,
-  `urn:au-cds:error:*` codes) — not RFC 9457. See `errors/anz-problem-types.yml`.
-- **Pagination** is page-number based (`page`/`page-size`, `meta.totalRecords`/`totalPages`).
-  See `conventions/anz-conventions.yml`.
-- **No idempotency key** is needed — these are read-only GET calls.
-- Check `GET /discovery/status` and `/discovery/outages` (also public) before treating a
-  non-200 as a client error. See `lifecycle/anz-lifecycle.yml`.
-- Anything beyond product reference data (accounts, balances, transactions) requires CDR
-  accreditation (ADR) with OAuth2/FAPI + mTLS and consumer consent — see
-  `authentication/anz-authentication.yml`.
+- Both calls are read-only GETs and safe to retry.
+- An unsupported `x-v` returns a CDS error (`urn:au-cds:error:cds-all:Header/UnsupportedVersion`); retry with a supported version.

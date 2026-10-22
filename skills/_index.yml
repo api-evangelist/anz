@@ -1,7 +1,10 @@
-generated: '2026-07-20'
+name: ANZ agent skills
+generated: '2026-10-20'
 method: generated
+note: ANZ publishes no skills or AGENTS.md of its own; these are generated from the repo OpenAPI files. Only anz-product-reference-data is callable without CDR accreditation.
 skills:
-- file: anz-product-reference-data.md
-  name: List ANZ banking products (CDR Product Reference Data)
-  api: openapi/anz-cds-banking-products-openapi.yml
-  operations: [listBankingProducts, getBankingProductDetail]
+- {file: anz-product-reference-data.md, name: anz-product-reference-data, api: openapi/anz-banking-products-api-openapi.yml, operations: [listBankingProducts, getBankingProductDetail]}
+- {file: anz-accounts-and-balances.md, name: anz-accounts-and-balances, api: openapi/anz-banking-accounts-api-openapi.yml, operations: [listBankingAccounts, getBankingAccountDetail, listBankingBalancesBulk, listBankingBalancesSpecificAccounts, getBankingBalance]}
+- {file: anz-account-transactions.md, name: anz-account-transactions, api: openapi/anz-banking-account-transactions-api-openapi.yml, operations: [listBankingAccounts, listBankingTransactions, getBankingTransactionDetail]}
+- {file: anz-payees.md, name: anz-payees, api: openapi/anz-banking-payees-api-openapi.yml, operations: [listBankingPayees, getBankingPayeeDetail]}
+- {file: anz-regular-payments.md, name: anz-regular-payments, api: openapi/anz-banking-account-scheduled-payments-api-openapi.yml, operations: [listScheduledPayments, listScheduledPaymentsBulk, listScheduledPaymentsSpecificAccounts, listInstalmentPlans, listInstalmentPlansBulk, listDirectDebits, listDirectDebitsBulk, listDirectDebitsSpecificAccounts]}

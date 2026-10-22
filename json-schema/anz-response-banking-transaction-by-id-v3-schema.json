@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/anz/main/json-schema/anz-response-banking-transaction-by-id-v3-schema.json",
+  "title": "ResponseBankingTransactionByIdV3",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/ResponseBankingTransactionByIdV3",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/BankingTransactionDetailV3"
+    },
+    "links": {
+      "$ref": "#/$defs/Links"
+    },
+    "meta": {
+      "$ref": "#/$defs/Meta"
+    }
+  },
+  "required": [
+    "data",
+    "links"
+  ],
+  "type": "object",
+  "$defs": {
+    "BankingAccountId": {
+      "description": "A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.",
+      "type": "string",
+      "x-cds-type": "ASCIIString"
+    },
+    "BankingInstalmentPlanId": {
+      "description": "A unique identifier for a Banking instalment plan, generated according to [CDR ID Permanence](#id-permanence) requirements.",
+      "type": "string",
+      "x-cds-type": "ASCIIString"
+    },
+    "BankingTransactionDetailV3": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BankingTransactionV2"
+        },
+        {
+          "$ref": "#/$defs/BankingTransactionDetailV3_allOf"
+        }
+      ]
+    },
+    "BankingTransactionDetailV3_allOf": {
+      "properties": {
+        "extendedData": {
+          "$ref": "#/$defs/BankingTransactionDetailV3_allOf_extendedData"
+        }
+      },
+      "required": [
+        "extendedData"
+      ],
+      "type": "object"
+    },
+    "BankingTransactionDetailV3_allOf_extendedData": {
+      "properties": {
+        "payer": {
+          "description": "Label of the originating payer. Mandatory for inbound payment.",
+          "type": "string"
+        },
+        "payee": {
+          "description": "Label of the target PayID. Mandatory for an outbound payment. The name assigned to the BSB/Account Number or PayID (by the owner of the PayID).",
+          "type": "string"
+        },
+        "extensionUType": {
+          "description": "Optional extended data specific to transactions. Currently extended data is supported for NPP service overlays.",
+          "enum": [
+            "nppPayload"
+          ],
+          "type": "string"
+        },
+        "nppPayload": {
+          "$ref": "#/$defs/BankingTransactionDetailV3_allOf_extendedData_nppPayload"
+        }
+      },
+      "type": "object",
+      "x-conditional": [
+        "payer",
+        "payee",
+        "nppPayload"
+      ]
+    },
+    "BankingTransactionDetailV3_allOf_extendedData_nppPayload": {
+      "description": "Mandatory if the _extensionUType_ value is `nppPayload`.",
+      "properties": {
+        "extendedDescription": {
+          "description": "An extended string description. Mandatory if the _extensionUType_ value is `nppPayload`.",
+          "type": "string"
+        },
+        "endToEndId": {
+          "description": "An end to end ID for the payment created at initiation.",
+          "type": "string"
+        },
+        "purposeCode": {
+          "description": "Purpose of the payment. Format is defined by the NPP standards for the NPP overlay services including Osko (X2P1).",
+          "type": "string",
+          "x-cds-type": "ExternalRef"
+        },
+        "service": {
+          "$ref": "#/$defs/NppPaymentService"
+        },
+        "serviceVersion": {
+          "description": "Two-digit NPP service overlay version with leading zero.",
+          "type": "string",
+          "x-cds-type": "ExternalRef"
+        }
+      },
+      "required": [
+        "service",
+        "serviceVersion"
+      ],
+      "type": "object",
+      "x-conditional": [
+        "extendedDescription"
+      ]
+    },
+    "BankingTransactionId": {
+      "description": "A unique identifier for a Banking transaction, generated according to [CDR ID Permanence](#id-permanence) requirements.",
+      "type": "string",
+      "x-cds-type": "ASCIIString"
+    },
+    "BankingTransactionV2": {
+      "properties": {
+        "accountId": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/BankingAccountId"
+            }
+          ],
+          "description": "Unique identifier for the account."
+        },
+        "transactionId": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/BankingTransactionId"
+            }
+          ],
+          "description": "Unique identifier for the transaction. This is mandatory (through hashing if necessary) unless there are specific and justifiable technical reasons why a transaction cannot be uniquely identified for a particular account type. Mandatory if the _isDetailAvailable_ value is `true`."
+        },
+        "isDetailAvailable": {
+          "description": "`true` if extended information is available using the transaction detail endpoint. `false` if extended data is not available.",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "The type of the transaction.",
+          "enum": [
+            "DIRECT_DEBIT",
+            "FEE",
+            "INTEREST_CHARGED",
+            "INTEREST_PAID",
+            "OTHER",
+            "PAYMENT",
+            "TRANSFER_INCOMING",
+            "TRANSFER_OUTGOING"
+          ],
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the transaction whether pending or posted. Note that there is currently no provision in the standards to guarantee the ability to correlate a pending transaction with an associated posted transaction.",
+          "enum": [
+            "PENDING",
+            "POSTED"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "The transaction description as applied by the financial institution.",
+          "type": "string"
+        },
+        "postingDateTime": {
+          "description": "The time the transaction was posted. This field is Mandatory if the transaction has status `POSTED`. This is the time that appears on a standard statement.",
+          "type": "string",
+          "x-cds-type": "DateTimeString"
+        },
+        "valueDateTime": {
+          "description": "Date and time at which assets become available to the account owner in case of a credit entry, or cease to be available to the account owner in case of a debit transaction entry.",
+          "type": "string",
+          "x-cds-type": "DateTimeString"
+        },
+        "executionDateTime": {
+          "description": "The time the transaction was executed by the originating customer, if available.",
+          "type": "string",
+          "x-cds-type": "DateTimeString"
+        },
+        "amount": {
+          "description": "The value of the transaction. Negative values mean money was outgoing from the account.",
+          "type": "string",
+          "x-cds-type": "AmountString"
+        },
+        "currency": {
+          "default": "AUD",
+          "description": "The currency for the transaction amount. `AUD` assumed if not present.",
+          "type": "string",
+          "x-cds-type": "CurrencyString"
+        },
+        "reference": {
+          "description": "The reference for the transaction provided by the originating institution. Empty string if no data provided.",
+          "type": "string"
+        },
+        "merchantName": {
+          "description": "Name of the merchant for an outgoing payment to a merchant.",
+          "type": "string"
+        },
+        "merchantCategoryCode": {
+          "description": "The merchant category code (or MCC) for an outgoing payment to a merchant.",
+          "type": "string"
+        },
+        "instalmentPlanId": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/BankingInstalmentPlanId"
+            }
+          ],
+          "description": "If the transaction is associated with an instalment plan, the corresponding _planId_ value. It should be noted that if the transaction is for a fee associated with a plan, or any amount of repayment, the _amount_ of the transaction may not match a scheduled instalment amount."
+        },
+        "billerCode": {
+          "description": "BPAY Biller Code for the transaction (if available).",
+          "type": "string"
+        },
+        "billerName": {
+          "description": "Name of the BPAY biller for the transaction (if available).",
+          "type": "string"
+        },
+        "crn": {
+          "description": "BPAY CRN for the transaction (if available).<br/>Where the CRN contains sensitive information, it should be masked in line with how the Data Holder currently displays account identifiers in their existing online banking channels. If the contents of the CRN match the format of a Credit Card PAN they should be masked according to the rules applicable for [MaskedPANString](#common-field-types). If the contents are otherwise sensitive, then it should be masked using the rules applicable for the [MaskedAccountString](#common-field-types) common type.",
+          "type": "string"
+        },
+        "apcaNumber": {
+          "description": "6 Digit APCA number for the initiating institution. The field is fixed-width and padded with leading zeros if applicable.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "accountId",
+        "amount",
+        "description",
+        "isDetailAvailable",
+        "reference",
+        "status",
+        "type"
+      ],
+      "type": "object",
+      "x-conditional": [
+        "transactionId",
+        "postingDateTime",
+        "crn"
+      ]
+    },
+    "Links": {
+      "properties": {
+        "self": {
+          "description": "Fully qualified link that generated the current response document.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "Meta": {
+      "type": "object"
+    },
+    "NppPaymentService": {
+      "description": "Identifier of the applicable overlay service. The _service_ is used in conjunction with the _serviceVersion_. See [here](#npp-services) for more details.",
+      "enum": [
+        "X2P1",
+        "IFTI",
+        "BSCT",
+        "CATSCT"
+      ],
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/anz/main/json-schema/anz-response-banking-instalment-plan-list-schema.json",
+  "title": "ResponseBankingInstalmentPlanList",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/ResponseBankingInstalmentPlanList",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/ResponseBankingInstalmentPlanList_data"
+    },
+    "links": {
+      "$ref": "#/$defs/LinksPaginated"
+    },
+    "meta": {
+      "$ref": "#/$defs/MetaPaginated"
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ],
+  "type": "object",
+  "$defs": {
+    "BankingAccountId": {
+      "description": "A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.",
+      "type": "string",
+      "x-cds-type": "ASCIIString"
+    },
+    "BankingInstalmentPlan": {
+      "properties": {
+        "accountId": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/BankingAccountId"
+            }
+          ],
+          "description": "Unique identifier for the account."
+        },
+        "planId": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/BankingInstalmentPlanId"
+            }
+          ],
+          "description": "Unique identifier for this plan in accordance with ID Permanence requirements."
+        },
+        "planReference": {
+          "description": "Unique purchase or order number for this plan, aligned to other channels.",
+          "type": "string"
+        },
+        "merchantName": {
+          "description": "Name of the merchant associated with the instalment plan.",
+          "type": "string"
+        },
+        "merchantCategoryCode": {
+          "description": "The merchant category code (MCC) for the merchant associated with the instalment plan.",
+          "type": "string"
+        },
+        "planNickname": {
+          "description": "The short display name of the plan as provided by the customer. Where a customer has not provided a nickname, a display name derived by the data holder consistent with other channels.",
+          "type": "string"
+        },
+        "creationDate": {
+          "description": "The date the plan was created.",
+          "type": "string",
+          "x-cds-type": "DateString"
+        },
+        "amount": {
+          "description": "The original transaction amount the instalment plan was created for, including any upfront payment. E.g., For a $100 purchase split into four repayments, this would be `100.00`.",
+          "type": "string",
+          "x-cds-type": "AmountString"
+        },
+        "planCurrency": {
+          "default": "AUD",
+          "description": "The currency of the plan amount. If absent assumed to be `AUD`.",
+          "type": "string",
+          "x-cds-type": "CurrencyString"
+        },
+        "planCharge": {
+          "description": "Any charges incorporated into the scheduled amounts due, excluding other fees. E.g., If the consumer agrees to repay a $100 purchase plus a $5 charge split across four instalments, this would be `5.00`.",
+          "type": "string",
+          "x-cds-type": "AmountString"
+        },
+        "planRate": {
+          "description": "If displayed to the consumer, the percentage value of any charges incorporated into the scheduled amounts due, excluding other fees. E.g., If the consumer agrees to repay a $1000 purchase plus 10% interest split across twelve instalments, this would be `0.1`.",
+          "type": "string",
+          "x-cds-type": "RateString"
+        },
+        "duration": {
+          "description": "The expected repayment period as at the creation of the plan. Formatted according to [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes recurrence syntax). E.g., For a further three fortnightly repayments from the _creationDate_, this would be `P6W`.",
+          "type": "string",
+          "x-cds-type": "ExternalRef"
+        },
+        "instalmentInterval": {
+          "description": "The expected repayment interval. Formatted according to [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes recurrence syntax). E.g., For fortnightly repayments, this would be `P2W`.",
+          "type": "string",
+          "x-cds-type": "ExternalRef"
+        },
+        "schedule": {
+          "description": "Array of scheduled repayment amounts and dates.",
+          "items": {
+            "$ref": "#/$defs/BankingInstalmentPlanSchedule"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "accountId",
+        "amount",
+        "creationDate",
+        "duration",
+        "instalmentInterval",
+        "merchantName",
+        "planId",
+        "planNickname",
+        "planReference",
+        "schedule"
+      ],
+      "type": "object"
+    },
+    "BankingInstalmentPlanId": {
+      "description": "A unique identifier for a Banking instalment plan, generated according to [CDR ID Permanence](#id-permanence) requirements.",
+      "type": "string",
+      "x-cds-type": "ASCIIString"
+    },
+    "BankingInstalmentPlanSchedule": {
+      "properties": {
+        "amountDue": {
+          "description": "Amount due with this repayment.",
+          "type": "string",
+          "x-cds-type": "AmountString"
+        },
+        "dueDate": {
+          "description": "Date this repayment is or was due.",
+          "type": "string",
+          "x-cds-type": "DateString"
+        },
+        "isPaid": {
+          "default": false,
+          "description": "Whether the associated _amountDue_ has been paid or is otherwise considered as not outstanding. `false` is assumed if absent.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "amountDue",
+        "dueDate"
+      ],
+      "type": "object"
+    },
+    "LinksPaginated": {
+      "properties": {
+        "self": {
+          "description": "Fully qualified link that generated the current response document.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "first": {
+          "description": "URI to the first page of this set. Mandatory if this response is not the first page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "prev": {
+          "description": "URI to the previous page of this set. Mandatory if this response is not the first page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "next": {
+          "description": "URI to the next page of this set. Mandatory if this response is not the last page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "last": {
+          "description": "URI to the last page of this set. Mandatory if this response is not the last page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object",
+      "x-conditional": [
+        "prev",
+        "next",
+        "first",
+        "last"
+      ]
+    },
+    "MetaPaginated": {
+      "properties": {
+        "totalRecords": {
+          "description": "The total number of records in the full set. See [pagination](#pagination).",
+          "type": "integer",
+          "x-cds-type": "NaturalNumber"
+        },
+        "totalPages": {
+          "description": "The total number of pages in the full set. See [pagination](#pagination).",
+          "type": "integer",
+          "x-cds-type": "NaturalNumber"
+        }
+      },
+      "required": [
+        "totalPages",
+        "totalRecords"
+      ],
+      "type": "object"
+    },
+    "ResponseBankingInstalmentPlanList_data": {
+      "properties": {
+        "plans": {
+          "description": "Array of instalment plans. An instalment plan describes the terms of repayment for a specified loan amount such as a Buy Now, Pay Later (BNPL) purchase or a specific card transaction.",
+          "items": {
+            "$ref": "#/$defs/BankingInstalmentPlan"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "plans"
+      ],
+      "type": "object"
+    }
+  }
+}

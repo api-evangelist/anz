@@ -1,33 +1,162 @@
-generated: '2026-07-20'
+generated: '2026-10-20'
 method: searched
 source: openapi/anz-cds-banking-products-openapi.yml (x-scopes extension)
 docs: https://consumerdatastandardsaustralia.github.io/standards/#authorisation-scopes
-note: >
-  The public ANZ Product Reference Data endpoints require NO OAuth scope (they are
-  unauthenticated). The scopes below govern the CDR consumer-data-sharing operations
-  in the shared DSB Consumer Data Standards banking contract, which ANZ exposes only
-  to CDR-accredited Data Recipients under consumer consent. Scope strings are captured
-  verbatim from the spec's per-operation x-scopes extension and the Consumer Data
-  Standards authorisation-scopes reference.
+note: 'The public ANZ Product Reference Data endpoints require NO OAuth scope (they are unauthenticated). The scopes
+  below govern the CDR consumer-data-sharing operations in the shared DSB Consumer Data Standards banking contract,
+  which ANZ exposes only to CDR-accredited Data Recipients under consumer consent. Scope strings are captured verbatim
+  from the spec''s per-operation x-scopes extension and the Consumer Data Standards authorisation-scopes reference.
+
+  '
 schemes:
 - name: CDR-FAPI-OAuth2
   profile: FAPI 1.0 Advanced
   source: openapi/anz-cds-banking-products-openapi.yml
   flows:
   - flow: authorizationCode
+- name: Fileactive-OAuth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.fileactive.anz.com/auth/v2/oauth2/access_token
+  source: https://developer.online.anz.com/product/PayTo/build (embedded OpenAPI securitySchemes)
 scopes:
 - scope: bank:accounts.basic:read
   description: Read basic account information (account list, masked numbers, product category).
-  operations: [listBankingAccounts, listBankingBalancesBulk, listBankingBalancesSpecificAccounts, getBankingBalance]
+  operations:
+  - listBankingAccounts
+  - listBankingBalancesBulk
+  - listBankingBalancesSpecificAccounts
+  - getBankingBalance
 - scope: bank:accounts.detail:read
   description: Read detailed account information including account numbers and features.
-  operations: [getBankingAccountDetail]
+  operations:
+  - getBankingAccountDetail
 - scope: bank:transactions:read
   description: Read account transactions.
-  operations: [listBankingTransactions, getBankingTransactionDetail]
+  operations:
+  - listBankingTransactions
+  - getBankingTransactionDetail
 - scope: bank:regular_payments:read
   description: Read direct debits, scheduled payments and recurring/instalment payment arrangements.
-  operations: [listDirectDebits, listDirectDebitsBulk, listDirectDebitsSpecificAccounts, listScheduledPayments, listScheduledPaymentsBulk, listScheduledPaymentsSpecificAccounts, listInstalmentPlans, listInstalmentPlansBulk]
+  operations:
+  - listDirectDebits
+  - listDirectDebitsBulk
+  - listDirectDebitsSpecificAccounts
+  - listScheduledPayments
+  - listScheduledPaymentsBulk
+  - listScheduledPaymentsSpecificAccounts
+  - listInstalmentPlans
+  - listInstalmentPlansBulk
 - scope: bank:payees:read
   description: Read saved payees.
-  operations: [listBankingPayees, getBankingPayeeDetail]
+  operations:
+  - listBankingPayees
+  - getBankingPayeeDetail
+- scope: AU.INSTO.PAYTO.MANDATE.WRITE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+  operations:
+  - amendMandate
+  - changeMandateStatus
+  - createMandate
+  - recallMandateAction
+- scope: AU.INSTO.PAYTO.MANDATE.READ
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+  operations:
+  - getMandate
+  - getMandateActions
+  - getMandateList
+  - queryResolution
+- scope: AU.INSTO.PAYTO.MPIR.WRITE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+  operations:
+  - createMPIR
+  - retryMPIR
+- scope: AU.INSTO.ACCOUNT.CHECK
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+  operations:
+  - checkAccountName
+- scope: AU.INSTO.NPP.PAYID.READ
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+  operations:
+  - checkPayID
+- scope: GBL.INSTO.FX.RFQ
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: GBL.INSTO.ACCOUNTS.STATEMENT.READ
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: AU.INSTO.PAYMENT.NPP.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: AU.INSTO.PAYMENT.NPP.RETURN
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: AU.INSTO.PAYMENT.NPP.READ
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: AU.INSTO.PAYMENT.CBFT.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: AU.INSTO.PAYMENT.READ
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: HK.INSTO.PAYMENT.FAST.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: HK.INSTO.PAYMENT.ACH.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: HK.INSTO.PAYMENT.CBFT.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: HK.INSTO.PAYMENT.RTGS.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: HK.INSTO.PAYMENT.READ
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: IN.INSTO.PAYMENT.ACH.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: IN.INSTO.PAYMENT.READ
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: SG.INSTO.PAYMENT.ACH.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: SG.INSTO.PAYMENT.CBFT.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: SG.INSTO.PAYMENT.FAST.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: SG.INSTO.PAYMENT.RTGS.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: SG.INSTO.PAYMENT.READ
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: VN.INSTO.PAYMENT.ACH.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: VN.INSTO.PAYMENT.READ
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: AU.INSTO.TESTING.NPP.RTN.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: AU.INSTO.TESTING.PAYTO.NOTIFICATION.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+- scope: AU.INSTO.TESTING.PAYTO.QUERY.CREATE
+  scheme: Fileactive-OAuth2
+  source: OpenAPI documents embedded in developer.online.anz.com product Build pages
+fileactive_docs: https://developer.online.anz.com/How-it-works?path=FAQ
+fileactive_note: 'Developer portal (Fileactive) scopes: "A scope is a mechanism in OAuth 2.0 to define what an application
+  can access (such as payments) and whether the access is read or write." Operation lists are given only where the
+  embedded spec binds the scope per operation in a form we could parse.'

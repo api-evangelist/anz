@@ -1,10 +1,11 @@
-generated: '2026-07-20'
+generated: '2026-10-20'
 method: searched
-source: openapi/anz-cds-banking-products-openapi.yml
+source: openapi/_original/anz-cds-banking-products-openapi.yml
 docs: https://consumerdatastandardsaustralia.github.io/standards/#high-level-standards
-note: >
-  Cross-cutting request/response semantics for ANZ's CDR banking surface, derived from
-  the shared DSB Consumer Data Standards and confirmed against the live public PRD.
+note: 'Cross-cutting request/response semantics for ANZ''s CDR banking surface, derived from the shared DSB Consumer
+  Data Standards and confirmed against the live public PRD.
+
+  '
 authentication:
   style: tiered
   public: none (x-v header only) for Product Reference Data + discovery status/outages
@@ -24,28 +25,101 @@ pagination:
     page: 1-based page number.
     page-size: records per page (default 25, max 1000 per CDS).
   response_fields:
-    links: {first, prev, self, next, last}
-    meta: {totalRecords, totalPages}
+    links:
+      first: null
+      prev: null
+      self: null
+      next: null
+      last: null
+    meta:
+      totalRecords: null
+      totalPages: null
   note: Confirmed meta.totalRecords 37 across 37 pages at page-size 1 on the ANZ brand PRD.
 request_tracing:
   header: x-fapi-interaction-id
-  behavior: >
-    Client-supplied RFC 4122 UUID echoed back on the response for end-to-end tracing;
-    if absent on authenticated calls the server generates one. Part of the FAPI profile.
-  additional_fapi_headers: [x-fapi-auth-date, x-fapi-customer-ip-address, x-cds-client-headers]
+  behavior: 'Client-supplied RFC 4122 UUID echoed back on the response for end-to-end tracing; if absent on authenticated
+    calls the server generates one. Part of the FAPI profile.
+
+    '
+  additional_fapi_headers:
+  - x-fapi-auth-date
+  - x-fapi-customer-ip-address
+  - x-cds-client-headers
 error_envelope:
   shape: ResponseErrorListV2
-  fields: {errors: [{code, title, detail, meta}]}
+  fields:
+    errors:
+    - code: null
+      title: null
+      detail: null
+      meta: null
   format: CDR error list (urn:au-cds:error:* codes) — NOT RFC 9457 problem+json
   ref: errors/anz-problem-types.yml
 idempotency:
-  supported: false
-  note: >
-    The public ANZ CDR banking surface is read-only (GET only); the standard defines no
-    idempotency-key contract for these endpoints. No Idempotency pointer is emitted.
+  coverage: partial
+  scope:
+  - Payments API submit operations (submitNppPayment, submitAuCbft, submitHkFast, submitHkAch, submitHKCbft, submitHKRtgs,
+    submitInAch, submitSgAch, submitSgCbft, submitSgFast, submitSgRtgs, submitVnAch)
+  - PayTo API write operations (createMandate, amendMandate, changeMandateStatus, recallMandateAction, createMPIR,
+    retryMPIR)
+  - FX API (submitQuoteRequest, submitDealRequest, abandonOrRejectQuote)
+  header: X-Message-Id
+  mechanism: 'duplicate rejection, not response replay: a repeated X-Message-Id returns an error (e.g. "DuplicatePayment
+    | Duplicate payment received (supplied X-Message-Id value: [X-Message-Id]"; FX "Duplicate Request | 400").'
+  note: 'The public CDR banking surface is read-only (GET only), so idempotency is na there. abandonOrRejectQuote
+    is documented as idempotent ("repeated requests will have the same effect and response as the first one"). Inbound
+    webhooks: "Use X-Message-Id for idempotency — process each unique value exactly once. ANZ may redeliver if no
+    200 OK is received." Retention window of the duplicate check is not stated.'
+  source: https://developer.online.anz.com/product/Payment/build
 rate_limiting:
-  note: >
-    CDR data holders apply traffic-management/session limits per the CDR performance
-    requirements; no rate-limit response headers are defined in the shared banking spec.
+  note: 'CDR data holders apply traffic-management/session limits per the CDR performance requirements; no rate-limit
+    response headers are defined in the shared banking spec.
+
+    '
+  fileactive:
+    ref: rate-limits/anz-rate-limits.yml
+    exhaustion_status: 429
+    algorithms:
+    - Fixed Window
+    - Sliding Window
+    headers: none documented
+    source: https://developer.online.anz.com/How-it-works?path=FAQ
 metadata:
   note: All list responses carry a meta object; error responses may carry per-error meta with urn error extensions.
+reversibility:
+  surfaces:
+  - surface: PayTo mandate pending action
+    operation: recallMandateAction
+    reversal: recall
+    window: A mandate action can only be recalled if the creation or amendment action_status is "PEND" (pending).
+    docs: https://developer.online.anz.com/product/PayTo/build?path=Mandates/Recall
+    grade: verified
+  - surface: PayTo mandate
+    operation: changeMandateStatus
+    reversal: cancel / suspend (change = CNCL or SUSP)
+    window: null
+    docs: https://developer.online.anz.com/product/PayTo/build?path=Mandates/Status%20change
+    grade: documented
+  - surface: FX quote
+    operation: abandonOrRejectQuote
+    reversal: decline or cancel
+    window: Decline or cancel an issued quote that has not yet been accepted.
+    docs: https://developer.online.anz.com/product/FX/build?path=Decline%20or%20cancel%20a%20quote
+    grade: verified
+  - surface: Payments (NPP, CBFT, ACH, FAST, RTGS submits)
+    operation: null
+    reversal: null
+    note: No cancel/recall operation for a submitted payment is documented. submitNppUnsolicitedReturn returns received
+      NPP funds; it does not reverse an outbound payment.
+    grade: none
+  - surface: CDR banking APIs
+    reversal: na
+    note: read-only
+request_tracing_fileactive:
+  header: X-RequestKey
+  behavior: ANZ Support requires the X-RequestKey value when engaged, the X-RequestKey is a GUID assigned to each
+    request sent to ANZ for processing.
+  source: https://developer.online.anz.com/How-it-works?path=FAQ
+async_pattern: Many Fileactive writes return 202 Accepted; "The initial API response indicates if ANZ has accepted
+  or rejected the request, not the processing outcome" — outcomes arrive by webhook or polling.
+error_codes_ref: errors/anz-error-codes.yml

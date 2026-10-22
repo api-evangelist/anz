@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/anz/main/json-schema/anz-response-banking-account-list-v3-schema.json",
+  "title": "ResponseBankingAccountListV3",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/ResponseBankingAccountListV3",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/ResponseBankingAccountListV3_data"
+    },
+    "links": {
+      "$ref": "#/$defs/LinksPaginated"
+    },
+    "meta": {
+      "$ref": "#/$defs/MetaPaginated"
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ],
+  "type": "object",
+  "$defs": {
+    "BankingAccountId": {
+      "description": "A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.",
+      "type": "string",
+      "x-cds-type": "ASCIIString"
+    },
+    "BankingAccountV3": {
+      "properties": {
+        "accountId": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/BankingAccountId"
+            }
+          ],
+          "description": "Unique identifier for the account."
+        },
+        "creationDate": {
+          "description": "Date that the account was created (if known).",
+          "type": "string",
+          "x-cds-type": "DateString"
+        },
+        "displayName": {
+          "description": "The display name of the account as defined by the bank. This should not incorporate account numbers or PANs. If it does the values should be masked according to the rules of the [MaskedAccountString](#common-field-types) common type.",
+          "type": "string"
+        },
+        "nickname": {
+          "description": "A customer supplied nickname for the account.",
+          "type": "string"
+        },
+        "openStatus": {
+          "default": "OPEN",
+          "description": "Open or closed status for the account. If not present then `OPEN` is assumed.",
+          "enum": [
+            "CLOSED",
+            "OPEN"
+          ],
+          "type": "string"
+        },
+        "isOwned": {
+          "default": true,
+          "description": "Flag indicating that the customer associated with the authorisation is an owner of the account. Does not indicate sole ownership, however. If not present then `true` is assumed.",
+          "type": "boolean"
+        },
+        "accountOwnership": {
+          "description": "Value indicating the number of customers that have ownership of the account, according to the data holder's definition of account ownership. Does not indicate that all account owners are eligible consumers.",
+          "enum": [
+            "UNKNOWN",
+            "ONE_PARTY",
+            "TWO_PARTY",
+            "MANY_PARTY",
+            "OTHER"
+          ],
+          "type": "string"
+        },
+        "maskedNumber": {
+          "description": "A masked version of the account. Whether BSB/Account Number, Credit Card PAN or another number.",
+          "type": "string",
+          "x-cds-type": "MaskedAccountString"
+        },
+        "productCategory": {
+          "$ref": "#/$defs/BankingProductCategoryV2"
+        },
+        "productName": {
+          "description": "The unique identifier of the account as defined by the data holder (akin to model number for the account).",
+          "type": "string"
+        },
+        "isInstalmentDetailAvailable": {
+          "default": false,
+          "description": "`true` if any active or inactive instalment plans are available in the Get Instalment Plans endpoints. `false` if instalment plans are not applicable to the account.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "accountId",
+        "accountOwnership",
+        "displayName",
+        "maskedNumber",
+        "productCategory",
+        "productName"
+      ],
+      "type": "object"
+    },
+    "BankingProductCategoryV2": {
+      "description": "The category to which a product or account belongs. See [here](#product-categories) for more details.",
+      "enum": [
+        "BUSINESS_LOANS",
+        "BUY_NOW_PAY_LATER",
+        "CRED_AND_CHRG_CARDS",
+        "LEASES",
+        "MARGIN_LOANS",
+        "OVERDRAFTS",
+        "PERS_LOANS",
+        "REGULATED_TRUST_ACCOUNTS",
+        "RESIDENTIAL_MORTGAGES",
+        "TERM_DEPOSITS",
+        "TRADE_FINANCE",
+        "TRANS_AND_SAVINGS_ACCOUNTS",
+        "TRAVEL_CARDS"
+      ],
+      "type": "string"
+    },
+    "LinksPaginated": {
+      "properties": {
+        "self": {
+          "description": "Fully qualified link that generated the current response document.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "first": {
+          "description": "URI to the first page of this set. Mandatory if this response is not the first page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "prev": {
+          "description": "URI to the previous page of this set. Mandatory if this response is not the first page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "next": {
+          "description": "URI to the next page of this set. Mandatory if this response is not the last page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "last": {
+          "description": "URI to the last page of this set. Mandatory if this response is not the last page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object",
+      "x-conditional": [
+        "prev",
+        "next",
+        "first",
+        "last"
+      ]
+    },
+    "MetaPaginated": {
+      "properties": {
+        "totalRecords": {
+          "description": "The total number of records in the full set. See [pagination](#pagination).",
+          "type": "integer",
+          "x-cds-type": "NaturalNumber"
+        },
+        "totalPages": {
+          "description": "The total number of pages in the full set. See [pagination](#pagination).",
+          "type": "integer",
+          "x-cds-type": "NaturalNumber"
+        }
+      },
+      "required": [
+        "totalPages",
+        "totalRecords"
+      ],
+      "type": "object"
+    },
+    "ResponseBankingAccountListV3_data": {
+      "properties": {
+        "accounts": {
+          "description": "The list of accounts returned. If the filter results in an empty set then this array may have no records.",
+          "items": {
+            "$ref": "#/$defs/BankingAccountV3"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "accounts"
+      ],
+      "type": "object"
+    }
+  }
+}

@@ -1,31 +1,40 @@
-generated: '2026-07-20'
+generated: '2026-10-20'
 method: derived
 status: candidate
-source: openapi/anz-cds-banking-products-openapi.yml
-note: 'No official ANZ MCP server exists. This is a DERIVED candidate tool list covering the public, unauthenticated
-  ANZ CDR surface only (Product Reference Data + discovery), which needs no credentials to run against
-  api.anz / cdr.apix.anz with the x-v header.
-
-  '
+name: ANZ CDR banking (candidate MCP tool list)
+source: openapi/anz-banking-products-api-openapi.yml
+note: >-
+  No official ANZ MCP server exists. Checked 2026-10-20: web search "ANZ bank MCP server Model
+  Context Protocol" returned no ANZ server; https://www.anz.com.au/.well-known/mcp.json and
+  https://developer.online.anz.com/.well-known/mcp.json returned 404; the pre-flight MCP docs probe
+  reported no-mcp-docs-found. This is a DERIVED candidate tool list. Only the Product Reference Data
+  tools are runnable without credentials (x-v header only); the consumer-data tools are listed as
+  gated candidates because they need CDR ADR accreditation, consumer consent, OAuth2/FAPI and mTLS.
+deployment:
+  mode: none
+  auth: none
+  verified: derived
 server:
-  name: anz-cdr-products
+  name: anz-cdr-banking
   transport: http
 tools:
 - name: list_banking_products
-  description: List ANZ banking products currently openly offered to the market (paginated; x-v 5).
-  source_operation: openapi/anz-cds-banking-products-openapi.yml#listBankingProducts
+  description: List ANZ banking products openly offered to the market (paginated; filters effective, updated-since, brand, product-category).
+  access: public
+  source_operation: openapi/anz-banking-products-api-openapi.yml#listBankingProducts
 - name: get_banking_product_detail
-  description: Get full detail for one ANZ banking product by productId (x-v 7).
-  source_operation: openapi/anz-cds-banking-products-openapi.yml#getBankingProductDetail
-- name: get_status
-  description: Get the ANZ CDR data-holder operational status.
-  source_operation: GET https://api.anz/cds-au/v1/discovery/status
-- name: get_outages
-  description: Get scheduled/planned outages for the ANZ CDR data-holder.
-  source_operation: GET https://api.anz/cds-au/v1/discovery/outages
-deployment:
-  mode: none
-  verified: derived
-  tools: 4
-  checked: '2026-08-12'
-  source: catalog MCP census
+  description: Get full detail (fees, rates, eligibility, constraints, features) for one ANZ banking product by productId.
+  access: public
+  source_operation: openapi/anz-banking-products-api-openapi.yml#getBankingProductDetail
+gated_candidate_tools:
+- {name: list_banking_accounts, source_operation: openapi/anz-banking-accounts-api-openapi.yml#listBankingAccounts, scope: 'bank:accounts.basic:read'}
+- {name: get_banking_account_detail, source_operation: openapi/anz-banking-accounts-api-openapi.yml#getBankingAccountDetail, scope: 'bank:accounts.detail:read'}
+- {name: list_banking_balances, source_operation: openapi/anz-banking-account-balances-api-openapi.yml#listBankingBalancesBulk, scope: 'bank:accounts.basic:read'}
+- {name: get_banking_balance, source_operation: openapi/anz-banking-account-balances-api-openapi.yml#getBankingBalance, scope: 'bank:accounts.basic:read'}
+- {name: list_banking_transactions, source_operation: openapi/anz-banking-account-transactions-api-openapi.yml#listBankingTransactions, scope: 'bank:transactions:read'}
+- {name: get_banking_transaction_detail, source_operation: openapi/anz-banking-account-transactions-api-openapi.yml#getBankingTransactionDetail, scope: 'bank:transactions:read'}
+- {name: list_banking_payees, source_operation: openapi/anz-banking-payees-api-openapi.yml#listBankingPayees, scope: 'bank:payees:read'}
+- {name: get_banking_payee_detail, source_operation: openapi/anz-banking-payees-api-openapi.yml#getBankingPayeeDetail, scope: 'bank:payees:read'}
+- {name: list_scheduled_payments, source_operation: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#listScheduledPayments, scope: 'bank:regular_payments:read'}
+- {name: list_instalment_plans, source_operation: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#listInstalmentPlans, scope: 'bank:regular_payments:read'}
+- {name: list_direct_debits, source_operation: openapi/anz-banking-account-direct-debits-api-openapi.yml#listDirectDebits, scope: 'bank:regular_payments:read'}

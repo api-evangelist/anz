@@ -1,0 +1,97 @@
+name: Australia and New Zealand Banking Group (ANZ) rate limits
+generated: '2026-10-20'
+method: searched
+source: https://developer.online.anz.com/How-it-works?path=FAQ
+applies_to: Fileactive APIs on the ANZ Developer Portal (not the public CDR Product Reference Data API, whose limits are undocumented here)
+limit_count: 11
+limits:
+- name: Authorisation (TPH)
+  endpoint: Authorisation
+  max: 10
+  window: 1 hour
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| Authorisation               | 10                          | n/a                           | 2                             |'
+  limit: 10
+- name: Authorisation (TPS)
+  endpoint: Authorisation
+  max: 2
+  window: 1 second
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| Authorisation               | 10                          | n/a                           | 2                             |'
+  limit: 2
+- name: NPP single payment (TPM)
+  endpoint: NPP single payment
+  max: 30
+  window: 1 minute
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| NPP single payment          | n/a                         | 30                            | 2                             |'
+  limit: 30
+- name: NPP single payment (TPS)
+  endpoint: NPP single payment
+  max: 2
+  window: 1 second
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| NPP single payment          | n/a                         | 30                            | 2                             |'
+  limit: 2
+- name: Payments (TPM)
+  endpoint: Payments
+  max: 30
+  window: 1 minute
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| Payments                    | n/a                         | 30                            | 2                             |'
+  limit: 30
+- name: Payments (TPS)
+  endpoint: Payments
+  max: 2
+  window: 1 second
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| Payments                    | n/a                         | 30                            | 2                             |'
+  limit: 2
+- name: Payment inquiry (TPM)
+  endpoint: Payment inquiry
+  max: 90
+  window: 1 minute
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| Payment inquiry             | n/a                         | 90                            | 2                             |'
+  limit: 90
+- name: Payment inquiry (TPS)
+  endpoint: Payment inquiry
+  max: 2
+  window: 1 second
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| Payment inquiry             | n/a                         | 90                            | 2                             |'
+  limit: 2
+- name: Statement / BTR (TPH)
+  endpoint: Statement / BTR
+  max: 25
+  window: 1 hour
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| Statement / BTR             | 25                          | n/a                           | n/a                           |'
+  limit: 25
+- name: FX RFQ (TPH)
+  endpoint: FX RFQ
+  max: 500
+  window: 1 hour
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| FX RFQ                      | 500                         | n/a                           | 10                            |'
+  limit: 500
+- name: FX RFQ (TPS)
+  endpoint: FX RFQ
+  max: 10
+  window: 1 second
+  scope: per customer (default; non-default limits on request)
+  limit_text: '| FX RFQ                      | 500                         | n/a                           | 10                            |'
+  limit: 10
+algorithms:
+- Fixed Window
+- Sliding Window
+exhaustion:
+  status: 429
+  text: further requests would return an HTTP 429 (too many requests) status code until the weighted request rate is below the agreed limit
+headers: []
+headers_note: The FAQ documents no X-RateLimit-*, RateLimit-* or Retry-After response headers.
+overrides: Non-default limits will be considered on request. Please discuss with your ANZ account or relationship manager to request a non-default limit. Temporary limits may also be requested for specific
+  ad hoc Use cases.
+note: limit_text values are copied verbatim (table rows) from the FAQ answer "Are Fileactive APIs subject to rate limits or throttling?". The answers are delivered inside the page's Next.js RSC script payload
+  (self.__next_f.push) and only shown by an accordion click, so a script-stripping text extraction of the source URL yields 54 characters and check-economics.py cannot see them; they are verifiable in the
+  raw HTML of the source URL.

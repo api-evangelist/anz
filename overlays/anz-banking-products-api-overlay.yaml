@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for ANZ CDR Banking Banking Products API
+  version: 1.0.0
+extends: openapi/anz-banking-products-api-openapi.yml
+generated: '2026-10-20'
+method: generated
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: Australia and New Zealand Banking Group (ANZ)
+    x-apievangelist-generated: '2026-10-20'
+    x-apievangelist-access: public-unauthenticated
+    x-apievangelist-note: 'ANZ exposes these Product Reference Data operations publicly: no authentication, only the mandatory
+      x-v version header (x-v 5 probed 200 on api.anz on 2026-10-20 per the contract module). Contract is the DSB Consumer
+      Data Standards v1.36.0 Banking Products API.'
+- target: $.servers
+  update:
+  - url: https://api.anz/cds-au/v1
+    description: ANZ brand Product Reference Data (public)
+  - url: https://cdr.apix.anz/cds-au/v1
+    description: ANZ Plus brand Product Reference Data (public)
+- target: $.paths['/banking/products'].get
+  update:
+    x-apievangelist-agent-safe: true
+    x-apievangelist-idempotent: true
+- target: $.paths['/banking/products/{productId}'].get
+  update:
+    x-apievangelist-agent-safe: true
+    x-apievangelist-idempotent: true

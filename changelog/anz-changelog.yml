@@ -1,0 +1,237 @@
+generated: '2026-10-20'
+method: searched
+source: https://developer.online.anz.com/product/PayTo/build?path=Change%20log
+docs: https://developer.online.anz.com/product/PayTo/build?path=Change%20log
+scheme: semver per product API
+policy: Significant changes to the site and documentation are listed in each product's Change log section.
+current_versions:
+  PayTo API: 1.5.0
+  Confirmation of Payee API: 1.0.5
+  PayID Check API: 1.0.1
+  Payments API: 2.1.0
+  Statements API: 2.1.1
+  FX API: 1.3.0
+  RTN API: 1.1.3
+  PayTo API Webhook: 1.1.1
+note: Entries are undated on the portal (no release dates published), so date is null. Payments, Statements, FX
+  and RTN change logs list only the current version with no entries. Breaking/non-breaking is not labelled by ANZ.
+entries:
+- product: PayTo API
+  version: 1.5.0
+  date: null
+  breaking: null
+  highlights:
+  - Added party_type and merchant_category_code to creditor_information on the Create MPIR operation
+  - Added party_type and merchant_category_code to creditor_information on the Bulk MPIR file payload
+  - Made ultimate_party_name optional in creditor_information on the Create Mandate operation
+- product: PayTo API
+  version: 1.4.2
+  date: null
+  breaking: null
+  highlights:
+  - Added new business rule CreditorPartyTypeRule2 to the Create Mandate operation
+- product: PayTo API
+  version: 1.4.1
+  date: null
+  breaking: null
+  highlights:
+  - Minor update to Get Mandate Action History response payload, removed expiry_time
+- product: PayTo API
+  version: 1.4.0
+  date: null
+  breaking: null
+  highlights:
+  - Added Retry MPIR operation
+- product: PayTo API
+  version: 1.3.1
+  date: null
+  breaking: null
+  highlights:
+  - Minor update to the description of debtor_account_alias_id = AUBN
+- product: PayTo API
+  version: 1.3.0
+  date: null
+  breaking: null
+  highlights:
+  - Added Get Mandate Action History operation
+- product: PayTo API
+  version: 1.2.2
+  date: null
+  breaking: null
+  highlights:
+  - Updated PayTo Query Resolution rules to support Third Party Mandate Query Payments
+- product: PayTo API
+  version: 1.2.1
+  date: null
+  breaking: null
+  highlights:
+  - Added Get Mandate List operation
+  - Added Recall Mandate operation
+- product: PayTo API
+  version: 1.1.1
+  date: null
+  breaking: null
+  highlights:
+  - Updated hyper-links between schema models and PayTo Webhook API
+- product: PayTo API
+  version: 1.1.0
+  date: null
+  breaking: null
+  highlights:
+  - Updated PayTo endpoints to v1 instead of v1.0
+  - Added account_identification_type_code to Amend Mandate request
+  - Updated clearing value for attribute payment_execute_not_before_time on Amend Mandate request
+  - Updated Amend Mandate attribute descriptions to indicate more clearly which attributes can be cleared and which
+    ones cannot
+  - Added hyper-links between schema models and PayTo Webhook API
+- product: PayTo API
+  version: 1.0.4
+  date: null
+  breaking: null
+  highlights:
+  - Updated Amend Mandate examples
+  - Removed payment_initiator_information from Create Mandate request
+- product: PayTo API
+  version: 1.0.3
+  date: null
+  breaking: null
+  highlights:
+  - Updated Amend Mandate examples
+  - Updated REGEX for uetr must be UUID v4
+  - Updated REGEX for request_id must be 36 characters
+- product: PayTo API
+  version: 1.0.2
+  date: null
+  breaking: null
+  highlights:
+  - Added Amend Mandate operation
+- product: PayTo API
+  version: 1.0.1
+  date: null
+  breaking: null
+  highlights:
+  - Updated the conditional rules which apply to the creation of mandates specifically new DDRs and migrated DDRs
+  - Added Create Mandate example payloads
+  - Added link to PayID information page
+  - Updated descriptions from "Payee" to "Biller"
+  - Added required scope for each API operation
+- product: PayTo API Webhook
+  version: 1.1.1
+  date: null
+  breaking: null
+  highlights:
+  - Updated PayTo MPIR Processing Outcome to include;
+  - end_to_end_identification
+  - debtor_name
+  - debtor_ultimate_name
+- product: PayTo API Webhook
+  version: 1.1.0
+  date: null
+  breaking: null
+  highlights:
+  - Updated PayTo MPIR Processing Outcome to include an optional Retry MPIR status
+- product: PayTo API Webhook
+  version: 1.0.7
+  date: null
+  breaking: null
+  highlights:
+  - Updated PayTo Query Notifications to support Third Party Mandate Query Payments
+- product: PayTo API Webhook
+  version: 1.0.6
+  date: null
+  breaking: null
+  highlights:
+  - Updated attributes to be used for duplicate checking of MPIR Processing Outcomes
+- product: PayTo API Webhook
+  version: 1.0.5
+  date: null
+  breaking: null
+  highlights:
+  - Updated hyper-links between schema models and PayTo API
+- product: PayTo API Webhook
+  version: 1.0.4
+  date: null
+  breaking: null
+  highlights:
+  - Updated example server URLs
+  - Added hyper-links between schema models and PayTo API
+- product: PayTo API Webhook
+  version: 1.0.3
+  date: null
+  breaking: null
+  highlights:
+  - Updated MandateNotification schema to include new trigger codes MAMC, MAMD & MAMX
+  - Updated MandateNotification schema to include the amend mandate bilateral request, refer to details object.
+    Applies when trigger code = MAMC, MAMD & MAMX
+  - Updated MandateNotification schema to include the reason why a bilateral request was declined by the Payer,
+    refer to resolution_event object. Applies when trigger code = MAMD & MCRD
+  - Updated MandateNotification schema, mandate_status is now optional
+  - Updated REGEX for uetr must be UUID v4
+  - Updated REGEX for request_id must be 36 characters
+- product: PayTo API Webhook
+  version: 1.0.2
+  date: null
+  breaking: null
+  highlights:
+  - Updated descriptions from "Payee" to "Biller"
+- product: PayTo API Webhook
+  version: 1.0.1
+  date: null
+  breaking: null
+  highlights:
+  - List of mandate attributes amended by Payer will be included in MandateNotification schema, refer to details
+    object. Applies when trigger = MAMN
+- product: Confirmation of Payee API
+  version: 1.0.5
+  date: null
+  breaking: null
+  highlights:
+  - 'Added event code EC004_487: Invalid ASCII characters in party name'
+- product: Confirmation of Payee API
+  version: 1.0.4
+  date: null
+  breaking: null
+  highlights:
+  - Updated signature and encryption algorithims for request and response payloads
+- product: Confirmation of Payee API
+  version: 1.0.3
+  date: null
+  breaking: null
+  highlights:
+  - Updated HTTP 200 response examples, corrected formatting of boolean attributes
+  - Updated REGEX of `party_name` in the request schema
+- product: Confirmation of Payee API
+  version: 1.0.2
+  date: null
+  breaking: null
+  highlights:
+  - Updated REGEX of `party_name` in the request schema to ensure only ASCII characters are provided
+- product: Confirmation of Payee API
+  version: 1.0.1
+  date: null
+  breaking: null
+  highlights:
+  - Updated maximum length of `display_account_name` in the response schema to cater for the joint account holder
+    scenerio
+- product: Confirmation of Payee API
+  version: 1.0.0
+  date: null
+  breaking: null
+  highlights:
+  - Added check an account name operation
+- product: PayID Check API
+  version: 1.0.1
+  date: null
+  breaking: null
+  highlights:
+  - Update links to developer portal documentation
+- product: PayID Check API
+  version: 1.0.0
+  date: null
+  breaking: null
+  highlights:
+  - Added check a PayID operation
+docs_pages:
+- https://developer.online.anz.com/product/PayTo/build?path=Change%20log
+- https://developer.online.anz.com/product/Confirmation%20of%20Payee/build?path=Change%20log
+- https://developer.online.anz.com/product/PayID%20Check/build?path=Change%20log

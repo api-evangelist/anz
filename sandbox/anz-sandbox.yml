@@ -1,0 +1,145 @@
+generated: '2026-10-20'
+method: searched
+source: https://developer.online.anz.com/How-it-works?path=Sandbox
+docs:
+- https://developer.online.anz.com/How-it-works?path=Sandbox
+- https://developer.online.anz.com/How-it-works?path=Test-data-for-sandbox
+description: ANZ's Sandbox environment provides a secure, isolated space for developers to test and experiment with
+  API integrations without affecting live systems.
+scope: 'ANZ Developer Portal (Fileactive) products: PayTo, AU Payments, Statements, Confirmation of Payee, PayID
+  Check, FX, Real-Time Notification. The CDR Product Reference Data API is public and has no sandbox.'
+access:
+  signup: Requires sign up on the developer portal; create an App via the Sandbox screen to generate Client IDs
+    and API keys / RSA keys.
+  app_expiry: By default, an App is set to expire 30 days after creation. To extend your App's expiry, please contact
+    the support team by submitting a request through the support form and providing the App's Client ID.
+environments:
+- name: sandbox
+  base_urls:
+  - https://api.sandbox.online.anz.com/wd
+  - https://api.sandbox.online.anz.com/wd/fa-fx
+  - https://api.sandbox.online.anz.com/wd/fa-accounts
+  source: servers[] of the OpenAPI documents embedded in the product Build pages
+- name: uat
+  base_urls:
+  - https://api.fileactive.anznp.com
+- name: production
+  base_urls:
+  - https://api.fileactive.anz.com
+stateful:
+  supported: true
+  retention: The data created within the Sandbox is stored for up to 30 days
+auth: OAuth2 client credentials grant with a customer-signed JWT client_assertion (urn:ietf:params:oauth:client-assertion-type:jwt-bearer)
+  plus an apikey header; for Sandbox the apikey and signing private key come from the App details screen.
+payload_security:
+  note: PayTo and Payment APIs require request payloads secured with JWS then JWE inside a secured_payload object.
+  jws:
+  - algorithm: PS512
+    key_size: 2048 or 4096
+  jwe:
+  - algorithm: RSA-OAEP
+    encryption: A256GCM
+    key_size: 2048
+webhook_simulation: For Sandbox, these notification payloads are simulated and displayed on the respective app screen
+  for user reference. The App screen will display the last 10 webhook notifications.
+self_service_testing:
+- name: RTN SelfService Testing API
+  description: The RTN SelfService Testing API allows you to simulate inbound NPP RealTime Notification events to
+    your webhook
+  scope: AU.INSTO.TESTING.NPP.RTN.CREATE
+  docs: https://developer.online.anz.com/product/Real-Time%20Notification/build
+- name: PayTo testing (mandate notification / query simulation)
+  scopes:
+  - AU.INSTO.TESTING.PAYTO.NOTIFICATION.CREATE
+  - AU.INSTO.TESTING.PAYTO.QUERY.CREATE
+  docs: https://developer.online.anz.com/product/PayTo/build
+test_data:
+  source: https://developer.online.anz.com/How-it-works?path=Test-data-for-sandbox
+  sets:
+  - product: PayTo
+    values:
+      mps user id:
+      - '10002005'
+      BBAN (BSB+Account Number):
+      - 012345678901234
+      - 012345678901235
+      - 012345678901236
+      - 012345678901237
+      - 012345678901238
+      PayID-Phone:
+      - +61-000000001
+      - +61-000000002
+      - +61-000000003
+      - +61-000000004
+      - +61-000000005
+      PayID-Email:
+      - test1@email.com
+      - test2@email.com
+      - test3@email.com
+      - test4@email.com
+      - test5@email.com
+      Action ID (Mandate Recall simulation):
+      - a85d79f110ec11f085f2422d6cfc386e
+      Instruction Identification (MPIR Retry simulation):
+      - TC121/1234567890
+    triggers:
+    - If maximum_amount is set to $1,000 or more, the mandate amendment request will be declined. This allows you
+      to test error-handling scenarios for mandate amendments.
+  - product: AU Payments
+    values:
+      BBAN (BSB+Account Number):
+      - 012345678901234
+      - 012345678901235
+      - 012345678901236
+      - 012345678901237
+      - 012345678901238
+      PayID-Phone:
+      - +61-000000001
+      - +61-000000002
+      - +61-000000003
+      - +61-000000004
+      - +61-000000005
+      PayID-Email:
+      - test1@email.com
+      - test2@email.com
+      - test3@email.com
+      - test4@email.com
+      - test5@email.com
+    note: x-Message-Id is a mandatory parameter to be passed in the request header which will be used as the {transaction_identification}
+      parameter to retrieve payment status.
+  - product: Statements
+    values:
+      Account IDs:
+      - '12345678901234'
+      - '12345678901235'
+  - product: Confirmation of Payee
+    outcomes:
+    - account_id: '123654123654789'
+      outcome: Match
+    - account_id: '123654123800517'
+      outcome: Close Match
+    - account_id: '258369123800502'
+      outcome: No Match
+    - account_id: '123654123802101'
+      outcome: Closed Account
+    - account_id: Any Account Id
+      outcome: Match
+  - product: PayID Check
+    outcomes:
+    - alias_type: EMAL
+      alias_id: npp@mail.com
+      outcome: Record Found
+    - alias_type: TELI
+      alias_id: +61-423765879
+      outcome: Record Found
+    - alias_type: AUBN
+      alias_id: '91627582521'
+      outcome: Record Found
+    - alias_type: ORGN
+      alias_id: ACME CO PTY LTD
+      outcome: Record Found
+    - alias_type: Any Valid Code
+      alias_id: Any Valid Id
+      outcome: No Record Found
+test_clocks: null
+key_prefixes: null

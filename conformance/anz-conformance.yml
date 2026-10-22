@@ -5,9 +5,10 @@ enriched_from: https://consumerdatastandardsaustralia.github.io/standards/
 standards:
 - id: cdr-consumer-data-standards
   conforms: true
-  evidence: >
-    Spec is the DSB Consumer Data Standards CDR Banking API v1.36.0; ANZ PRD confirmed
-    live conforming to the /cds-au/v1/banking/products contract on two brands.
+  evidence: 'Spec is the DSB Consumer Data Standards CDR Banking API v1.36.0; ANZ PRD confirmed live conforming to the /cds-au/v1/banking/products
+    contract on two brands.
+
+    '
 - id: oauth2
   conforms: true
   scope: gated (non-PRD) endpoints only
@@ -33,5 +34,39 @@ standards:
 - id: idempotency
   conforms: false
   evidence: Public banking surface is read-only GET; no idempotency-key contract.
+  note_fileactive: 'Fileactive (developer portal) writes use X-Message-Id duplicate rejection on Payments, PayTo and FX; see conventions/anz-conventions.yml
+    (coverage: partial). The CDR surface is read-only.'
 - id: json-api
   conforms: false
+- id: iso-20022
+  conforms: true
+  domain_standard: true
+  method: searched
+  evidence: 'Payments API OpenAPI (embedded in https://developer.online.anz.com/product/Payment/build): "Hong Kong FPS API using pain.001.001.09
+    derived json message format"; status uses pain.002.001.10. Statements API (embedded in https://developer.online.anz.com/product/Account%20Statements/build)
+    references camt.052.001.06 / camt.053.001.06. Fileactive file formats reference pain.001.001.03, pain.008.001.02, camt.053.001.02, camt.054.001.06.'
+  scope: ISO 20022-derived JSON message shapes (not native XML) for Fileactive APIs; file products use ISO 20022 messages
+- id: oauth2-client-credentials-private-key-jwt
+  conforms: true
+  method: searched
+  evidence: '"A client credential grant is required to obtain an access token. The customers public key must be pre-exchanged for ANZ to verify
+    the signed client credential grant." client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer (RFC 7523)'
+  source: https://developer.online.anz.com/How-it-works?path=FAQ
+- id: jose-jws-jwe
+  conforms: true
+  method: searched
+  evidence: '"Payload data is secured using a combination of JSON Web Signature (JWS) & JSON Web Encryption (JWE)" — JWE RSA-OAEP / A256GCM'
+  source: https://developer.online.anz.com/How-it-works?path=FAQ
+- id: npp-payto
+  conforms: true
+  domain_standard: true
+  method: searched
+  evidence: PayTo API (createMandate, amendMandate, createMPIR...) implements NPP Australia PayTo mandates via the Mandate Management Service
+    (MMS).
+  source: https://developer.online.anz.com/product/PayTo/build
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json

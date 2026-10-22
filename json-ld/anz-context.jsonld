@@ -1,0 +1,1224 @@
+{
+  "@context": {
+    "@vocab": "https://anz.com.au/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "anz": "https://anz.com.au/schema#",
+    "ErrorV2": "anz:ErrorV2",
+    "code": {
+      "@id": "anz:code",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "anz:title",
+      "@type": "xsd:string"
+    },
+    "detail": {
+      "@id": "anz:detail",
+      "@type": "xsd:string"
+    },
+    "meta": {
+      "@id": "anz:meta",
+      "@type": "@id"
+    },
+    "BankingBalancePurse": "anz:BankingBalancePurse",
+    "amount": {
+      "@id": "anz:amount",
+      "@type": "xsd:string"
+    },
+    "currency": {
+      "@id": "anz:currency",
+      "@type": "xsd:string"
+    },
+    "ErrorV2_meta": "anz:ErrorV2_meta",
+    "urn": {
+      "@id": "anz:urn",
+      "@type": "xsd:string"
+    },
+    "RequestAccountIdListV1_data": "anz:RequestAccountIdListV1_data",
+    "accountIds": {
+      "@id": "anz:accountIds",
+      "@container": "@list"
+    },
+    "Links": "anz:Links",
+    "self": {
+      "@id": "anz:self",
+      "@type": "xsd:string"
+    },
+    "MetaPaginated": "anz:MetaPaginated",
+    "totalRecords": {
+      "@id": "anz:totalRecords",
+      "@type": "xsd:integer"
+    },
+    "totalPages": {
+      "@id": "anz:totalPages",
+      "@type": "xsd:integer"
+    },
+    "RequestAccountIdListV1": "anz:RequestAccountIdListV1",
+    "data": {
+      "@id": "anz:data",
+      "@type": "@id"
+    },
+    "ResponseBankingAccountsBalanceById": "anz:ResponseBankingAccountsBalanceById",
+    "links": {
+      "@id": "anz:links",
+      "@type": "@id"
+    },
+    "ResponseBankingAccountsBalanceList_data": "anz:ResponseBankingAccountsBalanceList_data",
+    "balances": {
+      "@id": "anz:balances",
+      "@container": "@list"
+    },
+    "ResponseBankingAccountsBalanceList": "anz:ResponseBankingAccountsBalanceList",
+    "ResponseErrorListV2": "anz:ResponseErrorListV2",
+    "errors": {
+      "@id": "anz:errors",
+      "@container": "@list"
+    },
+    "BankingBalance": "anz:BankingBalance",
+    "accountId": {
+      "@id": "anz:accountId"
+    },
+    "currentBalance": {
+      "@id": "anz:currentBalance",
+      "@type": "xsd:string"
+    },
+    "availableBalance": {
+      "@id": "anz:availableBalance",
+      "@type": "xsd:string"
+    },
+    "creditLimit": {
+      "@id": "anz:creditLimit",
+      "@type": "xsd:string"
+    },
+    "amortisedLimit": {
+      "@id": "anz:amortisedLimit",
+      "@type": "xsd:string"
+    },
+    "purses": {
+      "@id": "anz:purses",
+      "@container": "@list"
+    },
+    "LinksPaginated": "anz:LinksPaginated",
+    "first": {
+      "@id": "anz:first",
+      "@type": "xsd:string"
+    },
+    "prev": {
+      "@id": "anz:prev",
+      "@type": "xsd:string"
+    },
+    "next": {
+      "@id": "anz:next",
+      "@type": "xsd:string"
+    },
+    "last": {
+      "@id": "anz:last",
+      "@type": "xsd:string"
+    },
+    "BankingProductCategoryV2": "anz:BankingProductCategoryV2",
+    "ResponseBankingDirectDebitAuthorisationList_data": "anz:ResponseBankingDirectDebitAuthorisationList_data",
+    "directDebitAuthorisations": {
+      "@id": "anz:directDebitAuthorisations",
+      "@container": "@list"
+    },
+    "ResponseBankingDirectDebitAuthorisationList": "anz:ResponseBankingDirectDebitAuthorisationList",
+    "BankingAuthorisedEntity": "anz:BankingAuthorisedEntity",
+    "description": {
+      "@id": "anz:description",
+      "@type": "xsd:string"
+    },
+    "financialInstitution": {
+      "@id": "anz:financialInstitution",
+      "@type": "xsd:string"
+    },
+    "abn": {
+      "@id": "anz:abn",
+      "@type": "xsd:string"
+    },
+    "acn": {
+      "@id": "anz:acn",
+      "@type": "xsd:string"
+    },
+    "arbn": {
+      "@id": "anz:arbn",
+      "@type": "xsd:string"
+    },
+    "BankingDirectDebit": "anz:BankingDirectDebit",
+    "authorisedEntity": {
+      "@id": "anz:authorisedEntity",
+      "@type": "@id"
+    },
+    "lastDebitDateTime": {
+      "@id": "anz:lastDebitDateTime",
+      "@type": "xsd:string"
+    },
+    "lastDebitAmount": {
+      "@id": "anz:lastDebitAmount",
+      "@type": "xsd:string"
+    },
+    "BankingScheduledPaymentSetV2": "anz:BankingScheduledPaymentSetV2",
+    "to": {
+      "@id": "anz:to",
+      "@type": "@id"
+    },
+    "isAmountCalculated": {
+      "@id": "anz:isAmountCalculated",
+      "@type": "xsd:boolean"
+    },
+    "ResponseBankingInstalmentPlanList_data": "anz:ResponseBankingInstalmentPlanList_data",
+    "plans": {
+      "@id": "anz:plans",
+      "@container": "@list"
+    },
+    "BankingScheduledPaymentRecurrence": "anz:BankingScheduledPaymentRecurrence",
+    "nextPaymentDate": {
+      "@id": "anz:nextPaymentDate",
+      "@type": "xsd:string"
+    },
+    "recurrenceUType": {
+      "@id": "anz:recurrenceUType",
+      "@type": "xsd:string"
+    },
+    "onceOff": {
+      "@id": "anz:onceOff",
+      "@type": "@id"
+    },
+    "intervalSchedule": {
+      "@id": "anz:intervalSchedule",
+      "@type": "@id"
+    },
+    "lastWeekDay": {
+      "@id": "anz:lastWeekDay",
+      "@type": "@id"
+    },
+    "eventBased": {
+      "@id": "anz:eventBased",
+      "@type": "@id"
+    },
+    "BankingScheduledPaymentRecurrenceLastWeekday": "anz:BankingScheduledPaymentRecurrenceLastWeekday",
+    "finalPaymentDate": {
+      "@id": "anz:finalPaymentDate",
+      "@type": "xsd:string"
+    },
+    "paymentsRemaining": {
+      "@id": "anz:paymentsRemaining",
+      "@type": "xsd:integer"
+    },
+    "interval": {
+      "@id": "anz:interval",
+      "@type": "xsd:string"
+    },
+    "nonBusinessDayTreatment": {
+      "@id": "anz:nonBusinessDayTreatment",
+      "@type": "xsd:string"
+    },
+    "BankingInstalmentPlan": "anz:BankingInstalmentPlan",
+    "planId": {
+      "@id": "anz:planId"
+    },
+    "planReference": {
+      "@id": "anz:planReference",
+      "@type": "xsd:string"
+    },
+    "merchantName": {
+      "@id": "anz:merchantName",
+      "@type": "xsd:string"
+    },
+    "merchantCategoryCode": {
+      "@id": "anz:merchantCategoryCode",
+      "@type": "xsd:string"
+    },
+    "planNickname": {
+      "@id": "anz:planNickname",
+      "@type": "xsd:string"
+    },
+    "creationDate": {
+      "@id": "anz:creationDate",
+      "@type": "xsd:string"
+    },
+    "planCurrency": {
+      "@id": "anz:planCurrency",
+      "@type": "xsd:string"
+    },
+    "planCharge": {
+      "@id": "anz:planCharge",
+      "@type": "xsd:string"
+    },
+    "planRate": {
+      "@id": "anz:planRate",
+      "@type": "xsd:string"
+    },
+    "duration": {
+      "@id": "anz:duration",
+      "@type": "xsd:string"
+    },
+    "instalmentInterval": {
+      "@id": "anz:instalmentInterval",
+      "@type": "xsd:string"
+    },
+    "schedule": {
+      "@id": "anz:schedule",
+      "@container": "@list"
+    },
+    "ResponseBankingScheduledPaymentsListV2_data": "anz:ResponseBankingScheduledPaymentsListV2_data",
+    "scheduledPayments": {
+      "@id": "anz:scheduledPayments",
+      "@container": "@list"
+    },
+    "BankingDomesticPayeeAccount": "anz:BankingDomesticPayeeAccount",
+    "accountName": {
+      "@id": "anz:accountName",
+      "@type": "xsd:string"
+    },
+    "bsb": {
+      "@id": "anz:bsb",
+      "@type": "xsd:string"
+    },
+    "accountNumber": {
+      "@id": "anz:accountNumber",
+      "@type": "xsd:string"
+    },
+    "BankingScheduledPaymentToV2": "anz:BankingScheduledPaymentToV2",
+    "toUType": {
+      "@id": "anz:toUType",
+      "@type": "xsd:string"
+    },
+    "payeeId": {
+      "@id": "anz:payeeId"
+    },
+    "nickname": {
+      "@id": "anz:nickname",
+      "@type": "xsd:string"
+    },
+    "payeeReference": {
+      "@id": "anz:payeeReference",
+      "@type": "xsd:string"
+    },
+    "digitalWallet": {
+      "@id": "anz:digitalWallet",
+      "@type": "@id"
+    },
+    "domestic": {
+      "@id": "anz:domestic",
+      "@type": "@id"
+    },
+    "biller": {
+      "@id": "anz:biller",
+      "@type": "@id"
+    },
+    "international": {
+      "@id": "anz:international",
+      "@type": "@id"
+    },
+    "BankingScheduledPaymentRecurrenceOnceOff": "anz:BankingScheduledPaymentRecurrenceOnceOff",
+    "paymentDate": {
+      "@id": "anz:paymentDate",
+      "@type": "xsd:string"
+    },
+    "BankingInstalmentPlanSchedule": "anz:BankingInstalmentPlanSchedule",
+    "amountDue": {
+      "@id": "anz:amountDue",
+      "@type": "xsd:string"
+    },
+    "dueDate": {
+      "@id": "anz:dueDate",
+      "@type": "xsd:string"
+    },
+    "isPaid": {
+      "@id": "anz:isPaid",
+      "@type": "xsd:boolean"
+    },
+    "BankingScheduledPaymentInterval": "anz:BankingScheduledPaymentInterval",
+    "dayInInterval": {
+      "@id": "anz:dayInInterval",
+      "@type": "xsd:string"
+    },
+    "BankingScheduledPaymentV2": "anz:BankingScheduledPaymentV2",
+    "scheduledPaymentId": {
+      "@id": "anz:scheduledPaymentId"
+    },
+    "payerReference": {
+      "@id": "anz:payerReference",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "anz:status",
+      "@type": "xsd:string"
+    },
+    "from": {
+      "@id": "anz:from",
+      "@type": "@id"
+    },
+    "paymentSet": {
+      "@id": "anz:paymentSet",
+      "@container": "@list"
+    },
+    "recurrence": {
+      "@id": "anz:recurrence",
+      "@type": "@id"
+    },
+    "BankingInternationalPayee_bankDetails": "anz:BankingInternationalPayee_bankDetails",
+    "country": {
+      "@id": "anz:country",
+      "@type": "xsd:string"
+    },
+    "bankAddress": {
+      "@id": "anz:bankAddress",
+      "@type": "@id"
+    },
+    "beneficiaryBankBIC": {
+      "@id": "anz:beneficiaryBankBIC",
+      "@type": "xsd:string"
+    },
+    "fedWireNumber": {
+      "@id": "anz:fedWireNumber",
+      "@type": "xsd:string"
+    },
+    "sortCode": {
+      "@id": "anz:sortCode",
+      "@type": "xsd:string"
+    },
+    "chipNumber": {
+      "@id": "anz:chipNumber",
+      "@type": "xsd:string"
+    },
+    "routingNumber": {
+      "@id": "anz:routingNumber",
+      "@type": "xsd:string"
+    },
+    "legalEntityIdentifier": {
+      "@id": "anz:legalEntityIdentifier",
+      "@type": "xsd:string"
+    },
+    "BankingInternationalPayee_beneficiaryDetails": "anz:BankingInternationalPayee_beneficiaryDetails",
+    "name": {
+      "@id": "anz:name",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "anz:message",
+      "@type": "xsd:string"
+    },
+    "BankingInternationalPayee_bankDetails_bankAddress": "anz:BankingInternationalPayee_bankDetails_bankAddress",
+    "address": {
+      "@id": "anz:address",
+      "@type": "xsd:string"
+    },
+    "BankingScheduledPaymentRecurrenceIntervalSchedule": "anz:BankingScheduledPaymentRecurrenceIntervalSchedule",
+    "intervals": {
+      "@id": "anz:intervals",
+      "@container": "@list"
+    },
+    "ResponseBankingScheduledPaymentsListV2": "anz:ResponseBankingScheduledPaymentsListV2",
+    "BankingBillerPayee": "anz:BankingBillerPayee",
+    "billerCode": {
+      "@id": "anz:billerCode",
+      "@type": "xsd:string"
+    },
+    "crn": {
+      "@id": "anz:crn",
+      "@type": "xsd:string"
+    },
+    "billerName": {
+      "@id": "anz:billerName",
+      "@type": "xsd:string"
+    },
+    "BankingScheduledPaymentFrom": "anz:BankingScheduledPaymentFrom",
+    "BankingInternationalPayee": "anz:BankingInternationalPayee",
+    "beneficiaryDetails": {
+      "@id": "anz:beneficiaryDetails",
+      "@type": "@id"
+    },
+    "bankDetails": {
+      "@id": "anz:bankDetails",
+      "@type": "@id"
+    },
+    "BankingDomesticPayee": "anz:BankingDomesticPayee",
+    "payeeAccountUType": {
+      "@id": "anz:payeeAccountUType",
+      "@type": "xsd:string"
+    },
+    "account": {
+      "@id": "anz:account",
+      "@type": "@id"
+    },
+    "card": {
+      "@id": "anz:card",
+      "@type": "@id"
+    },
+    "payId": {
+      "@id": "anz:payId",
+      "@type": "@id"
+    },
+    "BankingDomesticPayeeCard": "anz:BankingDomesticPayeeCard",
+    "cardNumber": {
+      "@id": "anz:cardNumber",
+      "@type": "xsd:string"
+    },
+    "BankingDigitalWalletPayee": "anz:BankingDigitalWalletPayee",
+    "identifier": {
+      "@id": "anz:identifier",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "anz:type",
+      "@type": "xsd:string"
+    },
+    "provider": {
+      "@id": "anz:provider",
+      "@type": "xsd:string"
+    },
+    "BankingDomesticPayeePayId": "anz:BankingDomesticPayeePayId",
+    "BankingScheduledPaymentRecurrenceEventBased": "anz:BankingScheduledPaymentRecurrenceEventBased",
+    "ResponseBankingInstalmentPlanList": "anz:ResponseBankingInstalmentPlanList",
+    "BankingTransactionDetailV3_allOf_extendedData": "anz:BankingTransactionDetailV3_allOf_extendedData",
+    "payer": {
+      "@id": "anz:payer",
+      "@type": "xsd:string"
+    },
+    "payee": {
+      "@id": "anz:payee",
+      "@type": "xsd:string"
+    },
+    "extensionUType": {
+      "@id": "anz:extensionUType",
+      "@type": "xsd:string"
+    },
+    "nppPayload": {
+      "@id": "anz:nppPayload",
+      "@type": "@id"
+    },
+    "BankingTransactionDetailV3_allOf_extendedData_nppPayload": "anz:BankingTransactionDetailV3_allOf_extendedData_nppPayload",
+    "extendedDescription": {
+      "@id": "anz:extendedDescription",
+      "@type": "xsd:string"
+    },
+    "endToEndId": {
+      "@id": "anz:endToEndId",
+      "@type": "xsd:string"
+    },
+    "purposeCode": {
+      "@id": "anz:purposeCode",
+      "@type": "xsd:string"
+    },
+    "service": {
+      "@id": "anz:service",
+      "@type": "@id"
+    },
+    "serviceVersion": {
+      "@id": "anz:serviceVersion",
+      "@type": "xsd:string"
+    },
+    "BankingTransactionV2": "anz:BankingTransactionV2",
+    "transactionId": {
+      "@id": "anz:transactionId"
+    },
+    "isDetailAvailable": {
+      "@id": "anz:isDetailAvailable",
+      "@type": "xsd:boolean"
+    },
+    "postingDateTime": {
+      "@id": "anz:postingDateTime",
+      "@type": "xsd:string"
+    },
+    "valueDateTime": {
+      "@id": "anz:valueDateTime",
+      "@type": "xsd:string"
+    },
+    "executionDateTime": {
+      "@id": "anz:executionDateTime",
+      "@type": "xsd:string"
+    },
+    "reference": {
+      "@id": "anz:reference",
+      "@type": "xsd:string"
+    },
+    "instalmentPlanId": {
+      "@id": "anz:instalmentPlanId"
+    },
+    "apcaNumber": {
+      "@id": "anz:apcaNumber",
+      "@type": "xsd:string"
+    },
+    "MetaPaginatedTransaction_allOf": "anz:MetaPaginatedTransaction_allOf",
+    "isQueryParamUnsupported": {
+      "@id": "anz:isQueryParamUnsupported",
+      "@type": "xsd:boolean"
+    },
+    "ResponseBankingTransactionListV2_data": "anz:ResponseBankingTransactionListV2_data",
+    "transactions": {
+      "@id": "anz:transactions",
+      "@container": "@list"
+    },
+    "BankingTransactionDetailV3_allOf": "anz:BankingTransactionDetailV3_allOf",
+    "extendedData": {
+      "@id": "anz:extendedData",
+      "@type": "@id"
+    },
+    "ResponseBankingTransactionListV2": "anz:ResponseBankingTransactionListV2",
+    "NppPaymentService": "anz:NppPaymentService",
+    "ResponseBankingTransactionByIdV3": "anz:ResponseBankingTransactionByIdV3",
+    "BankingProductDiscountV2": "anz:BankingProductDiscountV2",
+    "discountType": {
+      "@id": "anz:discountType",
+      "@type": "xsd:string"
+    },
+    "discountMethodUType": {
+      "@id": "anz:discountMethodUType",
+      "@type": "xsd:string"
+    },
+    "fixedAmount": {
+      "@id": "anz:fixedAmount"
+    },
+    "rateBased": {
+      "@id": "anz:rateBased"
+    },
+    "additionalValue": {
+      "@id": "anz:additionalValue",
+      "@type": "xsd:string"
+    },
+    "additionalInfo": {
+      "@id": "anz:additionalInfo",
+      "@type": "xsd:string"
+    },
+    "additionalInfoUri": {
+      "@id": "anz:additionalInfoUri",
+      "@type": "xsd:string"
+    },
+    "eligibility": {
+      "@id": "anz:eligibility",
+      "@container": "@list"
+    },
+    "ResponseBankingAccountListV3": "anz:ResponseBankingAccountListV3",
+    "BankingAccountDetailV5_allOf": "anz:BankingAccountDetailV5_allOf",
+    "bundleName": {
+      "@id": "anz:bundleName",
+      "@type": "xsd:string"
+    },
+    "instalments": {
+      "@id": "anz:instalments",
+      "@type": "@id"
+    },
+    "specificAccountUType": {
+      "@id": "anz:specificAccountUType",
+      "@type": "xsd:string"
+    },
+    "termDeposit": {
+      "@id": "anz:termDeposit",
+      "@container": "@list"
+    },
+    "creditCard": {
+      "@id": "anz:creditCard"
+    },
+    "loan": {
+      "@id": "anz:loan"
+    },
+    "depositRate": {
+      "@id": "anz:depositRate",
+      "@type": "xsd:string"
+    },
+    "lendingRate": {
+      "@id": "anz:lendingRate",
+      "@type": "xsd:string"
+    },
+    "depositRates": {
+      "@id": "anz:depositRates",
+      "@container": "@list"
+    },
+    "lendingRates": {
+      "@id": "anz:lendingRates",
+      "@container": "@list"
+    },
+    "features": {
+      "@id": "anz:features",
+      "@container": "@list"
+    },
+    "fees": {
+      "@id": "anz:fees",
+      "@container": "@list"
+    },
+    "addresses": {
+      "@id": "anz:addresses",
+      "@container": "@list"
+    },
+    "BankingProductLendingRateV3": "anz:BankingProductLendingRateV3",
+    "lendingRateType": {
+      "@id": "anz:lendingRateType",
+      "@type": "xsd:string"
+    },
+    "rate": {
+      "@id": "anz:rate",
+      "@type": "xsd:string"
+    },
+    "comparisonRate": {
+      "@id": "anz:comparisonRate",
+      "@type": "xsd:string"
+    },
+    "calculationFrequency": {
+      "@id": "anz:calculationFrequency",
+      "@type": "xsd:string"
+    },
+    "applicationType": {
+      "@id": "anz:applicationType",
+      "@type": "xsd:string"
+    },
+    "applicationFrequency": {
+      "@id": "anz:applicationFrequency",
+      "@type": "xsd:string"
+    },
+    "interestPaymentDue": {
+      "@id": "anz:interestPaymentDue",
+      "@type": "xsd:string"
+    },
+    "repaymentType": {
+      "@id": "anz:repaymentType",
+      "@type": "xsd:string"
+    },
+    "loanPurpose": {
+      "@id": "anz:loanPurpose",
+      "@type": "xsd:string"
+    },
+    "tiers": {
+      "@id": "anz:tiers",
+      "@container": "@list"
+    },
+    "applicabilityConditions": {
+      "@id": "anz:applicabilityConditions",
+      "@container": "@list"
+    },
+    "BankingProductRateConditionV2": "anz:BankingProductRateConditionV2",
+    "rateApplicabilityType": {
+      "@id": "anz:rateApplicabilityType",
+      "@type": "xsd:string"
+    },
+    "BankingLoanAccountV3": "anz:BankingLoanAccountV3",
+    "originalStartDate": {
+      "@id": "anz:originalStartDate",
+      "@type": "xsd:string"
+    },
+    "originalLoanAmount": {
+      "@id": "anz:originalLoanAmount",
+      "@type": "xsd:string"
+    },
+    "originalLoanCurrency": {
+      "@id": "anz:originalLoanCurrency",
+      "@type": "xsd:string"
+    },
+    "loanEndDate": {
+      "@id": "anz:loanEndDate",
+      "@type": "xsd:string"
+    },
+    "nextInstalmentDate": {
+      "@id": "anz:nextInstalmentDate",
+      "@type": "xsd:string"
+    },
+    "minInstalmentAmount": {
+      "@id": "anz:minInstalmentAmount",
+      "@type": "xsd:string"
+    },
+    "minInstalmentCurrency": {
+      "@id": "anz:minInstalmentCurrency",
+      "@type": "xsd:string"
+    },
+    "maxRedraw": {
+      "@id": "anz:maxRedraw",
+      "@type": "xsd:string"
+    },
+    "maxRedrawCurrency": {
+      "@id": "anz:maxRedrawCurrency",
+      "@type": "xsd:string"
+    },
+    "minRedraw": {
+      "@id": "anz:minRedraw",
+      "@type": "xsd:string"
+    },
+    "minRedrawCurrency": {
+      "@id": "anz:minRedrawCurrency",
+      "@type": "xsd:string"
+    },
+    "offsetAccountEnabled": {
+      "@id": "anz:offsetAccountEnabled",
+      "@type": "xsd:boolean"
+    },
+    "offsetAccountIds": {
+      "@id": "anz:offsetAccountIds",
+      "@container": "@list"
+    },
+    "repaymentFrequency": {
+      "@id": "anz:repaymentFrequency",
+      "@type": "xsd:string"
+    },
+    "BankingFeeDiscountRate": "anz:BankingFeeDiscountRate",
+    "rateType": {
+      "@id": "anz:rateType",
+      "@type": "xsd:string"
+    },
+    "amountRange": {
+      "@id": "anz:amountRange",
+      "@type": "@id"
+    },
+    "BankingAccountV3": "anz:BankingAccountV3",
+    "displayName": {
+      "@id": "anz:displayName",
+      "@type": "xsd:string"
+    },
+    "openStatus": {
+      "@id": "anz:openStatus",
+      "@type": "xsd:string"
+    },
+    "isOwned": {
+      "@id": "anz:isOwned",
+      "@type": "xsd:boolean"
+    },
+    "accountOwnership": {
+      "@id": "anz:accountOwnership",
+      "@type": "xsd:string"
+    },
+    "maskedNumber": {
+      "@id": "anz:maskedNumber",
+      "@type": "xsd:string"
+    },
+    "productCategory": {
+      "@id": "anz:productCategory",
+      "@type": "@id"
+    },
+    "productName": {
+      "@id": "anz:productName",
+      "@type": "xsd:string"
+    },
+    "isInstalmentDetailAvailable": {
+      "@id": "anz:isInstalmentDetailAvailable",
+      "@type": "xsd:boolean"
+    },
+    "BankingProductRateTierV4": "anz:BankingProductRateTierV4",
+    "unitOfMeasure": {
+      "@id": "anz:unitOfMeasure",
+      "@type": "xsd:string"
+    },
+    "minimumValue": {
+      "@id": "anz:minimumValue",
+      "@type": "xsd:string"
+    },
+    "maximumValue": {
+      "@id": "anz:maximumValue",
+      "@type": "xsd:string"
+    },
+    "rateApplicationMethod": {
+      "@id": "anz:rateApplicationMethod",
+      "@type": "xsd:string"
+    },
+    "BankingTermDepositAccount": "anz:BankingTermDepositAccount",
+    "lodgementDate": {
+      "@id": "anz:lodgementDate",
+      "@type": "xsd:string"
+    },
+    "maturityDate": {
+      "@id": "anz:maturityDate",
+      "@type": "xsd:string"
+    },
+    "maturityAmount": {
+      "@id": "anz:maturityAmount",
+      "@type": "xsd:string"
+    },
+    "maturityCurrency": {
+      "@id": "anz:maturityCurrency",
+      "@type": "xsd:string"
+    },
+    "maturityInstructions": {
+      "@id": "anz:maturityInstructions",
+      "@type": "xsd:string"
+    },
+    "BankingCreditCardAccount": "anz:BankingCreditCardAccount",
+    "minPaymentAmount": {
+      "@id": "anz:minPaymentAmount",
+      "@type": "xsd:string"
+    },
+    "paymentDueAmount": {
+      "@id": "anz:paymentDueAmount",
+      "@type": "xsd:string"
+    },
+    "paymentCurrency": {
+      "@id": "anz:paymentCurrency",
+      "@type": "xsd:string"
+    },
+    "paymentDueDate": {
+      "@id": "anz:paymentDueDate",
+      "@type": "xsd:string"
+    },
+    "BankingFeeRange": "anz:BankingFeeRange",
+    "feeMinimum": {
+      "@id": "anz:feeMinimum",
+      "@type": "xsd:string"
+    },
+    "feeMaximum": {
+      "@id": "anz:feeMaximum",
+      "@type": "xsd:string"
+    },
+    "CommonPAFAddress": "anz:CommonPAFAddress",
+    "dpid": {
+      "@id": "anz:dpid",
+      "@type": "xsd:string"
+    },
+    "thoroughfareNumber1": {
+      "@id": "anz:thoroughfareNumber1",
+      "@type": "xsd:integer"
+    },
+    "thoroughfareNumber1Suffix": {
+      "@id": "anz:thoroughfareNumber1Suffix",
+      "@type": "xsd:string"
+    },
+    "thoroughfareNumber2": {
+      "@id": "anz:thoroughfareNumber2",
+      "@type": "xsd:integer"
+    },
+    "thoroughfareNumber2Suffix": {
+      "@id": "anz:thoroughfareNumber2Suffix",
+      "@type": "xsd:string"
+    },
+    "flatUnitType": {
+      "@id": "anz:flatUnitType",
+      "@type": "xsd:string"
+    },
+    "flatUnitNumber": {
+      "@id": "anz:flatUnitNumber",
+      "@type": "xsd:string"
+    },
+    "floorLevelType": {
+      "@id": "anz:floorLevelType",
+      "@type": "xsd:string"
+    },
+    "floorLevelNumber": {
+      "@id": "anz:floorLevelNumber",
+      "@type": "xsd:string"
+    },
+    "lotNumber": {
+      "@id": "anz:lotNumber",
+      "@type": "xsd:string"
+    },
+    "buildingName1": {
+      "@id": "anz:buildingName1",
+      "@type": "xsd:string"
+    },
+    "buildingName2": {
+      "@id": "anz:buildingName2",
+      "@type": "xsd:string"
+    },
+    "streetName": {
+      "@id": "anz:streetName",
+      "@type": "xsd:string"
+    },
+    "streetType": {
+      "@id": "anz:streetType",
+      "@type": "xsd:string"
+    },
+    "streetSuffix": {
+      "@id": "anz:streetSuffix",
+      "@type": "xsd:string"
+    },
+    "postalDeliveryType": {
+      "@id": "anz:postalDeliveryType",
+      "@type": "xsd:string"
+    },
+    "postalDeliveryNumber": {
+      "@id": "anz:postalDeliveryNumber",
+      "@type": "xsd:integer"
+    },
+    "postalDeliveryNumberPrefix": {
+      "@id": "anz:postalDeliveryNumberPrefix",
+      "@type": "xsd:string"
+    },
+    "postalDeliveryNumberSuffix": {
+      "@id": "anz:postalDeliveryNumberSuffix",
+      "@type": "xsd:string"
+    },
+    "localityName": {
+      "@id": "anz:localityName",
+      "@type": "xsd:string"
+    },
+    "postcode": {
+      "@id": "anz:postcode",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "anz:state",
+      "@type": "xsd:string"
+    },
+    "BankingProductDiscountEligibility": "anz:BankingProductDiscountEligibility",
+    "discountEligibilityType": {
+      "@id": "anz:discountEligibilityType",
+      "@type": "xsd:string"
+    },
+    "ResponseBankingAccountListV3_data": "anz:ResponseBankingAccountListV3_data",
+    "accounts": {
+      "@id": "anz:accounts",
+      "@container": "@list"
+    },
+    "CommonSimpleAddress": "anz:CommonSimpleAddress",
+    "mailingName": {
+      "@id": "anz:mailingName",
+      "@type": "xsd:string"
+    },
+    "addressLine1": {
+      "@id": "anz:addressLine1",
+      "@type": "xsd:string"
+    },
+    "addressLine2": {
+      "@id": "anz:addressLine2",
+      "@type": "xsd:string"
+    },
+    "addressLine3": {
+      "@id": "anz:addressLine3",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "anz:city",
+      "@type": "xsd:string"
+    },
+    "BankingProductFeeV2": "anz:BankingProductFeeV2",
+    "feeType": {
+      "@id": "anz:feeType",
+      "@type": "xsd:string"
+    },
+    "feeMethodUType": {
+      "@id": "anz:feeMethodUType",
+      "@type": "xsd:string"
+    },
+    "variable": {
+      "@id": "anz:variable"
+    },
+    "feeCap": {
+      "@id": "anz:feeCap",
+      "@type": "xsd:string"
+    },
+    "feeCapPeriod": {
+      "@id": "anz:feeCapPeriod",
+      "@type": "xsd:string"
+    },
+    "discounts": {
+      "@id": "anz:discounts",
+      "@container": "@list"
+    },
+    "CommonPhysicalAddress": "anz:CommonPhysicalAddress",
+    "addressUType": {
+      "@id": "anz:addressUType",
+      "@type": "xsd:string"
+    },
+    "simple": {
+      "@id": "anz:simple",
+      "@type": "@id"
+    },
+    "paf": {
+      "@id": "anz:paf",
+      "@type": "@id"
+    },
+    "BankingFeeDiscountRange": "anz:BankingFeeDiscountRange",
+    "discountMinimum": {
+      "@id": "anz:discountMinimum",
+      "@type": "xsd:string"
+    },
+    "discountMaximum": {
+      "@id": "anz:discountMaximum",
+      "@type": "xsd:string"
+    },
+    "BankingProductInstalments": "anz:BankingProductInstalments",
+    "maximumConcurrentPlans": {
+      "@id": "anz:maximumConcurrentPlans",
+      "@type": "xsd:integer"
+    },
+    "instalmentsLimit": {
+      "@id": "anz:instalmentsLimit",
+      "@type": "xsd:string"
+    },
+    "minimumPlanValue": {
+      "@id": "anz:minimumPlanValue",
+      "@type": "xsd:string"
+    },
+    "maximumPlanValue": {
+      "@id": "anz:maximumPlanValue",
+      "@type": "xsd:string"
+    },
+    "minimumSplit": {
+      "@id": "anz:minimumSplit",
+      "@type": "xsd:integer"
+    },
+    "maximumSplit": {
+      "@id": "anz:maximumSplit",
+      "@type": "xsd:integer"
+    },
+    "BankingFeeDiscountAmount": "anz:BankingFeeDiscountAmount",
+    "ResponseBankingAccountByIdV5": "anz:ResponseBankingAccountByIdV5",
+    "BankingProductFeatureV4": "anz:BankingProductFeatureV4",
+    "featureType": {
+      "@id": "anz:featureType",
+      "@type": "xsd:string"
+    },
+    "BankingProductDepositRateV2": "anz:BankingProductDepositRateV2",
+    "depositRateType": {
+      "@id": "anz:depositRateType",
+      "@type": "xsd:string"
+    },
+    "BankingFeeAmount": "anz:BankingFeeAmount",
+    "BankingFeeRate": "anz:BankingFeeRate",
+    "accrualFrequency": {
+      "@id": "anz:accrualFrequency",
+      "@type": "xsd:string"
+    },
+    "ResponseBankingPayeeByIdV2": "anz:ResponseBankingPayeeByIdV2",
+    "ResponseBankingPayeeListV2": "anz:ResponseBankingPayeeListV2",
+    "BankingPayeeV2": "anz:BankingPayeeV2",
+    "ResponseBankingPayeeListV2_data": "anz:ResponseBankingPayeeListV2_data",
+    "payees": {
+      "@id": "anz:payees",
+      "@container": "@list"
+    },
+    "BankingPayeeDetailV2_allOf": "anz:BankingPayeeDetailV2_allOf",
+    "payeeUType": {
+      "@id": "anz:payeeUType",
+      "@type": "xsd:string"
+    },
+    "ResponseBankingProductByIdV7": "anz:ResponseBankingProductByIdV7",
+    "ResponseBankingProductListV4_data": "anz:ResponseBankingProductListV4_data",
+    "products": {
+      "@id": "anz:products",
+      "@container": "@list"
+    },
+    "BankingProductCardArt": "anz:BankingProductCardArt",
+    "cardScheme": {
+      "@id": "anz:cardScheme",
+      "@type": "xsd:string"
+    },
+    "cardType": {
+      "@id": "anz:cardType",
+      "@type": "xsd:string"
+    },
+    "imageUri": {
+      "@id": "anz:imageUri",
+      "@type": "xsd:string"
+    },
+    "BankingProductDetailV7_allOf": "anz:BankingProductDetailV7_allOf",
+    "bundles": {
+      "@id": "anz:bundles",
+      "@container": "@list"
+    },
+    "constraints": {
+      "@id": "anz:constraints",
+      "@container": "@list"
+    },
+    "BankingProductConstraintV3": "anz:BankingProductConstraintV3",
+    "constraintType": {
+      "@id": "anz:constraintType",
+      "@type": "xsd:string"
+    },
+    "BankingProductBundle": "anz:BankingProductBundle",
+    "productIds": {
+      "@id": "anz:productIds",
+      "@container": "@list"
+    },
+    "BankingProductAdditionalInformationV2_additionalInformationUris": "anz:BankingProductAdditionalInformationV2_additionalInformationUris",
+    "BankingProductEligibilityV2": "anz:BankingProductEligibilityV2",
+    "eligibilityType": {
+      "@id": "anz:eligibilityType",
+      "@type": "xsd:string"
+    },
+    "ResponseBankingProductListV4": "anz:ResponseBankingProductListV4",
+    "BankingProductAdditionalInformationV2": "anz:BankingProductAdditionalInformationV2",
+    "overviewUri": {
+      "@id": "anz:overviewUri",
+      "@type": "xsd:string"
+    },
+    "termsUri": {
+      "@id": "anz:termsUri",
+      "@type": "xsd:string"
+    },
+    "eligibilityUri": {
+      "@id": "anz:eligibilityUri",
+      "@type": "xsd:string"
+    },
+    "feesAndPricingUri": {
+      "@id": "anz:feesAndPricingUri",
+      "@type": "xsd:string"
+    },
+    "bundleUri": {
+      "@id": "anz:bundleUri",
+      "@type": "xsd:string"
+    },
+    "additionalOverviewUris": {
+      "@id": "anz:additionalOverviewUris",
+      "@container": "@list"
+    },
+    "additionalTermsUris": {
+      "@id": "anz:additionalTermsUris",
+      "@container": "@list"
+    },
+    "additionalEligibilityUris": {
+      "@id": "anz:additionalEligibilityUris",
+      "@container": "@list"
+    },
+    "additionalFeesAndPricingUris": {
+      "@id": "anz:additionalFeesAndPricingUris",
+      "@container": "@list"
+    },
+    "additionalBundleUris": {
+      "@id": "anz:additionalBundleUris",
+      "@container": "@list"
+    },
+    "BankingProductV6": "anz:BankingProductV6",
+    "productId": {
+      "@id": "anz:productId",
+      "@type": "@id"
+    },
+    "effectiveFrom": {
+      "@id": "anz:effectiveFrom",
+      "@type": "xsd:string"
+    },
+    "effectiveTo": {
+      "@id": "anz:effectiveTo",
+      "@type": "xsd:string"
+    },
+    "lastUpdated": {
+      "@id": "anz:lastUpdated",
+      "@type": "xsd:string"
+    },
+    "brand": {
+      "@id": "anz:brand",
+      "@type": "xsd:string"
+    },
+    "brandName": {
+      "@id": "anz:brandName",
+      "@type": "xsd:string"
+    },
+    "brandGroup": {
+      "@id": "anz:brandGroup",
+      "@type": "xsd:string"
+    },
+    "applicationUri": {
+      "@id": "anz:applicationUri",
+      "@type": "xsd:string"
+    },
+    "isTailored": {
+      "@id": "anz:isTailored",
+      "@type": "xsd:boolean"
+    },
+    "additionalInformation": {
+      "@id": "anz:additionalInformation",
+      "@type": "@id"
+    },
+    "cardArt": {
+      "@id": "anz:cardArt",
+      "@container": "@list"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Australia and New Zealand Banking Group (ANZ) API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Australia and New Zealand Banking Group (ANZ)'s own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-20) from openapi/anz-banking-account-balances-api-openapi.yml, openapi/anz-banking-account-direct-debits-api-openapi.yml, openapi/anz-banking-account-scheduled-payments-api-openapi.yml.",
+  "dcterms:created": "2026-10-20",
+  "dcterms:source": [
+    "openapi/anz-banking-account-balances-api-openapi.yml",
+    "openapi/anz-banking-account-direct-debits-api-openapi.yml",
+    "openapi/anz-banking-account-scheduled-payments-api-openapi.yml",
+    "openapi/anz-banking-account-transactions-api-openapi.yml",
+    "openapi/anz-banking-accounts-api-openapi.yml"
+  ]
+}

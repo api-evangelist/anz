@@ -1,0 +1,264 @@
+generated: '2026-10-20'
+method: searched
+source: https://developer.online.anz.com/product/Account%20Statements/build?path=Return%20codes
+docs:
+- https://developer.online.anz.com/product/Account%20Statements/build?path=Return%20codes
+- https://developer.online.anz.com/product/Confirmation%20of%20Payee/build?path=Event%20codes
+format: ANZ event codes (EC000_xxx default codes plus product-specific codes)
+envelope: Error Response payload per product (FX publishes an Error responses schema); not RFC 9457
+note: Fileactive (developer portal) APIs. The CDR banking error list (urn:au-cds:error:*) is in errors/anz-problem-types.yml.
+  PayTo, PayID Check, Payments and FX also publish event/return code pages that could not be resolved from the page
+  payload.
+problems:
+- code: EC000_001
+  title: Internal Server Error
+  status: 500
+  description: Internal Server Error, please contact support.
+  family: Default API event codes (all Fileactive APIs)
+- code: EC000_002
+  title: Unauthorized
+  status: 401
+  description: The request is not authorized
+  family: Default API event codes (all Fileactive APIs)
+- code: EC000_003
+  title: Validation Failure
+  status: 400
+  description: The request failed validation
+  family: Default API event codes (all Fileactive APIs)
+- code: EC000_004
+  title: Resource Not Found
+  status: 404
+  description: The requested resource is not found
+  family: Default API event codes (all Fileactive APIs)
+- code: EC000_005
+  title: Method Not Allowed
+  status: 405
+  description: The requested HTTP method is not allowed
+  family: Default API event codes (all Fileactive APIs)
+- code: EC000_006
+  title: Unsupported Media Type
+  status: 405
+  description: Content-Type provided is not supported
+  family: Default API event codes (all Fileactive APIs)
+- code: EC000_007
+  title: Invalid Content
+  status: 400
+  description: Invalid secured payload
+  family: Default API event codes (all Fileactive APIs)
+- code: EC20001
+  title: Account Id not found
+  description: 'Account Id: ''{0}'' not found'
+  family: Account statement event codes
+- code: EC20003
+  title: Error retrieving account statement
+  description: 'Error retrieving account statement for account id: ''{0}'''
+  family: Account statement event codes
+- code: EC20005
+  title: Internal error
+  description: 'An unknown error has occurred, please contact support and quote requestKey: ''{0}'''
+  family: Account statement event codes
+- code: COP.API.9000
+  status: 400
+  severity: Fatal
+  title: Local authentication failed.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9001
+  status: 400
+  severity: Fatal
+  title: Unknown Message Partner.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9002
+  status: 400
+  severity: Fatal
+  title: The Account Servicer or its Sponsor cannot submit the request because of business suspension.
+  remediation: The Account Servicer cannot submit the request because of business suspension.  Retry request again.
+    If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9010
+  status: 400
+  severity: Fatal
+  title: Invalid CoP signature.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9019
+  status: 400
+  severity: Fatal
+  title: Invalid request.
+  remediation: Retry request again. If the issue persists, please contact customer support
+  family: CoP event codes
+- code: EC004_476
+  status: 400
+  severity: Fatal
+  title: '*Schema validation failure* {$message}'
+  remediation: Correct request and retry request.  If the issue persist, please contact customer support.
+  family: CoP event codes
+- code: EC004_477
+  status: 400
+  severity: Fatal
+  title: Invalid data_type_code only CNFD is supported.
+  remediation: Correct request and retry request.  If the issue persist, please contact customer support.
+  family: CoP event codes
+- code: EC004_478
+  status: 400
+  severity: Fatal
+  title: Invalid account_identification_type_code only BBAN is supported.
+  remediation: Correct request and retry request.  If the issue persist, please contact customer support.
+  family: CoP event codes
+- code: EC004_479
+  status: 400
+  severity: Fatal
+  title: Invalid account_identification account identifier must be prefixed with a BSB
+  remediation: Correct request and retry request.  If the issue persist, please contact customer support.
+  family: CoP event codes
+- code: EC004_480
+  status: 400
+  severity: Fatal
+  title: Content of {$field} is invalid.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: EC004_481
+  status: 400
+  severity: Fatal
+  title: BRDT validation failed.
+  remediation: This error occurs when the BSB is checked against the industry BRDT file, and the respective Bank
+    Identifier code is not found. Unable to complete CoP lookup.  Please check with the account owner via verified
+    means and ensure you perform due diligence before proceeding with any payments.
+  family: CoP event codes
+- code: EC004_487
+  status: 400
+  severity: Fatal
+  title: Invalid ASCII characters in party name
+  remediation: Correct request and retry request. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: EC004_491
+  status: 400
+  severity: Fatal
+  title: Failed to decrypt and verify the message.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9003
+  status: 403
+  severity: Fatal
+  title: Invalid requestor.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9015
+  status: 403
+  severity: Fatal
+  title: Unauthorised sponsor.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9016
+  status: 403
+  severity: Fatal
+  title: Unauthorised sponsor for the requestor.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9017
+  status: 403
+  severity: Fatal
+  title: Unauthorised requestor.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9022
+  status: 403
+  severity: Fatal
+  title: This is a valid request, the data holder refuses to respond.
+  remediation: This is a valid request, the data holder has not responded.  Please check with the account owner
+    via verified means and ensure you perform due diligence before proceeding with any payments.
+  family: CoP event codes
+- code: COP.API.9023
+  status: 404
+  severity: Fatal
+  title: Payee Participant unable to provide CoP Data for the referenced record.
+  remediation: Payee Participant unable to provide CoP data for the referenced record.  Please check with the account
+    owner via verified means and ensure you perform due diligence before proceeding with any payments.
+  family: CoP event codes
+- code: EC004_482
+  status: 404
+  severity: Fatal
+  title: Payee Participant not available.
+  remediation: This error occurs when the Bank Identifier Code is not registered for CoP. Unable to complete a CoP
+    lookup.  Please check with the account owner via verified means and ensure you perform due diligence.
+  family: CoP event codes
+- code: COP.API.9006
+  status: 408
+  severity: Fatal
+  title: Timeout
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9009
+  status: 413
+  severity: Fatal
+  title: Maximum request size exceeded.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9007
+  status: 429
+  severity: Fatal
+  title: Too many transactions.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9005
+  status: 500
+  severity: Fatal
+  title: Message cannot be delivered.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9900
+  status: 500
+  severity: Fatal
+  title: CoP internal service error.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9901
+  status: 500
+  severity: Fatal
+  title: PAG processing problem.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: EC004_483
+  status: 500
+  severity: Fatal
+  title: Daily CoP lookup limit has been exceeded.
+  remediation: Wait up to 24 hours to proceed. Please contact your Relationship Manager or Account Manager if this
+    is a reoccurring issue.
+  family: CoP event codes
+- code: EC004_484
+  status: 500
+  severity: Fatal
+  title: Technical error processing the request.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: EC004_485
+  status: 500
+  severity: Fatal
+  title: Error while connecting to PAG.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9020
+  status: 502
+  severity: Fatal
+  title: Invalid response.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: COP.API.9902
+  status: 502
+  severity: Fatal
+  title: Data holder cannot retrieve customer data.
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes
+- code: EC004_475
+  status: 400/500
+  severity: Fatal
+  title: Account check-name failed due to an internal error.
+  remediation: Retry request again. If the issue persist, please contact customer support.
+  family: CoP event codes
+- code: EC004_486
+  status: 4xx/5xx
+  severity: Fatal
+  title: Account name validation failed  {$message}
+  remediation: Retry request again. If the issue persists, please contact customer support.
+  family: CoP event codes

@@ -1,0 +1,57 @@
+generated: '2026-10-20'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: imperva
+  name: Imperva
+  area: cdn
+  host: www.anz.com.au
+  evidence: cname:incapdns.net
+  signal: cname
+  confidence: high
+  kin_score: []
+- vendor: zendesk
+  name: Zendesk
+  area: support
+  host: help.online.anz.com
+  evidence: cname:zendesk.com
+  signal: cname
+  confidence: high
+  kin_score:
+  - support_channel
+reliance:
+  areas_vendor_served:
+  - cdn
+  - support
+  vendor_count: 2
+  areas_observed: 12
+  share_of_observable_areas: 0.167
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: custom'
+- help.online.anz.com (GettingStarted)
+- status.online.anz.com (StatusPage)
+- consumerdatastandardsaustralia.github.io (APIReference)
+- developer.online.anz.com (Support)
+- www.anz.com.au (HelpCenter)
+- www.anz.com.au (Website)
+- developer.online.anz.com (DeveloperPortal)
+- www.anz.com.au (Documentation)
+- api.anz (baseURL)
+- cdr.apix.anz (baseURL)
+- api.anz (StatusPage)

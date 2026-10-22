@@ -1,0 +1,329 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/anz/main/json-schema/anz-response-banking-product-list-v4-schema.json",
+  "title": "ResponseBankingProductListV4",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/anz-banking-products-api-openapi.yml#/components/schemas/ResponseBankingProductListV4",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/ResponseBankingProductListV4_data"
+    },
+    "links": {
+      "$ref": "#/$defs/LinksPaginated"
+    },
+    "meta": {
+      "$ref": "#/$defs/MetaPaginated"
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ],
+  "type": "object",
+  "$defs": {
+    "BankingProductAdditionalInformationV2": {
+      "description": "Object that contains links to additional information on specific topics.",
+      "properties": {
+        "overviewUri": {
+          "description": "General overview of the product. Mandatory if _additionalOverviewUris_ includes one or more supporting documents.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "termsUri": {
+          "description": "Terms and conditions for the product. Mandatory if _additionalTermsUris_ includes one or more supporting documents.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "eligibilityUri": {
+          "description": "Eligibility rules and criteria for the product. Mandatory if _additionalEligibilityUris_ includes one or more supporting documents.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "feesAndPricingUri": {
+          "description": "Description of fees, pricing, discounts, exemptions and bonuses for the product. Mandatory if _additionalFeesAndPricingUris_ includes one or more supporting documents.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "bundleUri": {
+          "description": "Description of a bundle that this product can be part of. Mandatory if _additionalBundleUris_ includes one or more supporting documents.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "additionalOverviewUris": {
+          "description": "An array of additional general overviews for the product or features of the product, if applicable. To be treated as secondary documents to the _overviewUri_. Only to be used if there is a primary _overviewUri_.",
+          "items": {
+            "$ref": "#/$defs/BankingProductAdditionalInformationV2_additionalInformationUris"
+          },
+          "type": "array"
+        },
+        "additionalTermsUris": {
+          "description": "An array of additional terms and conditions for the product, if applicable. To be treated as secondary documents to the _termsUri_. Only to be used if there is a primary _termsUri_.",
+          "items": {
+            "$ref": "#/$defs/BankingProductAdditionalInformationV2_additionalInformationUris"
+          },
+          "type": "array"
+        },
+        "additionalEligibilityUris": {
+          "description": "An array of additional eligibility rules and criteria for the product, if applicable. To be treated as secondary documents to the _eligibilityUri_. Only to be used if there is a primary _eligibilityUri_.",
+          "items": {
+            "$ref": "#/$defs/BankingProductAdditionalInformationV2_additionalInformationUris"
+          },
+          "type": "array"
+        },
+        "additionalFeesAndPricingUris": {
+          "description": "An array of additional fees, pricing, discounts, exemptions and bonuses for the product, if applicable. To be treated as secondary documents to the _feesAndPricingUri_. Only to be used if there is a primary _feesAndPricingUri_.",
+          "items": {
+            "$ref": "#/$defs/BankingProductAdditionalInformationV2_additionalInformationUris"
+          },
+          "type": "array"
+        },
+        "additionalBundleUris": {
+          "description": "An array of additional bundles for the product, if applicable. To be treated as secondary documents to the _bundleUri_. Only to be used if there is a primary _bundleUri_.",
+          "items": {
+            "$ref": "#/$defs/BankingProductAdditionalInformationV2_additionalInformationUris"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object",
+      "x-conditional": [
+        "overviewUri",
+        "termsUri",
+        "eligibilityUri",
+        "feesAndPricingUri",
+        "bundleUri"
+      ]
+    },
+    "BankingProductAdditionalInformationV2_additionalInformationUris": {
+      "properties": {
+        "description": {
+          "description": "Display text providing more information about the document URI.",
+          "type": "string"
+        },
+        "additionalInfoUri": {
+          "description": "The URI describing the additional information.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        }
+      },
+      "required": [
+        "additionalInfoUri"
+      ],
+      "type": "object"
+    },
+    "BankingProductCardArt": {
+      "properties": {
+        "cardScheme": {
+          "description": "Card scheme available with the account.",
+          "enum": [
+            "AMEX",
+            "EFTPOS",
+            "MASTERCARD",
+            "VISA",
+            "OTHER"
+          ],
+          "type": "string"
+        },
+        "cardType": {
+          "description": "Card type available with the account.",
+          "enum": [
+            "CHARGE",
+            "CREDIT",
+            "DEBIT"
+          ],
+          "type": "string"
+        },
+        "title": {
+          "description": "Display label for the specific image.",
+          "type": "string"
+        },
+        "imageUri": {
+          "description": "URI reference to a PNG, JPG or GIF image with proportions defined by ISO 7810 ID-1 and width no greater than 512 pixels. The URI reference may be a link or url-encoded data URI according to **[[RFC2397]](#nref-RFC2397)**.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        }
+      },
+      "required": [
+        "cardScheme",
+        "cardType",
+        "imageUri"
+      ],
+      "type": "object"
+    },
+    "BankingProductCategoryV2": {
+      "description": "The category to which a product or account belongs. See [here](#product-categories) for more details.",
+      "enum": [
+        "BUSINESS_LOANS",
+        "BUY_NOW_PAY_LATER",
+        "CRED_AND_CHRG_CARDS",
+        "LEASES",
+        "MARGIN_LOANS",
+        "OVERDRAFTS",
+        "PERS_LOANS",
+        "REGULATED_TRUST_ACCOUNTS",
+        "RESIDENTIAL_MORTGAGES",
+        "TERM_DEPOSITS",
+        "TRADE_FINANCE",
+        "TRANS_AND_SAVINGS_ACCOUNTS",
+        "TRAVEL_CARDS"
+      ],
+      "type": "string"
+    },
+    "BankingProductId": {
+      "description": "A data holder-specific unique identifier for a Banking product. This identifier must be unique to a product but does not otherwise need to adhere to ID permanence guidelines.",
+      "type": "string",
+      "x-cds-type": "ASCIIString"
+    },
+    "BankingProductV6": {
+      "properties": {
+        "productId": {
+          "$ref": "#/$defs/BankingProductId"
+        },
+        "effectiveFrom": {
+          "description": "The date and time from which this product is effective (i.e. is available for origination). Used to enable the articulation of products to the regime before they are available for customers to originate.",
+          "type": "string",
+          "x-cds-type": "DateTimeString"
+        },
+        "effectiveTo": {
+          "description": "The date and time at which this product will be retired and will no longer be offered. Used to enable the managed deprecation of products.",
+          "type": "string",
+          "x-cds-type": "DateTimeString"
+        },
+        "lastUpdated": {
+          "description": "The last date and time that the information for this product was changed (or the creation date for the product if it has never been altered).",
+          "type": "string",
+          "x-cds-type": "DateTimeString"
+        },
+        "productCategory": {
+          "$ref": "#/$defs/BankingProductCategoryV2"
+        },
+        "name": {
+          "description": "The display name of the product.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the product.",
+          "type": "string"
+        },
+        "brand": {
+          "description": "A label of the brand for the product. Able to be used for filtering. For data holders with single brands this value is still required.",
+          "type": "string"
+        },
+        "brandName": {
+          "description": "An optional display name of the brand.",
+          "type": "string"
+        },
+        "brandGroup": {
+          "description": "The *brandGroup* of a consumer data sharing brand that the product is associated with.",
+          "type": "string",
+          "x-cds-type": "ASCIIString"
+        },
+        "applicationUri": {
+          "description": "A link to an application web page where this product can be applied for.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "isTailored": {
+          "description": "Indicates whether the product is specifically tailored to a circumstance. In this case fees and prices are significantly negotiated depending on context. While all products are open to a degree of tailoring this flag indicates that tailoring is expected and thus that the provision of specific fees and rates is not applicable.",
+          "type": "boolean"
+        },
+        "additionalInformation": {
+          "$ref": "#/$defs/BankingProductAdditionalInformationV2"
+        },
+        "cardArt": {
+          "description": "Information about any cards available with the account.",
+          "items": {
+            "$ref": "#/$defs/BankingProductCardArt"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "brand",
+        "description",
+        "isTailored",
+        "lastUpdated",
+        "name",
+        "productCategory",
+        "productId"
+      ],
+      "type": "object"
+    },
+    "LinksPaginated": {
+      "properties": {
+        "self": {
+          "description": "Fully qualified link that generated the current response document.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "first": {
+          "description": "URI to the first page of this set. Mandatory if this response is not the first page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "prev": {
+          "description": "URI to the previous page of this set. Mandatory if this response is not the first page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "next": {
+          "description": "URI to the next page of this set. Mandatory if this response is not the last page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        },
+        "last": {
+          "description": "URI to the last page of this set. Mandatory if this response is not the last page.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object",
+      "x-conditional": [
+        "prev",
+        "next",
+        "first",
+        "last"
+      ]
+    },
+    "MetaPaginated": {
+      "properties": {
+        "totalRecords": {
+          "description": "The total number of records in the full set. See [pagination](#pagination).",
+          "type": "integer",
+          "x-cds-type": "NaturalNumber"
+        },
+        "totalPages": {
+          "description": "The total number of pages in the full set. See [pagination](#pagination).",
+          "type": "integer",
+          "x-cds-type": "NaturalNumber"
+        }
+      },
+      "required": [
+        "totalPages",
+        "totalRecords"
+      ],
+      "type": "object"
+    },
+    "ResponseBankingProductListV4_data": {
+      "properties": {
+        "products": {
+          "description": "The list of products returned. If the filter results in an empty set then this array may have no records.",
+          "items": {
+            "$ref": "#/$defs/BankingProductV6"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "products"
+      ],
+      "type": "object"
+    }
+  }
+}

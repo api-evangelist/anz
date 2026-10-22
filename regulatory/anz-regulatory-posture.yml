@@ -1,0 +1,72 @@
+generated: '2026-10-20'
+method: searched
+source:
+- https://www.anz.com.au/privacy/centre/policy/
+- https://www.anz.com.au/privacy/centre/disclosing-information-overseas/
+- https://www.anz.com.au/about-us/accessibility-statement/
+signals:
+  data_subject_request:
+    url: https://www.anz.com.au/privacy/centre/policy/
+    section: You can access and correct your personal information
+    evidence:
+    - source: https://www.anz.com.au/privacy/centre/policy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: If you want to access your personal information, contact our Contact Centre on 13 13 14 . The team can usually deal with such a request within 14 to 30 days.
+    - source: https://www.anz.com.au/privacy/centre/policy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: If you believe your personal information is inaccurate, incomplete or out-of-date, call 13 13 14 or if you have a Relationship Manager or primary ANZ contact, please feel free to contact them.
+    note: Access and correction rights under the Privacy Act 1988 (Cth), requested by phone, with a stated 14-30 day handling time. No erasure or portability right is described on this page; the policy points to a separate Consumer Data Right (Open Banking) policy.
+  data_retention:
+    url: https://www.anz.com.au/privacy/centre/policy/
+    section: How we protect your personal information
+    evidence:
+    - source: https://www.anz.com.au/privacy/centre/policy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: We keep your personal information only for as long as necessary to provide products and services, meet legal and regulatory obligations, resolve disputes and manage our business. We may also retain your information where required or permitted by law. When it is no longer needed, we take reasonable steps to securely destroy it or de‑identify it.
+    note: A purpose-bound retention principle with destruction or de-identification at end of need; no fixed retention periods are published.
+  data_residency:
+    url: https://www.anz.com.au/privacy/centre/disclosing-information-overseas/
+    section: Sharing your personal information overseas
+    evidence:
+    - source: https://www.anz.com.au/privacy/centre/disclosing-information-overseas/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: 'The most common reason for ANZ sharing information overseas is because some of our ANZ companies are located overseas and are contracted to support our technology, operational and customer service teams. These entities are located in the following countries: Fiji India New Zealand The Philippines United States'
+    - source: https://www.anz.com.au/privacy/centre/policy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: 'Sometimes we may also need to share your information with third parties (such as with service providers who help us provide our products and services) who are in locations outside Australia, including: Canada Some member states of the European Union (EU) India Israel New Zealand The Philippines Singapore Taiwan United Kingdom United States Vietnam'
+    - source: https://www.anz.com.au/privacy/centre/disclosing-information-overseas/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: Unless an exception applies in the Privacy Act, prior to disclosing personal information to overseas recipients, we will take reasonable steps in the circumstances to ensure that the overseas recipient adheres to the Australian Privacy Principles.
+    note: Data is NOT kept Australia-only; ANZ publishes the countries where group entities and third-party service providers may receive personal information, with APP 8 safeguards. Countries are listed, but no named subprocessor list is published.
+  ai_transparency:
+    url: https://www.anz.com.au/privacy/centre/policy/
+    section: Analytics and artificial intelligence (AI)
+    evidence:
+    - source: https://www.anz.com.au/privacy/centre/policy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: We use analytics and AI to support our operations, improve your experience and to help protect you and ANZ from harm. This may involve developing and training AI models.
+    - source: https://www.anz.com.au/privacy/centre/policy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: They may be in Australia or overseas and use analytical tools and AI.
+    note: The privacy policy discloses that customer personal information may be used to develop and train AI models (chat, customer service, fraud detection, identity verification, lending, personalisation), and that third-party recipients may use AI.
+  accessibility_conformance:
+    url: https://www.anz.com.au/about-us/accessibility-statement/
+    section: Accessibility Statement
+    evidence:
+    - source: https://www.anz.com.au/about-us/accessibility-statement/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: 'We aim to make our website and digital channels accessible to all, including by working towards conformance with the: Web Content Accessibility Guidelines 2.1'
+    note: A stated target of WCAG 2.1 (and the ABA Every Customer Counts accessibility principles), phrased as "working towards conformance" -- not a claim of conformance, and no level (A/AA) or conformance report is published.
+note: >-
+  Read from ANZ's own Australian privacy policy, overseas-disclosure page and accessibility statement (all 200 on
+  2026-10-20). The terms of use and the Bugcrowd VDP page carried no further regulatory signals. No subprocessor list,
+  incident-notification commitment, transparency report, SBOM, GPC handling or exit-assistance language was found.

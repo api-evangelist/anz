@@ -1,0 +1,20 @@
+name: Australia and New Zealand Banking Group (ANZ) pricing
+generated: '2026-10-20'
+method: none
+source: https://developer.online.anz.com/How-it-works?path=FAQ
+audience: unclear
+pricing_basis: none
+published: false
+plan_count: 0
+plans: []
+delivery:
+  model: managed
+checked:
+- https://developer.online.anz.com/
+- https://developer.online.anz.com/How-it-works?path=FAQ
+- https://developer.online.anz.com/support
+- https://www.anz.com.au/support/legal/anz-apis/
+note: 'No API pricing or plans are published. The developer portal says of Fileactive APIs: "Contact your ANZ account
+  manager to discuss requirements and arrange for access." The CDR Product Reference Data API is public and unauthenticated.
+  Retail banking fee schedules on anz.com.au are consumer product pricing, not API pricing, and are deliberately
+  not recorded.'

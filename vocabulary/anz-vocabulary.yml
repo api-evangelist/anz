@@ -1,0 +1,432 @@
+generated: '2026-10-20'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/anz-banking-account-balances-api-openapi.yml
+- openapi/anz-banking-account-direct-debits-api-openapi.yml
+- openapi/anz-banking-account-scheduled-payments-api-openapi.yml
+- openapi/anz-banking-account-transactions-api-openapi.yml
+- openapi/anz-banking-accounts-api-openapi.yml
+vocabulary:
+  name: Australia and New Zealand Banking Group (ANZ) Domain Vocabulary
+  description: 'Terms declared by Australia and New Zealand Banking Group (ANZ)''s own API contract: its resource groups, objects and enumerations,
+    with the contract''s definitions. Derived, not authored.'
+  version: '2026-10-20'
+  terms:
+  - term: Banking Account Balances
+    definition: Banking Account Balance endpoints
+    tags:
+    - Resource Group
+    source: openapi/anz-banking-account-balances-api-openapi.yml
+  - term: Banking Account Direct Debits
+    definition: Banking Account Direct Debit endpoints
+    tags:
+    - Resource Group
+    source: openapi/anz-banking-account-direct-debits-api-openapi.yml
+  - term: Banking Account Scheduled Payments
+    definition: Banking Account Scheduled Payment endpoints
+    tags:
+    - Resource Group
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml
+  - term: Banking Account Transactions
+    definition: Banking Account Transaction endpoints
+    tags:
+    - Resource Group
+    source: openapi/anz-banking-account-transactions-api-openapi.yml
+  - term: Banking Accounts
+    definition: Banking Account endpoints
+    tags:
+    - Resource Group
+    source: openapi/anz-banking-accounts-api-openapi.yml
+  - term: Banking Payees
+    definition: Banking Payee endpoints
+    tags:
+    - Resource Group
+    source: openapi/anz-banking-payees-api-openapi.yml
+  - term: Banking Products
+    definition: Banking Product endpoints
+    tags:
+    - Resource Group
+    source: openapi/anz-banking-products-api-openapi.yml
+  - term: BankingProductCategoryV2
+    definition: The category to which a product or account belongs. See [here](#product-categories) for more details.
+    tags:
+    - Enumeration
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/BankingProductCategoryV2
+  - term: BankingAccountId
+    definition: A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/BankingAccountId
+  - term: BankingBalancePurse
+    definition: 'Object declared by the contract with fields: amount, currency.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/BankingBalancePurse
+  - term: LinksPaginated
+    definition: 'Object declared by the contract with fields: self, first, prev, next, last.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/LinksPaginated
+  - term: ResponseErrorListV2
+    definition: 'Object declared by the contract with fields: errors.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/ResponseErrorListV2
+  - term: RequestAccountIdListV1_data
+    definition: 'Object declared by the contract with fields: accountIds.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/RequestAccountIdListV1_data
+  - term: ResponseBankingAccountsBalanceById
+    definition: 'Object declared by the contract with fields: data, links, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/ResponseBankingAccountsBalanceById
+  - term: BankingBalance
+    definition: 'Object declared by the contract with fields: accountId, currentBalance, availableBalance, creditLimit, amortisedLimit, currency,
+      purses.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/BankingBalance
+  - term: Links
+    definition: 'Object declared by the contract with fields: self.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/Links
+  - term: ErrorV2
+    definition: 'Object declared by the contract with fields: code, title, detail, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/ErrorV2
+  - term: ResponseBankingAccountsBalanceList_data
+    definition: 'Object declared by the contract with fields: balances.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/ResponseBankingAccountsBalanceList_data
+  - term: MetaPaginated
+    definition: 'Object declared by the contract with fields: totalRecords, totalPages.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/MetaPaginated
+  - term: ErrorV2_meta
+    definition: Additional data for customised error codes.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/ErrorV2_meta
+  - term: RequestAccountIdListV1
+    definition: 'Object declared by the contract with fields: data, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/RequestAccountIdListV1
+  - term: ResponseBankingAccountsBalanceList
+    definition: 'Object declared by the contract with fields: data, links, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/ResponseBankingAccountsBalanceList
+  - term: BankingDirectDebit
+    definition: 'Object declared by the contract with fields: accountId, authorisedEntity, lastDebitDateTime, lastDebitAmount.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-direct-debits-api-openapi.yml#/components/schemas/BankingDirectDebit
+  - term: BankingAuthorisedEntity
+    definition: 'Object declared by the contract with fields: description, financialInstitution, abn, acn, arbn.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-direct-debits-api-openapi.yml#/components/schemas/BankingAuthorisedEntity
+  - term: ResponseBankingDirectDebitAuthorisationList_data
+    definition: 'Object declared by the contract with fields: directDebitAuthorisations.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-direct-debits-api-openapi.yml#/components/schemas/ResponseBankingDirectDebitAuthorisationList_data
+  - term: ResponseBankingDirectDebitAuthorisationList
+    definition: 'Object declared by the contract with fields: data, links, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-direct-debits-api-openapi.yml#/components/schemas/ResponseBankingDirectDebitAuthorisationList
+  - term: BankingScheduledPaymentRecurrence
+    definition: Object containing the detail of the schedule for the payment.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentRecurrence
+  - term: BankingInstalmentPlanId
+    definition: A unique identifier for a Banking instalment plan, generated according to [CDR ID Permanence](#id-permanence) requirements.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingInstalmentPlanId
+  - term: BankingBillerPayee
+    definition: 'Object declared by the contract with fields: billerCode, crn, billerName.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingBillerPayee
+  - term: BankingInstalmentPlanSchedule
+    definition: 'Object declared by the contract with fields: amountDue, dueDate, isPaid.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingInstalmentPlanSchedule
+  - term: BankingDomesticPayeeAccount
+    definition: 'Object declared by the contract with fields: accountName, bsb, accountNumber.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingDomesticPayeeAccount
+  - term: BankingScheduledPaymentRecurrenceEventBased
+    definition: Indicates that the schedule of payments is defined according to an external event that cannot be predetermined. Mandatory if the
+      _recurrenceUType_ value is `eventBased`.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentRecurrenceEventBased
+  - term: ResponseBankingScheduledPaymentsListV2
+    definition: 'Object declared by the contract with fields: data, links, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/ResponseBankingScheduledPaymentsListV2
+  - term: BankingScheduledPaymentSetV2
+    definition: The set of payment amounts and destination accounts for this payment accommodating multi-part payments. A single entry indicates
+      a simple payment with one destination account. Must have at least one entry.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentSetV2
+  - term: BankingScheduledPaymentRecurrenceIntervalSchedule
+    definition: Indicates that the schedule of payments is defined by a series of intervals. Mandatory if the _recurrenceUType_ value is `intervalSchedule`.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentRecurrenceIntervalSchedule
+  - term: BankingDomesticPayeeCard
+    definition: 'Object declared by the contract with fields: cardNumber.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingDomesticPayeeCard
+  - term: BankingScheduledPaymentV2
+    definition: 'Object declared by the contract with fields: scheduledPaymentId, nickname, payerReference, payeeReference, status, from, paymentSet,
+      recurrence.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentV2
+  - term: BankingInternationalPayee
+    definition: 'Object declared by the contract with fields: beneficiaryDetails, bankDetails.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingInternationalPayee
+  - term: BankingPayeeId
+    definition: A unique identifier for a Banking payee, generated according to [CDR ID Permanence](#id-permanence) requirements.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingPayeeId
+  - term: BankingInternationalPayee_bankDetails
+    definition: 'Object declared by the contract with fields: country, accountNumber, bankAddress, beneficiaryBankBIC, fedWireNumber, sortCode,
+      chipNumber, routingNumber, legalEntityIdentifier.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingInternationalPayee_bankDetails
+  - term: BankingInternationalPayee_bankDetails_bankAddress
+    definition: 'Object declared by the contract with fields: name, address.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingInternationalPayee_bankDetails_bankAddress
+  - term: BankingScheduledPaymentInterval
+    definition: 'Object declared by the contract with fields: interval, dayInInterval.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentInterval
+  - term: BankingInternationalPayee_beneficiaryDetails
+    definition: 'Object declared by the contract with fields: name, country, message.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingInternationalPayee_beneficiaryDetails
+  - term: BankingInstalmentPlan
+    definition: 'Object declared by the contract with fields: accountId, planId, planReference, merchantName, merchantCategoryCode, planNickname,
+      creationDate, amount, planCurrency, planCharge, planRate, duration. (2 more)'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingInstalmentPlan
+  - term: BankingDigitalWalletPayee
+    definition: 'Object declared by the contract with fields: name, identifier, type, provider.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingDigitalWalletPayee
+  - term: BankingScheduledPaymentToV2
+    definition: Object containing details of the destination of the payment. Used to specify a variety of payment destination types.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentToV2
+  - term: ResponseBankingInstalmentPlanList_data
+    definition: 'Object declared by the contract with fields: plans.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/ResponseBankingInstalmentPlanList_data
+  - term: BankingDomesticPayee
+    definition: 'Object declared by the contract with fields: payeeAccountUType, account, card, payId.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingDomesticPayee
+  - term: BankingScheduledPaymentRecurrenceLastWeekday
+    definition: Indicates that the schedule of payments is defined according to the last occurrence of a specific weekday in an interval. Mandatory
+      if the _recurrenceUType_ value is `lastWeekDay`.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentRecurrenceLastWeekday
+  - term: BankingDomesticPayeePayId
+    definition: 'Object declared by the contract with fields: name, identifier, type.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingDomesticPayeePayId
+  - term: BankingScheduledPaymentFrom
+    definition: Object containing details of the source of the payment. Currently only specifies an _accountId_ but provided as an object to facilitate
+      future extensibility and consistency with the _to_ object.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentFrom
+  - term: BankingScheduledPaymentId
+    definition: A unique identifier for a Banking scheduled payment, generated according to [CDR ID Permanence](#id-permanence) requirements.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentId
+  - term: BankingScheduledPaymentRecurrenceOnceOff
+    definition: Indicates that the payment is a once off payment on a specific future date. Mandatory if the _recurrenceUType_ value is `onceOff`.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/BankingScheduledPaymentRecurrenceOnceOff
+  - term: ResponseBankingScheduledPaymentsListV2_data
+    definition: 'Object declared by the contract with fields: scheduledPayments.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/ResponseBankingScheduledPaymentsListV2_data
+  - term: ResponseBankingInstalmentPlanList
+    definition: 'Object declared by the contract with fields: data, links, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-scheduled-payments-api-openapi.yml#/components/schemas/ResponseBankingInstalmentPlanList
+  - term: BankingTransactionDetailV3_allOf_extendedData_nppPayload
+    definition: Mandatory if the _extensionUType_ value is `nppPayload`.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/BankingTransactionDetailV3_allOf_extendedData_nppPayload
+  - term: BankingTransactionV2
+    definition: 'Object declared by the contract with fields: accountId, transactionId, isDetailAvailable, type, status, description, postingDateTime,
+      valueDateTime, executionDateTime, amount, currency, reference. (7 more)'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/BankingTransactionV2
+  - term: BankingTransactionDetailV3_allOf_extendedData
+    definition: 'Object declared by the contract with fields: payer, payee, extensionUType, nppPayload.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/BankingTransactionDetailV3_allOf_extendedData
+  - term: NppPaymentService
+    definition: Identifier of the applicable overlay service. The _service_ is used in conjunction with the _serviceVersion_. See [here](#npp-services)
+      for more details.
+    tags:
+    - Enumeration
+    source: openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/NppPaymentService
+  - term: MetaPaginatedTransaction_allOf
+    definition: 'Object declared by the contract with fields: isQueryParamUnsupported.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/MetaPaginatedTransaction_allOf
+  - term: BankingTransactionDetailV3_allOf
+    definition: 'Object declared by the contract with fields: extendedData.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/BankingTransactionDetailV3_allOf
+  - term: ResponseBankingTransactionListV2
+    definition: 'Object declared by the contract with fields: data, links, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/ResponseBankingTransactionListV2
+  - term: ResponseBankingTransactionListV2_data
+    definition: 'Object declared by the contract with fields: transactions.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/ResponseBankingTransactionListV2_data
+  - term: BankingTransactionId
+    definition: A unique identifier for a Banking transaction, generated according to [CDR ID Permanence](#id-permanence) requirements.
+    tags:
+    - Object
+    source: openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/BankingTransactionId
+  - term: ResponseBankingTransactionByIdV3
+    definition: 'Object declared by the contract with fields: data, links, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-account-transactions-api-openapi.yml#/components/schemas/ResponseBankingTransactionByIdV3
+  - term: BankingFeeAmount
+    definition: 'Object declared by the contract with fields: amount.'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingFeeAmount
+  - term: BankingProductFeatureV4
+    definition: 'Object declared by the contract with fields: featureType, additionalValue, additionalInfo, additionalInfoUri.'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingProductFeatureV4
+  - term: BankingAccountV3
+    definition: 'Object declared by the contract with fields: accountId, creationDate, displayName, nickname, openStatus, isOwned, accountOwnership,
+      maskedNumber, productCategory, productName, isInstalmentDetailAvailable.'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingAccountV3
+  - term: ResponseBankingAccountByIdV5
+    definition: 'Object declared by the contract with fields: data, links, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/ResponseBankingAccountByIdV5
+  - term: BankingProductDepositRateV2
+    definition: 'Object declared by the contract with fields: depositRateType, rate, calculationFrequency, applicationType, applicationFrequency,
+      tiers, applicabilityConditions, additionalValue, additionalInfo, additionalInfoUri.'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingProductDepositRateV2
+  - term: BankingProductDiscountV2
+    definition: Note that the currency of the fee discount is expected to be the same as the currency of the fee itself.
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingProductDiscountV2
+  - term: BankingFeeDiscountRange
+    definition: A minimum or maximum fee discount amount where a specific fixed amount is not known until the fee is incurred.
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingFeeDiscountRange
+  - term: ResponseBankingAccountListV3
+    definition: 'Object declared by the contract with fields: data, links, meta.'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/ResponseBankingAccountListV3
+  - term: BankingAccountDetailV5_allOf
+    definition: 'Object declared by the contract with fields: bsb, accountNumber, bundleName, instalments, specificAccountUType, termDeposit,
+      creditCard, loan, depositRate, lendingRate, depositRates, lendingRates. (3 more)'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingAccountDetailV5_allOf
+  - term: CommonPAFAddress
+    definition: Australian address formatted according to the file format defined by the [PAF file format](https://auspost.com.au/content/dam/auspost_corp/media/documents/australia-post-data-guide.pdf).
+      Mandatory if the _addressUType_ value is `paf`.
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/CommonPAFAddress
+  - term: BankingFeeDiscountRate
+    definition: 'Object declared by the contract with fields: rateType, rate, amountRange.'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingFeeDiscountRate
+  - term: BankingProductLendingRateV3
+    definition: 'Object declared by the contract with fields: lendingRateType, rate, comparisonRate, calculationFrequency, applicationType, applicationFrequency,
+      interestPaymentDue, repaymentType, loanPurpose, tiers, applicabilityConditions, additionalValue. (2 more)'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingProductLendingRateV3
+  - term: BankingFeeRange
+    definition: A minimum or maximum fee amount where a specific fixed amount is not known until the fee is incurred.
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingFeeRange
+  - term: BankingProductFeeV2
+    definition: 'Object declared by the contract with fields: name, feeType, feeMethodUType, fixedAmount, rateBased, variable, feeCap, feeCapPeriod,
+      currency, additionalValue, additionalInfo, additionalInfoUri. (1 more)'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingProductFeeV2
+  - term: BankingLoanAccountV3
+    definition: 'Object declared by the contract with fields: originalStartDate, originalLoanAmount, originalLoanCurrency, loanEndDate, nextInstalmentDate,
+      minInstalmentAmount, minInstalmentCurrency, maxRedraw, maxRedrawCurrency, minRedraw, minRedrawCurrency, offsetAccountEnabled. (3 more)'
+    tags:
+    - Object
+    source: openapi/anz-banking-accounts-api-openapi.yml#/components/schemas/BankingLoanAccountV3

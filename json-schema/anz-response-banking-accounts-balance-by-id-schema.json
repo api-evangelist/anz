@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/anz/main/json-schema/anz-response-banking-accounts-balance-by-id-schema.json",
+  "title": "ResponseBankingAccountsBalanceById",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/anz-banking-account-balances-api-openapi.yml#/components/schemas/ResponseBankingAccountsBalanceById",
+  "properties": {
+    "data": {
+      "$ref": "#/$defs/BankingBalance"
+    },
+    "links": {
+      "$ref": "#/$defs/Links"
+    },
+    "meta": {
+      "$ref": "#/$defs/Meta"
+    }
+  },
+  "required": [
+    "data",
+    "links"
+  ],
+  "type": "object",
+  "$defs": {
+    "BankingAccountId": {
+      "description": "A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.",
+      "type": "string",
+      "x-cds-type": "ASCIIString"
+    },
+    "BankingBalance": {
+      "properties": {
+        "accountId": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/BankingAccountId"
+            }
+          ],
+          "description": "Unique identifier for the account."
+        },
+        "currentBalance": {
+          "description": "The balance of the account at this time. Should align to the balance available via other channels such as Internet Banking. Assumed to be negative if the customer has money owing.",
+          "type": "string",
+          "x-cds-type": "AmountString"
+        },
+        "availableBalance": {
+          "description": "Balance representing the amount of funds available for transfer. Assumed to be zero or positive.",
+          "type": "string",
+          "x-cds-type": "AmountString"
+        },
+        "creditLimit": {
+          "default": "0.00",
+          "description": "Object representing the maximum amount of credit that is available for this account. Assumed to be zero if absent.",
+          "type": "string",
+          "x-cds-type": "AmountString"
+        },
+        "amortisedLimit": {
+          "default": "0.00",
+          "description": "Object representing the available limit amortised according to payment schedule. Assumed to be zero if absent.",
+          "type": "string",
+          "x-cds-type": "AmountString"
+        },
+        "currency": {
+          "default": "AUD",
+          "description": "The currency for the balance amounts. If absent assumed to be `AUD`.",
+          "type": "string",
+          "x-cds-type": "CurrencyString"
+        },
+        "purses": {
+          "description": "Optional array of balances for the account in other currencies. Included to support accounts that support multi-currency purses such as Travel Cards.",
+          "items": {
+            "$ref": "#/$defs/BankingBalancePurse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "accountId",
+        "availableBalance",
+        "currentBalance"
+      ],
+      "type": "object"
+    },
+    "BankingBalancePurse": {
+      "properties": {
+        "amount": {
+          "description": "The balance available for this additional currency purse.",
+          "type": "string",
+          "x-cds-type": "AmountString"
+        },
+        "currency": {
+          "description": "The currency for the purse.",
+          "type": "string",
+          "x-cds-type": "CurrencyString"
+        }
+      },
+      "required": [
+        "amount"
+      ],
+      "type": "object"
+    },
+    "Links": {
+      "properties": {
+        "self": {
+          "description": "Fully qualified link that generated the current response document.",
+          "type": "string",
+          "x-cds-type": "URIString"
+        }
+      },
+      "required": [
+        "self"
+      ],
+      "type": "object"
+    },
+    "Meta": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+generated: '2026-10-20'
+method: none
+packages: []
+checked:
+- https://registry.npmjs.org/-/v1/search?text=maintainer:anz-bank
+- https://pypi.org/pypi/anz/json (404)
+- https://pypi.org/pypi/anz-api/json (404)
+- https://pypi.org/pypi/anz-bank/json (404)
+- https://api.github.com/orgs/anz-bank/repos
+- https://developer.online.anz.com/api/search?query=sdk
+note: No first-party client SDK for the ANZ Developer Portal (Fileactive) APIs or the CDR APIs was found. The docs
+  direct developers to Postman and the embedded OpenAPI documents. The anz-bank GitHub org publishes open-source
+  engineering tooling (sysl, sysl-go, pkg, decimal, protoc-gen-sysl), which are not clients for ANZ APIs and are
+  not recorded as SDKs.

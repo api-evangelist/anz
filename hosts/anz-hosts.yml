@@ -1,0 +1,179 @@
+generated: '2026-10-20'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 14
+  own: 1
+  other_domain: 10
+  platform: 3
+  roles:
+  - api
+  - docs
+  - other
+  - portal
+  - security
+  - source
+  - status
+  - website
+hosts:
+- host: api.anz
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - contract-discovery
+  - well-known
+  types:
+  - X-CDRDiscoveryStatus
+  serves:
+  - api
+  registrable_domain: api.anz
+  role: api
+  relation: other-domain
+- host: api.anz.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: anz.com
+  role: api
+  relation: other-domain
+- host: api.api.anz
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: api.anz
+  role: api
+  relation: other-domain
+- host: api.apix.anz
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: apix.anz
+  role: api
+  relation: other-domain
+- host: api.bugcrowd.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: bugcrowd.com
+  role: api
+  relation: other-domain
+- host: bugcrowd.com
+  found_by:
+  - pointer
+  - probed
+  - well-known
+  types:
+  - Security
+  serves: []
+  registrable_domain: bugcrowd.com
+  role: security
+  relation: other-domain
+- host: cdr.apix.anz
+  found_by:
+  - apis[]
+  - probed
+  - well-known
+  types: []
+  serves:
+  - api
+  registrable_domain: apix.anz
+  role: other
+  relation: other-domain
+- host: consumerdatastandardsaustralia.github.io
+  found_by:
+  - pointer
+  types:
+  - Deprecation
+  - APIReference
+  serves: []
+  registrable_domain: github.io
+  role: docs
+  relation: platform
+- host: developer.online.anz.com
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - docs-index
+  - well-known
+  types:
+  - Support
+  - DeveloperPortal
+  serves:
+  - docs
+  registrable_domain: anz.com
+  role: portal
+  relation: other-domain
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: help.online.anz.com
+  found_by:
+  - pointer
+  - probed
+  - docs-index
+  - well-known
+  - vendor-detect
+  types:
+  - GettingStarted
+  serves:
+  - docs
+  - support
+  vendor: zendesk
+  registrable_domain: anz.com
+  role: docs
+  relation: other-domain
+- host: status.online.anz.com
+  found_by:
+  - pointer
+  - probed
+  - well-known
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: anz.com
+  role: status
+  relation: other-domain
+- host: www.anz.com.au
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - docs-index
+  - well-known
+  - vendor-detect
+  types:
+  - HelpCenter
+  - Newsroom
+  - Website
+  - Documentation
+  - PrivacyPolicy
+  - TermsOfService
+  serves:
+  - docs
+  - cdn
+  vendor: imperva
+  registrable_domain: anz.com.au
+  role: website
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
