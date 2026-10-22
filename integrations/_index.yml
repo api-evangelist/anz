@@ -74,3 +74,110 @@
     detected: '2026-10-22'
   status: not-a-workflow
   arazzo: null
+- slug: anz-apra-authorised-deposit-taking-institutions
+  label: APRA authorised deposit-taking institutions
+  partner_name: APRA authorised deposit-taking institutions
+  category: Australian authorised deposit-taking institution (APRA)
+  type: register
+  channel: regulator-register
+  evidence: https://www.apra.gov.au/register-of-authorised-deposit-taking-institutions
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: APRA authorised deposit-taking institutions
+    spec_file: null
+    standard: null
+    role: authorised-deposit-taking-institution
+    registrations:
+    - registered_name: Australia and New Zealand Banking Group Limited
+      licences:
+      - Australian-owned authorised deposit-taking institutions
+      register_country: AU
+      matched_domain: anz.com.au
+      matched_by: reuse-cdr-identity
+      section: Australian-owned authorised deposit-taking institutions
+      identity: 'reuse: ACCC CDR register identity (domain-matched)'
+    signal_note: 'participation only: a regulator licence / authorisation listing; no API conformance is published
+      by this register'
+    detected_by: sweep-australia-afs-adi-registers.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: anz-asic-australian-financial-services-licensees
+  label: ASIC Australian Financial Services licensees
+  partner_name: ASIC Australian Financial Services licensees
+  category: Australian financial services licence (ASIC)
+  type: register
+  channel: regulator-register
+  evidence: https://data.gov.au/data/dataset/ab7eddce-84df-4098-bc8f-500d0d9776d1/resource/d98a113d-6b50-40e6-b65f-2612efc877f4/download/afs_lic_202610.csv
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: ASIC Australian Financial Services licensees
+    spec_file: null
+    standard: null
+    role: afs-licensee
+    registrations:
+    - registered_name: AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED
+      licences:
+      - AFS licence
+      - deposit and payment products
+      - non-cash payment products
+      - general insurance products
+      - life products
+      - derivatives
+      - foreign exchange contracts
+      - securities
+      - superannuation
+      - interests in managed investment schemes
+      - custodial or depository service
+      - market making
+      register_country: AU
+      matched_domain: anz.com.au
+      matched_by: reuse-cdr-identity
+      register_id: AFSL 234527
+      abn_acn: '11005357522'
+      state: VIC
+      start: 01/10/2003
+      identity: 'reuse: ACCC CDR register identity (domain-matched)'
+    signal_note: 'participation only: a regulator licence / authorisation listing; no API conformance is published
+      by this register'
+    detected_by: sweep-australia-afs-adi-registers.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: anz-asic-australian-credit-licensees
+  label: ASIC Australian credit licensees
+  partner_name: ASIC Australian credit licensees
+  category: Australian credit licence (ASIC)
+  type: register
+  channel: regulator-register
+  evidence: https://data.gov.au/data/dataset/fa0b0d71-b8b8-4af8-bc59-0b000ce0d5e4/resource/35953a01-a9a8-4609-8566-c9fa7de465d3/download/credit_lic_202610.csv
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: ASIC Australian credit licensees
+    spec_file: null
+    standard: null
+    role: credit-licensee
+    registrations:
+    - registered_name: AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED
+      licences:
+      - Australian credit licence
+      - credit provider
+      - lessor (consumer leases)
+      register_country: AU
+      matched_domain: anz.com.au
+      matched_by: reuse-cdr-identity
+      register_id: ACL 234527
+      abn_acn: '11005357522'
+      status: APPR
+      state: VIC
+      start: 01/03/2011
+      identity: 'reuse: ACCC CDR register identity (domain-matched)'
+    signal_note: 'participation only: a regulator licence / authorisation listing; no API conformance is published
+      by this register'
+    detected_by: sweep-australia-afs-adi-registers.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
