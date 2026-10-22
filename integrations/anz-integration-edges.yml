@@ -13,6 +13,7 @@ checked:
 - https://www.iso20022.org/sites/default/files/ISO10383_MIC/ISO10383_MIC.csv
 - https://zapier.com/apps/anz/integrations
 - https://zapier.com/apps/australia-and-new-zealand-banking-group-anz/integrations
+- https://api.cdr.gov.au/cdr-register/v1/all/data-recipients
 summary: null
 marketplace_apps: []
 edges:
@@ -53,7 +54,38 @@ edges:
       legal_name: ''
       country: GB
     detected_by: sweep-capital-markets.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   detected_by: sweep-capital-markets.py
-  first_seen: '2026-10-15'
+  first_seen: '2026-10-19'
+- partner_name: Consumer Data Right (ACCC accredited data recipient)
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://api.cdr.gov.au/cdr-register/v1/all/data-recipients
+  category: Australian Consumer Data Right accreditation
+  contract_reference:
+    register: 'CDR Register (Australia, ACCC): accredited data recipients'
+    standard: Consumer Data Right
+    spec_file: null
+    role: accredited-data-recipient
+    registered_name: Australia and New Zealand Banking Group Limited
+    registered_brands:
+    - ANZ Plus
+    register_id: ADR000005
+    accreditation_level: UNRESTRICTED
+    register_status: ACTIVE
+    lapsed: false
+    register_country: AU
+    matched_domain: anz.com.au
+    matched_by: domain
+    signal_note: 'regulated: ACCC accreditation to receive CDR data (a licence, not a product conformance test);
+      software products under the accreditation are the recipient''s own products or its customers / CDR representatives
+      and are never counted'
+    detected_by: sweep-australia-cdr-register.py
+    detected: '2026-10-22'
+  detected_by: sweep-australia-cdr-register.py
+  first_seen: '2026-10-22'
 templates: []

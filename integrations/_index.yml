@@ -40,6 +40,37 @@
       legal_name: ''
       country: GB
     detected_by: sweep-capital-markets.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: anz-consumer-data-right-accc-accredited-data-recipient
+  label: Consumer Data Right (ACCC accredited data recipient)
+  partner_name: Consumer Data Right (ACCC accredited data recipient)
+  category: Australian Consumer Data Right accreditation
+  type: register
+  channel: regulator-register
+  evidence: https://api.cdr.gov.au/cdr-register/v1/all/data-recipients
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: 'CDR Register (Australia, ACCC): accredited data recipients'
+    standard: Consumer Data Right
+    spec_file: null
+    role: accredited-data-recipient
+    registered_name: Australia and New Zealand Banking Group Limited
+    registered_brands:
+    - ANZ Plus
+    register_id: ADR000005
+    accreditation_level: UNRESTRICTED
+    register_status: ACTIVE
+    lapsed: false
+    register_country: AU
+    matched_domain: anz.com.au
+    matched_by: domain
+    signal_note: 'regulated: ACCC accreditation to receive CDR data (a licence, not a product conformance test);
+      software products under the accreditation are the recipient''s own products or its customers / CDR representatives
+      and are never counted'
+    detected_by: sweep-australia-cdr-register.py
+    detected: '2026-10-22'
   status: not-a-workflow
   arazzo: null
