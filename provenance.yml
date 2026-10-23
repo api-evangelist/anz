@@ -12,6 +12,9 @@ artifacts:
   capabilities/anz-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  changelog/anz-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
   collections/anz-banking-account-balances-api.opencollection.json:
     method: derived
     evidence: openapi/anz-banking-account-balances-api
@@ -63,133 +66,67 @@ artifacts:
   data-model/anz-data-model.yml:
     method: derived
     evidence: declared in the artifact
+  errors/anz-error-codes.yml:
+    method: searched
+    evidence: declared in the artifact
   errors/anz-problem-types.yml:
     method: derived
     evidence: declared in the artifact
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
+  hosts/anz-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+    evidence: carries an API Evangelist house phrase
+  integrations/anz-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
+  json-ld/anz-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-account-by-id-v5-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-account-list-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-accounts-balance-by-id-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-accounts-balance-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-direct-debit-authorisation-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-instalment-plan-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-payee-by-id-v2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-payee-list-v2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-product-by-id-v7-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-product-list-v4-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-scheduled-payments-list-v2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-transaction-by-id-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/anz-response-banking-transaction-list-v2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -273,12 +210,24 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/anz-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
-  llms/anz-llms.txt:
-    method: searched
-    evidence: 'derive-llms-provenance.py: harvested'
   mcp/anz-mcp.yml:
     method: derived
     evidence: declared in the artifact
@@ -307,9 +256,45 @@ artifacts:
   openapi/anz-banking-products-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  overlays/anz-cds-banking-products-overlay.yaml:
+  overlays/anz-banking-account-balances-api-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/anz-banking-account-direct-debits-api-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/anz-banking-account-scheduled-payments-api-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/anz-banking-account-transactions-api-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/anz-banking-accounts-api-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/anz-banking-payees-api-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/anz-banking-products-api-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  packages/anz-packages.yml:
     method: unknown
     evidence: no authorship recorded
+  plans/anz-plans-pricing.yml:
+    method: unknown
+    evidence: no authorship recorded
+  rate-limits/anz-rate-limits.yml:
+    method: searched
+    evidence: declared in the artifact
+  regulatory/anz-regulatory-posture.yml:
+    method: searched
+    evidence: declared in the artifact
+  rules/anz-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  sandbox/anz-sandbox.yml:
+    method: searched
+    evidence: declared in the artifact
   scopes/anz-scopes.yml:
     method: searched
     evidence: declared in the artifact
@@ -322,8 +307,26 @@ artifacts:
   skills/_index.yml:
     method: generated
     evidence: declared in the artifact
+  skills/anz-account-transactions.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/anz-accounts-and-balances.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/anz-payees.md:
+    method: generated
+    evidence: declared in the artifact
   skills/anz-product-reference-data.md:
     method: generated
+    evidence: declared in the artifact
+  skills/anz-regular-payments.md:
+    method: generated
+    evidence: declared in the artifact
+  vendors/anz-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/anz-vocabulary.yml:
+    method: derived
     evidence: declared in the artifact
   well-known/anz-well-known.yml:
     method: searched
