@@ -1,4 +1,4 @@
-# Australia and New Zealand Banking Group (ANZ) (anz)
+# Australia and New Zealand Banking Group (ANZ)
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,80 +64,195 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Australia and New Zealand Banking Group Limited (ANZ) is one of Australia's "Big Four" banks, a publicly listed company (ASX & NZX: ANZ) headquartered in Melbourne that provides retail, commercial, and institutional banking across Australia, New Zealand, and internationally. ANZ is a shareholder-owned Authorised Deposit-taking Institution (ADI) — not a mutual — regulated by APRA. As a designated data holder under Australia's Consumer Data Right (CDR / Open Banking), ANZ exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the Data Standards Body (DSB) Consumer Data Standards, and operates a separate CDR brand endpoint for ANZ Plus.
+Australia and New Zealand Banking Group Limited (ANZ) is one of Australia's "Big Four" banks, a publicly listed company (ASX and NZX code ANZ) headquartered in Melbourne that provides retail, commercial, and institutional banking across Australia, New Zealand, and internationally. ANZ is not a mutual or customer-owned institution; it is a shareholder-owned Authorised Deposit-taking Institution (ADI) regulated by APRA. As a designated data holder under Australia's Consumer Data Right (CDR / Open Banking), ANZ exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the Data Standards Body (DSB) Consumer Data Standards, and operates a separate CDR brand endpoint for ANZ Plus. Consumer data sharing beyond product reference data is gated behind the CDR accredited-data-recipient (ADR) model using OAuth2 / OpenID Connect FAPI security profiles.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/anz/refs/heads/main/apis.yml)
+**Areas:** Finance · Banks · Open Banking · CDR · Consumer Banking · Australia · Product Reference Data · ADI
 
-## Tags
+## Australia and New Zealand Banking Group (ANZ) on APIs.io
 
-- Financial
-- Banks
-- Open Banking
-- CDR
-- Consumer Banking
-- Australia
-- Product Reference Data
-- ADI
+Everything profiled for Australia and New Zealand Banking Group (ANZ) is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/anz/](https://apis.io/providers/anz/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (17)
 
-- **Created:** 2026-07-20
-- **Modified:** 2026-07-20
+- [Australia and New Zealand Banking Group (ANZ) Payments API](https://apis.io/apis/anz/anz-payments-api/) — ANZ's first-party Payments API suite on the ANZ Developer Portal, letting business and institutional customers automate and optimise payment workflows…
+- [Australia and New Zealand Banking Group (ANZ) PayTo API](https://apis.io/apis/anz/anz-payto-api/) — ANZ's first-party PayTo API (also available as a file channel) for real-time account-to-account payments and PayTo mandate management over the New Payments…
+- [Australia and New Zealand Banking Group (ANZ) PayID Check API](https://apis.io/apis/anz/anz-payid-check-api/) — ANZ's first-party PayID Check API to verify that a PayID is registered before initiating a payment or collection, streamlining NPP payment and collection…
+- [Australia and New Zealand Banking Group (ANZ) Confirmation of Payee API](https://apis.io/apis/anz/anz-confirmation-of-payee-api/) — ANZ's first-party Confirmation of Payee API matches a recipient's account name against their BSB and account number to reduce mistaken and…
+- [Australia and New Zealand Banking Group (ANZ) Account Statements API](https://apis.io/apis/anz/anz-account-statements-api/) — ANZ's first-party Account Statements API provides real-time and end-of-day account statements so business and institutional customers can monitor…
+- [Australia and New Zealand Banking Group (ANZ) Real-Time Notification API](https://apis.io/apis/anz/anz-real-time-notification-api/) — ANZ's first-party Real-Time Notification API delivers instant alerts for transaction and account events so business customers can enhance real-time…
+- [Australia and New Zealand Banking Group (ANZ) FX API](https://apis.io/apis/anz/anz-fx-api/) — ANZ's first-party FX (Foreign Exchange) API to automate currency management and optimise foreign-exchange operations for business and institutional…
+- [Australia and New Zealand Banking Group (ANZ) ACMC (Accounts & Cash Management) API](https://apis.io/apis/anz/anz-acmc-api/) — ANZ's first-party ACMC (Accounts & Cash Management) API suite supports client-monies and cash-management use cases for institutional customers, enhancing…
+- [Australia and New Zealand Banking Group (ANZ) NPP Agency API](https://apis.io/apis/anz/anz-npp-agency-api/) — ANZ's first-party NPP Agency API set (Agency Core, Agency PayTo Payer, Agency PayTo Biller, and Agency Confirmation of Payee) provides core payment and…
+- [Australia and New Zealand Banking Group (ANZ) Banking Account Balances API](https://apis.io/apis/anz/anz-banking-account-balances-api/) — Banking Account Balance endpoints. Authenticated CDR consumer-data endpoint, reachable only by accredited data recipients over mTLS with FAPI OAuth; ANZ's…
+- [Australia and New Zealand Banking Group (ANZ) Banking Account Direct Debits API](https://apis.io/apis/anz/anz-banking-account-direct-debits-api/) — Banking Account Direct Debit endpoints. Authenticated CDR consumer-data endpoint, reachable only by accredited data recipients over mTLS with FAPI OAuth;…
+- [Australia and New Zealand Banking Group (ANZ) Banking Account Scheduled Payments API](https://apis.io/apis/anz/anz-banking-account-scheduled-payments-api/) — Banking Account Scheduled Payment endpoints. Authenticated CDR consumer-data endpoint, reachable only by accredited data recipients over mTLS with FAPI…
+- [Australia and New Zealand Banking Group (ANZ) Banking Account Transactions API](https://apis.io/apis/anz/anz-banking-account-transactions-api/) — Banking Account Transaction endpoints. Authenticated CDR consumer-data endpoint, reachable only by accredited data recipients over mTLS with FAPI OAuth;…
+- [Australia and New Zealand Banking Group (ANZ) Banking Accounts API](https://apis.io/apis/anz/anz-banking-accounts-api/) — Banking Account endpoints. Authenticated CDR consumer-data endpoint, reachable only by accredited data recipients over mTLS with FAPI OAuth; ANZ's…
+- [Australia and New Zealand Banking Group (ANZ) Banking Payees API](https://apis.io/apis/anz/anz-banking-payees-api/) — Banking Payee endpoints. Authenticated CDR consumer-data endpoint, reachable only by accredited data recipients over mTLS with FAPI OAuth; ANZ's…
+- [Australia and New Zealand Banking Group (ANZ) Banking Products API](https://apis.io/apis/anz/anz-banking-products-api/) — Public, unauthenticated CDR Product Reference Data API (Get Products, Get Product Detail) for the ANZ brand. Contract is the Data Standards Body's Consumer…
+- [Australia and New Zealand Banking Group (ANZ) ANZ Plus Banking Products API](https://apis.io/apis/anz/anz-plus-banking-products-api/) — Public CDR Product Reference Data API for the ANZ Plus brand, a separate CDR data-holder brand whose publicBaseUri in the CDR Register (api.cdr.gov.au…
 
-## APIs
+### Published properties
 
-### Australia and New Zealand Banking Group (ANZ) CDR Product Reference Data API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-ANZ's public, unauthenticated Consumer Data Right Product Reference Data (PRD) API for the primary ANZ brand. It returns the bank's publicly offered banking products (accounts, cards, loans, overdrafts) as defined by the DSB Consumer Data Standards. Requires the CDS version header (x-v; version 4 and 5 confirmed live returning HTTP 200 with a data.products array).
+#### MCP servers (1)
 
-- **Human URL:** [https://www.anz.com.au/support/legal/anz-apis/](https://www.anz.com.au/support/legal/anz-apis/)
-- **Base URL:** `https://api.anz/cds-au/v1/banking/products`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [anz-cdr-products](https://apis.io/servers/anz/anz-cdr-products/)
 
-- CDR
-- Open Banking
-- Product Reference Data
-- Banking
-- Public
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://www.anz.com.au/support/legal/anz-apis/)
-- [API Reference](https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products)
-- [OpenAPI](openapi/anz-cds-banking-products-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Anz Agentic Access](https://apis.io/agentic-access/anz/anz-agentic-access/)
 
-### ANZ Plus CDR Product Reference Data API
+#### JSON Schema (13)
 
-The Consumer Data Right Product Reference Data API for ANZ's separate digital brand, ANZ Plus, served under its own CDR data-holder brand host. Public and unauthenticated, conforming to the same DSB Consumer Data Standards banking products contract (x-v version 4 and 5 confirmed live returning HTTP 200).
+The data models the API reads and writes.
 
-- **Human URL:** [https://www.anz.com.au/support/legal/anz-apis/](https://www.anz.com.au/support/legal/anz-apis/)
-- **Base URL:** `https://cdr.apix.anz/cds-au/v1/banking/products`
+- [ResponseBankingAccountByIdV5](https://apis.io/schemas/anz/anz-response-banking-account-by-id-v5/)
+- [ResponseBankingAccountListV3](https://apis.io/schemas/anz/anz-response-banking-account-list-v3/)
+- [ResponseBankingAccountsBalanceById](https://apis.io/schemas/anz/anz-response-banking-accounts-balance-by-id/)
+- [ResponseBankingAccountsBalanceList](https://apis.io/schemas/anz/anz-response-banking-accounts-balance-list/)
+- [ResponseBankingDirectDebitAuthorisationList](https://apis.io/schemas/anz/anz-response-banking-direct-debit-authorisation-list/)
+- [ResponseBankingInstalmentPlanList](https://apis.io/schemas/anz/anz-response-banking-instalment-plan-list/)
+- [ResponseBankingPayeeByIdV2](https://apis.io/schemas/anz/anz-response-banking-payee-by-id-v2/)
+- [ResponseBankingPayeeListV2](https://apis.io/schemas/anz/anz-response-banking-payee-list-v2/)
+- [ResponseBankingProductByIdV7](https://apis.io/schemas/anz/anz-response-banking-product-by-id-v7/)
+- [ResponseBankingProductListV4](https://apis.io/schemas/anz/anz-response-banking-product-list-v4/)
+- [ResponseBankingScheduledPaymentsListV2](https://apis.io/schemas/anz/anz-response-banking-scheduled-payments-list-v2/)
+- [ResponseBankingTransactionByIdV3](https://apis.io/schemas/anz/anz-response-banking-transaction-by-id-v3/)
+- [ResponseBankingTransactionListV2](https://apis.io/schemas/anz/anz-response-banking-transaction-list-v2/)
 
-#### Tags
+#### JSON-LD (1)
 
-- CDR
-- Open Banking
-- Product Reference Data
-- ANZ Plus
-- Public
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Anz Context](https://apis.io/jsonld/anz/anz-context/)
 
-- [Documentation](https://www.anz.com.au/support/legal/anz-apis/)
-- [API Reference](https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products)
-- [OpenAPI](openapi/anz-cds-banking-products-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+#### Collections (7)
 
-## Common Properties
+Postman and Open Collection request collections.
+
+- [CDR Banking Banking Account Balances API](https://apis.io/collections/anz/open-anz-banking-account-balances-api/)
+- [CDR Banking Banking Account Balances Banking Account Direct Debits API](https://apis.io/collections/anz/open-anz-banking-account-direct-debits-api/)
+- [CDR Banking Banking Account Balances Banking Account Scheduled Payments API](https://apis.io/collections/anz/open-anz-banking-account-scheduled-payments-api/)
+- [CDR Banking Banking Account Balances Banking Account Transactions API](https://apis.io/collections/anz/open-anz-banking-account-transactions-api/)
+- [CDR Banking Banking Account Balances Banking Accounts API](https://apis.io/collections/anz/open-anz-banking-accounts-api/)
+- [CDR Banking Banking Account Balances Banking Payees API](https://apis.io/collections/anz/open-anz-banking-payees-api/)
+- [CDR Banking Banking Account Balances Banking Products API](https://apis.io/collections/anz/open-anz-banking-products-api/)
+
+#### Overlays (7)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Anz Banking Account Balances Api Overlay](https://apis.io/overlays/anz/anz-banking-account-balances-api-overlay/)
+- [Anz Banking Account Direct Debits Api Overlay](https://apis.io/overlays/anz/anz-banking-account-direct-debits-api-overlay/)
+- [Anz Banking Account Scheduled Payments Api Overlay](https://apis.io/overlays/anz/anz-banking-account-scheduled-payments-api-overlay/)
+- [Anz Banking Account Transactions Api Overlay](https://apis.io/overlays/anz/anz-banking-account-transactions-api-overlay/)
+- [Anz Banking Accounts Api Overlay](https://apis.io/overlays/anz/anz-banking-accounts-api-overlay/)
+- [Anz Banking Payees Api Overlay](https://apis.io/overlays/anz/anz-banking-payees-api-overlay/)
+- [Anz Banking Products Api Overlay](https://apis.io/overlays/anz/anz-banking-products-api-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Australia and New Zealand Banking Group (ANZ) API Rules](https://apis.io/rules/anz/anz-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Anz Authentication](https://apis.io/security/anz/anz-authentication/)
+- [Anz Domain Security](https://apis.io/security/anz/anz-domain-security/)
+- [Anz Vulnerability Disclosure](https://apis.io/security/anz/anz-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Anz Scopes](https://apis.io/scopes/anz/anz-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Anz Plans Pricing](https://apis.io/plans/anz/anz-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Anz Rate Limits](https://apis.io/rate-limits/anz/anz-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.anz.com.au/)
-- [Developer Portal](https://developer.online.anz.com/)
 - [Documentation](https://www.anz.com.au/support/legal/anz-apis/)
-- [GitHub Organization](https://github.com/ANZ-Bank)
-- [LinkedIn](https://www.linkedin.com/company/anz)
-- [Privacy Policy](https://www.anz.com.au/privacy/)
+- [API reference](https://consumerdatastandardsaustralia.github.io/standards/)
+- [Support](https://www.anz.com.au/security/)
+- [Security](https://bugcrowd.com/anz-vdp)
+- [Terms of service](https://www.anz.com.au/support/help/website-terms-use/)
+- [Privacy policy](https://www.anz.com.au/privacy/)
+- [GitHub](https://github.com/ANZ-Bank)
+- [Status](https://api.anz/cds-au/v1/discovery/status)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 39.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 44.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 44.6 |
+| Access clarity | 21.1 |
+
+**Agent readiness 25.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 48.8** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/anz/](https://apis.io/providers/anz/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Australia and New Zealand Banking Group (ANZ): the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/anz/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
